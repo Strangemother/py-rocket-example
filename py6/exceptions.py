@@ -1,0 +1,3 @@
+
+class DropEvent(Exception):
+    pass

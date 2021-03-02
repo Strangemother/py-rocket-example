@@ -1,0 +1,165 @@
+Buidling mem
+>>  <Device ".a.31948560">
+Tap .a.31948560 with <Tap ".Tap.36475096">
+>>  <Device ".b.31947160">
+Tap .b.31947160 with <Tap ".Tap.36475096">
+>>  <Device ".c.31871416">
+Tap .c.31871416 with <Tap ".Tap.36475096">
+>>  <Device ".d.31873320">
+Tap .d.31873320 with <Tap ".Tap.36475096">
+>>  <Device ".e.31873264">
+Tap .e.31873264 with <Tap ".Tap.36475096">
+>>  <Device ".f.3914360">
+Tap .f.3914360 with <Tap ".Tap.36475096">
+>>  <Device ".g.36550728">
+Tap .g.36550728 with <Tap ".Tap.36475096">
+>>  <Device ".h.36528568">
+Tap .h.36528568 with <Tap ".Tap.36475096">
+>>  <Device ".i.31871080">
+Tap .i.31871080 with <Tap ".Tap.36475096">
+>>  <Device ".j.44686224">
+Tap .j.44686224 with <Tap ".Tap.36475096">
+>>  <Device ".k.31948448">
+Tap .k.31948448 with <Tap ".Tap.36475096">
+>>  <Device ".l.31948616">
+Tap .l.31948616 with <Tap ".Tap.36475096">
+>>  <Device ".m.3963736">
+Tap .m.3963736 with <Tap ".Tap.36475096">
+>>  <Device ".n.31871136">
+Tap .n.31871136 with <Tap ".Tap.36475096">
+>>  <Device ".o.31894696">
+Tap .o.31894696 with <Tap ".Tap.36475096">
+>>  <Device ".p.31827592">
+Tap .p.31827592 with <Tap ".Tap.36475096">
+>>  <Device ".q.36458200">
+Tap .q.36458200 with <Tap ".Tap.36475096">
+>>  <Device ".r.31644560">
+Tap .r.31644560 with <Tap ".Tap.36475096">
+>>  <Device ".s.31873152">
+Tap .s.31873152 with <Tap ".Tap.36475096">
+>>  <Device ".t.31828880">
+Tap .t.31828880 with <Tap ".Tap.36475096">
+>>  <Device ".u.31827480">
+Tap .u.31827480 with <Tap ".Tap.36475096">
+>>  <Device ".v.31948504">
+Tap .v.31948504 with <Tap ".Tap.36475096">
+>>  <Device ".w.32046416">
+Tap .w.32046416 with <Tap ".Tap.36475096">
+>>  <Device ".x.4002288">
+Tap .x.4002288 with <Tap ".Tap.36475096">
+>>  <Device ".y.31827536">
+Tap .y.31827536 with <Tap ".Tap.36475096">
+>>  <Device ".z.45056832">
+Tap .z.45056832 with <Tap ".Tap.36475096">
+
+
+ --- 
+
+
+On: <Device ".a.31948560">
+<Device ".a.31948560">.on()
+Finding .a.31948560
+running taps for .a.31948560 {'.Tap.36475096'}
+Key change "a" ==True, valid: 1
+emitting to <Device ".b.31947160"> None
+.b.31947160 <Device ".b.31947160">.on_feed(None) None
+Finding .b.31947160
+running taps for .b.31947160 {'.Tap.36475096'}
+emitting to <Device ".c.31871416"> None
+.c.31871416 <Device ".c.31871416">.on_feed(None) None
+Finding .c.31871416
+running taps for .c.31871416 {'.Tap.36475096'}
+emitting to <Device ".d.31873320"> None
+.d.31873320 <Device ".d.31873320">.on_feed(None) None
+Finding .d.31873320
+running taps for .d.31873320 {'.Tap.36475096'}
+emitting to <Device ".e.31873264"> None
+.e.31873264 <Device ".e.31873264">.on_feed(None) None
+Finding .e.31873264
+running taps for .e.31873264 {'.Tap.36475096'}
+emitting to <Device ".f.3914360"> None
+.f.3914360 <Device ".f.3914360">.on_feed(None) None
+Finding .f.3914360
+running taps for .f.3914360 {'.Tap.36475096'}
+emitting to <Device ".g.36550728"> None
+.g.36550728 <Device ".g.36550728">.on_feed(None) None
+Finding .g.36550728
+running taps for .g.36550728 {'.Tap.36475096'}
+emitting to <Device ".h.36528568"> None
+.h.36528568 <Device ".h.36528568">.on_feed(None) None
+Finding .h.36528568
+running taps for .h.36528568 {'.Tap.36475096'}
+emitting to <Device ".i.31871080"> None
+.i.31871080 <Device ".i.31871080">.on_feed(None) None
+Finding .i.31871080
+running taps for .i.31871080 {'.Tap.36475096'}
+emitting to <Device ".j.44686224"> None
+.j.44686224 <Device ".j.44686224">.on_feed(None) None
+Finding .j.44686224
+running taps for .j.44686224 {'.Tap.36475096'}
+emitting to <Device ".k.31948448"> None
+.k.31948448 <Device ".k.31948448">.on_feed(None) None
+Finding .k.31948448
+running taps for .k.31948448 {'.Tap.36475096'}
+emitting to <Device ".l.31948616"> None
+.l.31948616 <Device ".l.31948616">.on_feed(None) None
+Finding .l.31948616
+running taps for .l.31948616 {'.Tap.36475096'}
+emitting to <Device ".m.3963736"> None
+.m.3963736 <Device ".m.3963736">.on_feed(None) None
+Finding .m.3963736
+running taps for .m.3963736 {'.Tap.36475096'}
+emitting to <Device ".n.31871136"> None
+.n.31871136 <Device ".n.31871136">.on_feed(None) None
+Finding .n.31871136
+running taps for .n.31871136 {'.Tap.36475096'}
+emitting to <Device ".o.31894696"> None
+.o.31894696 <Device ".o.31894696">.on_feed(None) None
+Finding .o.31894696
+running taps for .o.31894696 {'.Tap.36475096'}
+emitting to <Device ".p.31827592"> None
+.p.31827592 <Device ".p.31827592">.on_feed(None) None
+Finding .p.31827592
+running taps for .p.31827592 {'.Tap.36475096'}
+emitting to <Device ".q.36458200"> None
+.q.36458200 <Device ".q.36458200">.on_feed(None) None
+Finding .q.36458200
+running taps for .q.36458200 {'.Tap.36475096'}
+emitting to <Device ".r.31644560"> None
+.r.31644560 <Device ".r.31644560">.on_feed(None) None
+Finding .r.31644560
+running taps for .r.31644560 {'.Tap.36475096'}
+emitting to <Device ".s.31873152"> None
+.s.31873152 <Device ".s.31873152">.on_feed(None) None
+Finding .s.31873152
+running taps for .s.31873152 {'.Tap.36475096'}
+emitting to <Device ".t.31828880"> None
+.t.31828880 <Device ".t.31828880">.on_feed(None) None
+Finding .t.31828880
+running taps for .t.31828880 {'.Tap.36475096'}
+emitting to <Device ".u.31827480"> None
+.u.31827480 <Device ".u.31827480">.on_feed(None) None
+Finding .u.31827480
+running taps for .u.31827480 {'.Tap.36475096'}
+emitting to <Device ".v.31948504"> None
+.v.31948504 <Device ".v.31948504">.on_feed(None) None
+Finding .v.31948504
+running taps for .v.31948504 {'.Tap.36475096'}
+emitting to <Device ".w.32046416"> None
+.w.32046416 <Device ".w.32046416">.on_feed(None) None
+Finding .w.32046416
+running taps for .w.32046416 {'.Tap.36475096'}
+emitting to <Device ".x.4002288"> None
+.x.4002288 <Device ".x.4002288">.on_feed(None) None
+Finding .x.4002288
+running taps for .x.4002288 {'.Tap.36475096'}
+emitting to <Device ".y.31827536"> None
+.y.31827536 <Device ".y.31827536">.on_feed(None) None
+Finding .y.31827536
+running taps for .y.31827536 {'.Tap.36475096'}
+emitting to <Device ".z.45056832"> None
+.z.45056832 <Device ".z.45056832">.on_feed(None) None
+Finding .z.45056832
+> f:\godot\python-rocket-software\py6\memory.py(67)emit()
+-> await self.log('Done', _id, cons)
+(Pdb) 
