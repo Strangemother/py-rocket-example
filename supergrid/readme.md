@@ -41,16 +41,16 @@ When iterating _rows_ of a layer, stepping left to right yields _to EAST_ `(0, 1
     -1 -1  1      R S T
 
 
-        UD   LR     D
-place    0    0     A
-east     0    1     E
-west     0   -1     W
-south    1    0     N
-north   -1    0     S
-NE       1    1     O
-SW       1   -1     M
-NW      -1   -1     T
-NE      -1    1     R
+            UD   LR     D
+    place    0    0     A
+    east     0    1     E
+    west     0   -1     W
+    south    1    0     N
+    north   -1    0     S
+    NE       1    1     O
+    SW       1   -1     M
+    NW      -1   -1     T
+    NE      -1    1     R
 
 
 ## Uncollapsable positions
@@ -112,11 +112,12 @@ Ensuring the collapse will pick a node from all possible nodes. Alternatively co
         'AAA',
         'AAA',
     ]
-        g1=stash([
-            'JKL',
-            'IAP',
-            'BNM',
-        ], *g)
+
+    g1=stash([
+        'JKL',
+        'IAP',
+        'BNM',
+    ], *g)
 
     print_mem()
 
@@ -161,13 +162,14 @@ Ensuring the collapse will pick a node from all possible nodes. Alternatively co
     11 |     A A A
     -----------------------
 
-plot(6,8)
-plot(6,10)
-step_resolve()
-plot(6,10, force=True)
-step_resolve()
-print_mem()
-step_resolve()
+    plot(6,8)
+    plot(6,10)
+    step_resolve()
+    plot(6,10, force=True)
+    step_resolve()
+    print_mem()
+    step_resolve()
+
 
 ## Movement
 
@@ -271,31 +273,34 @@ Result 0 None spaces
 -----------------------------
 >>> step_resolve()
 ```
-    3 4 5 6 7 8
----------------
-3 | A
-4 |         + + +
-5 |         + + +
-6 | + + + + + + +
-7 |       +
-8 |       +
----------------
->>> plot(1,8)
-(None, None, None, None, None, None, None, None)
->>> step_resolve()
-Reading 24 "none" spaces.
-No movement.
-Result 24 None spaces
-    0 1 2 3 4 5 6 7 8
----------------------
-0 |         + + +
-1 |         + + +
-2 |         + + +
-3 | A
-4 |         + + +
-5 |         + + +
-6 | + + + + + + +
-7 |       +
-8 |       +
----------------------
->>>
+
+Unplottable spaces (due to no connections) yields empty slots:
+
+        3 4 5 6 7 8
+    ---------------
+    3 | A
+    4 |         + + +
+    5 |         + + +
+    6 | + + + + + + +
+    7 |       +
+    8 |       +
+    ---------------
+    >>> plot(1,8)
+    (None, None, None, None, None, None, None, None)
+    >>> step_resolve()
+    Reading 24 "none" spaces.
+    No movement.
+    Result 24 None spaces
+        0 1 2 3 4 5 6 7 8
+    ---------------------
+    0 |         + + +
+    1 |         + + +
+    2 |         + + +
+    3 | A
+    4 |         + + +
+    5 |         + + +
+    6 | + + + + + + +
+    7 |       +
+    8 |       +
+    ---------------------
+    >>>
