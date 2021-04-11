@@ -48,7 +48,6 @@ class LoopTest(object):
         next_terminals = circuit_attached + terminal_attached
 
         entity = self.clone()# if should_clone else self
-        entity.path.append(Label('...'))
         entity.path.append(terminal)
 
         if terminal == entity.end_terminal:
@@ -63,10 +62,14 @@ class LoopTest(object):
         if len(next_terminals) == 0:
             circuit.looptest_incomplete(entity)
 
-        should_clone = len(next_terminals) > 1
+        for i, term in enumerate(circuit_attached):
+            _entity = entity.clone()
+            _entity.path.append(Label('...'))
+            _entity.emit_terminal_connection(circuit, terminal, term)#, on_complete=on_complete)
 
-        for i, term in enumerate(next_terminals):
-            _entity = entity.clone()# if should_clone else self
+        for i, term in enumerate(terminal_attached):
+            _entity = entity.clone()
+            _entity.path.append(Label('||'))
 
             if term == _entity.start_terminal:
                 print('Hit start term', _entity.path)
@@ -233,3 +236,21 @@ c.connect(i.t_out, a.t_in) # Close a..g>i>a
 pprint(c.graph)
 c.looptest(a.t_out, a.t_in)
 print(c.looptests)
+
+
+
+_b = Unit(label='battery')
+_l = Unit(label='led')
+_s = Unit(label='switch')
+
+c3 = Circuit()
+
+c3.connect(_b.t_out, _s.t_in)
+c3.connect(_s.t_out, _l.t_in)
+c3.connect(_l.t_out, _b.t_in)
+
+print('Mini loop test:\n')
+
+pprint(c3.graph)
+c3.looptest(_b.t_out, _b.t_in)
+print(c3.looptests)
