@@ -171,14 +171,14 @@ e = Unit(label='e')
 
 c = Circuit()
 
-c2 = Circuit()
-a2 = Unit(label='a2')
-b2 = Unit(label='#')
-d2 = Unit(label='d2')
+# c2 = Circuit()
+# a2 = Unit(label='a2')
+# b2 = Unit(label='#')
+# d2 = Unit(label='d2')
 
-c2.connect(b.t_out, a2.t_in)
-c2.connect(a2.t_out, d2.t_in)
-c2.connect(d2.t_out, b.t_in)
+# c2.connect(b.t_out, a2.t_in)
+# c2.connect(a2.t_out, d2.t_in)
+# c2.connect(d2.t_out, b.t_in)
 
 c.connect(a.t_out, b.t_in)
 c.connect(b.t_out, d.t_in)
