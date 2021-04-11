@@ -43,10 +43,12 @@ class LoopTest(object):
         # Get all next points, if more than 1, clone and send.
         circuit_attached = circuit.get_next_terminals(self, terminal)
         # Fetch terminal (internal) attached
+
         terminal_attached = terminal.looptest_in(self)
         next_terminals = circuit_attached + terminal_attached
 
         entity = self.clone()# if should_clone else self
+        entity.path.append(Label('...'))
         entity.path.append(terminal)
 
         if terminal == entity.end_terminal:
@@ -74,7 +76,6 @@ class LoopTest(object):
 
     def emit_terminal_connection(self, circuit, from_terminal, to_terminal, on_complete=None, entity=None):
         entity = entity or self
-        entity.path.append(Label('...'))
         entity.emit(circuit, to_terminal, on_complete)
 
 class Label(object):
@@ -83,6 +84,7 @@ class Label(object):
 
     def uuid(self):
         return self.label
+
 
 class Circuit(object):
 
