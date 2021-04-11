@@ -18,18 +18,18 @@ class LoopTest(object):
     origin = None
     # circuit = None
 
-    def __init__(self, start_terminal, end_terminal):
+    def __init__(self, start_terminal, end_terminal, origin_id=None):
         # self.circuit = circuit
-
+        self.origin_id = origin_id or id(self)
+        self.unique_id = id(self)
         self.start_terminal = start_terminal
         self.end_terminal = end_terminal
         self.path = []
-        self.next_terminals = ()
 
     def clone(self, origin=None):
         """a shallow copy with a unique path
         """
-        nc = self.__class__(self.start_terminal, self.end_terminal)
+        nc = self.__class__(self.start_terminal, self.end_terminal, self.origin_id)
         nc.current_terminal = self.current_terminal
         nc.step_count = self.step_count
         nc.path = self.path.copy()
@@ -46,29 +46,36 @@ class LoopTest(object):
         terminal_attached = terminal.looptest_in(self)
         next_terminals = circuit_attached + terminal_attached
 
-        names = ', '.join(x.uuid() for x in next_terminals)
-        self.path.append(terminal)
+        entity = self.clone()# if should_clone else self
+        entity.path.append(terminal)
 
-        if terminal == self.end_terminal:
+        if terminal == entity.end_terminal:
             # The loop is complete as per the route spec.
-            if on_complete:
-                on_complete(self.clone())
+            # clone = self.clone()
+            # clone.path.append(terminal)
+            circuit.looptest_complete(entity)
+            # if on_complete:
+            #     on_complete(clone)
             return
 
         if len(next_terminals) == 0:
-            circuit.looptest_incomplete(self)
+            circuit.looptest_incomplete(entity)
 
         should_clone = len(next_terminals) > 1
 
         for i, term in enumerate(next_terminals):
-            entity = self.clone() if should_clone else self
+            _entity = entity.clone()# if should_clone else self
 
-            if term == entity.start_terminal:
-                print('Hit start term', entity.path)
-                continue
+            if term == _entity.start_terminal:
+                print('Hit start term', _entity.path)
+                return
 
-            entity.emit(circuit, term, on_complete)
+            _entity.emit_terminal_connection(circuit, terminal, term)#, on_complete=on_complete)
 
+    def emit_terminal_connection(self, circuit, from_terminal, to_terminal, on_complete=None, entity=None):
+        entity = entity or self
+
+        entity.emit(circuit, to_terminal, on_complete)
 
 
 
@@ -77,6 +84,7 @@ class Circuit(object):
     def __init__(self):
         self.graph = defaultdict(set)
         self.terminals = {}
+        self.looptests = {}
 
     def connect(self, a, b):
         print('connect', a, b)
@@ -95,11 +103,14 @@ class Circuit(object):
         """
         print('Initiate circuit looptest from', start_a)
         lt = LoopTest(start_a, end_b)
-        lt.emit(self, on_complete=self.looptest_complete)
+        lt.emit(self)#, on_complete=self.looptest_complete)
+        # self.looptests[lt.unique_id] = {}
 
     def looptest_complete(self, looptest_event):
         p = ' - '.join(x.uuid() for x in looptest_event.path)
         print('Complete\n  ', p, '\n')
+        self.looptests[looptest_event.unique_id] = looptest_event
+
 
     def looptest_incomplete(self, looptest_event):
         p = ' - '.join(x.uuid() for x in looptest_event.path)
@@ -199,4 +210,4 @@ c.connect(i.t_out, a.t_in) # Close a..g>i>a
 
 pprint(c.graph)
 c.looptest(a.t_out, a.t_in)
-
+print(c.looptests)
