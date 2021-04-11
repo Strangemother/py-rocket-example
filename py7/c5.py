@@ -171,14 +171,14 @@ e = Unit(label='e')
 
 c = Circuit()
 
-# c2 = Circuit()
-# a2 = Unit(label='a2')
-# b2 = Unit(label='#')
-# d2 = Unit(label='d2')
+c2 = Circuit()
+a2 = Unit(label='a2')
+b2 = Unit(label='#')
+d2 = Unit(label='d2')
 
-# c2.connect(b.t_out, a2.t_in)
-# c2.connect(a2.t_out, d2.t_in)
-# c2.connect(d2.t_out, b.t_in)
+c2.connect(b.t_out, a2.t_in)
+c2.connect(a2.t_out, d2.t_in)
+c2.connect(d2.t_out, b.t_in)
 
 c.connect(a.t_out, b.t_in)
 c.connect(b.t_out, d.t_in)
@@ -198,6 +198,21 @@ j = Unit(label='j')
 # incomplete:
 #     a b d e a f g h
 #     a b d e a f g i j
+
+"""
+Complete
+   a.t_out - b.t_in - b.t_out - d.t_in - d.t_out - e.t_in - e.t_out - a.t_in
+
+   a.t_out - b.t_in - b.t_out - d.t_in - d.t_out - e.t_in - e.t_out - f.t_in - f.t_out
+   - g.t_in - g.t_out - i.t_in - i.t_out - a.t_in
+
+Incomplete
+   a.t_out - b.t_in - b.t_out - d.t_in - d.t_out - e.t_in - e.t_out - f.t_in - f.t_out
+   - g.t_in - g.t_out - h.t_in - h.t_out
+
+   a.t_out - b.t_in - b.t_out - d.t_in - d.t_out - e.t_in - e.t_out - f.t_in - f.t_out
+   - g.t_in - g.t_out - i.t_in - i.t_out - j.t_in - j.t_out
+"""
 
 c.connect(e.t_out, f.t_in) # e fork to f (and earlier A)
 c.connect(f.t_out, g.t_in)
