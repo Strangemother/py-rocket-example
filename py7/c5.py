@@ -62,24 +62,51 @@ class LoopTest(object):
         if len(next_terminals) == 0:
             circuit.looptest_incomplete(entity)
 
-        for i, term in enumerate(circuit_attached):
+        self.emit_to_circuit_many(entity, circuit, terminal, circuit_attached)
+
+        # for i, term in enumerate(circuit_attached):
+        #     _entity = entity.clone()
+        #     _entity.path.append(Label('...'))
+        #     _entity.emit_terminal_connection(circuit, terminal, term)#, on_complete=on_complete)
+
+        self.emit_to_circuit_many(entity, circuit, terminal, terminal_attached, label='||')
+
+        # Gather other circuit loops.
+        other_circuit_terminals = circuit_manager.get_circuit_terminals(terminal, circuit)
+
+        if len(other_circuit_terminals) > 0:
+            print("\n   Circuit Step from", circuit.label,
+                terminal, 'to', other_circuit_terminals, '\n')
+
+            #import pdb; pdb.set_trace()  # breakpoint a8a5413d //
+
+            # for other_circuit, other_terminal_uuid in other_circuit_terminals:
+            #     #other_terminal = other_circuit.terminals.get(other_terminal_uuid)
+            #     print('Emiting to', other_circuit.label)
+            #     import pdb; pdb.set_trace()  # breakpoint 2cab086b //
+            #     entity.emit(other_circuit, terminal)
+            # self.emit_to_circuit_many(entity, other_circuit, terminal, (other_terminal,),)
+
+        # for i, term in enumerate(terminal_attached):
+        #     _entity = entity.clone()
+        #     _entity.path.append(Label('||'))
+
+        #     if term == _entity.start_terminal:
+        #         print('Hit start term', _entity.path)
+        #         return
+
+        #     _entity.emit_terminal_connection(circuit, terminal, term)#, on_complete=on_complete)
+
+    def emit_to_circuit_many(self, entity, circuit, terminal, many_terminals, label='...'):
+        for i, term in enumerate(many_terminals):
             _entity = entity.clone()
-            _entity.path.append(Label('...'))
-            _entity.emit_terminal_connection(circuit, terminal, term)#, on_complete=on_complete)
-
-        for i, term in enumerate(terminal_attached):
-            _entity = entity.clone()
-            _entity.path.append(Label('||'))
-
-            if term == _entity.start_terminal:
-                print('Hit start term', _entity.path)
-                return
-
+            _entity.path.append(Label(label))
             _entity.emit_terminal_connection(circuit, terminal, term)#, on_complete=on_complete)
 
     def emit_terminal_connection(self, circuit, from_terminal, to_terminal, on_complete=None, entity=None):
         entity = entity or self
         entity.emit(circuit, to_terminal, on_complete)
+
 
 class Label(object):
     def __init__(self, label):
@@ -88,18 +115,59 @@ class Label(object):
     def uuid(self):
         return self.label
 
+class CircuitManager(object):
+    """Maintain a list of all circuits for cross referencing of
+    terminals during looptests.
+    """
+    circuits = None
+
+    def __init__(self):
+        self.circuits = {}
+        self.connections = defaultdict(set)
+
+    def add(self, circuit):
+        print('new circuit', circuit.label)
+        self.circuits[circuit.label] = circuit
+
+    def add_terminal_connection(self, circuit, a, b):
+        self.connections[a.uuid()].add( (circuit.label, b.uuid()) )
+
+    def get_circuit_terminals(self, terminal, ignore):
+        r = self.connections.get(terminal.uuid(), None)
+        if r is None:
+            return ()
+
+        # print('CircuitManager.get_circuit_terminals', terminal)
+        result = ()
+        ignore_label = ignore.label
+
+        for circuit_label, term_uuid in r:
+            if circuit_label == ignore_label:
+                continue
+            c = self.circuits.get(circuit_label)
+            #others = c.get_graph_attached(terminal)
+            #if len(others) > 0:
+            result += ((c, term_uuid,),)
+
+        return result
+
+circuit_manager = CircuitManager()
 
 class Circuit(object):
 
-    def __init__(self):
+    label = None
+
+    def __init__(self, label=None):
+        self.label = label
         self.graph = defaultdict(set)
         self.terminals = {}
         self.looptests = {}
+        circuit_manager.add(self)
 
     def connect(self, a, b):
         print('connect', a, b)
         self.graph[a.uuid()].add(b.uuid())
-
+        circuit_manager.add_terminal_connection(self, a,b)
         self.terminals[a.uuid()] = a
         self.terminals[b.uuid()] = b
 
@@ -179,9 +247,9 @@ b = Unit(label='b')
 d = Unit(label='d')
 e = Unit(label='e')
 
-c = Circuit()
+c = Circuit(label='c')
 
-c2 = Circuit()
+c2 = Circuit(label='c2')
 a2 = Unit(label='a2')
 b2 = Unit(label='#')
 d2 = Unit(label='d2')
@@ -243,7 +311,7 @@ _b = Unit(label='battery')
 _l = Unit(label='led')
 _s = Unit(label='switch')
 
-c3 = Circuit()
+c3 = Circuit(label='c3')
 
 c3.connect(_b.t_out, _s.t_in)
 c3.connect(_s.t_out, _l.t_in)
@@ -254,3 +322,9 @@ print('Mini loop test:\n')
 pprint(c3.graph)
 c3.looptest(_b.t_out, _b.t_in)
 print(c3.looptests)
+"""
+Complete
+   battery.t_out -
+   ... - switch.t_in - || - switch.t_out -
+   ... - led.t_in - || - led.t_out - ... - battery.t_in
+"""
