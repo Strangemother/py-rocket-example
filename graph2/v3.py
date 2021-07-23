@@ -4,6 +4,9 @@ from itertools import chain
 from collections import Counter
 from collections import defaultdict
 
+from collections import UserList
+import random
+
 
 def main():
     global g
@@ -13,11 +16,42 @@ def main():
     pp(vars(g))
     pp(vars(g.tree))
 
-    c = g.get_chain()
+    c = g.get_chain(keep_noedge=True)
     pp(c)
     # print(c)
     print(len(c))
-    return g
+    t = (
+        "_start_, NoEdge, fa, Edge, fb, Edge, fc, Edge, fd, NoEdge, _end_",
+        "_start_, NoEdge, fa, NoEdge, fab, NoEdge, fac, NoEdge, fad, NoEdge, _end_",
+        "_start_, NoEdge, b_a, Edge, b_b, Edge, b_c, Edge, b_d, NoEdge, _end_"
+        )
+
+    assert_paths(c,t)
+
+
+def assert_paths(c,t):
+    r = ()
+    for row in c:
+        names = ()
+        for item in row:
+            names += (item.node.name,)
+        v = ', '.join(names)
+        r += (v, )
+
+
+    try:
+        assert t == r
+        print('Match success.')
+        return
+    except AssertionError as e:
+        print('Error', e)
+
+    for x,y in (tuple(zip(t,r))):
+        print(x)
+        print(y)
+        print('')
+
+    # pp(r)
 
 def poppins():
     word = "supercalifragilisticexpialidocious"
@@ -110,17 +144,22 @@ def functions():
     g.connect(fa, fab, fac, fad)
     g.connect(b_a, b_b, b_c, b_d, edge=Edge())
     g.connect(fa, fb, fc, fd, edge=Edge())
-    g.add_edge(fc, fd, edge=Edge())
-    g.add_edge(fc, fd, edge=Edge())
-    g.add_edge(fc, fd, edge=Edge())
-    g.add_edge(fc, fd, edge=Edge())
-    g.add_edge(fc, fd, edge=Edge())
-    g.add_edge(fc, fd, edge=Edge())
+
+    # g.add_edge(fc, fd, edge=Edge())
+    # g.add_edge(fc, fd, edge=Edge())
+    # g.add_edge(fc, fd, edge=Edge())
+    # g.add_edge(fc, fd, edge=Edge())
+    # g.add_edge(fc, fd, edge=Edge())
+    # g.add_edge(fc, fd, edge=Edge())
     return g
 
 
 class Edge(object):
-    pass
+
+    @property
+    def name(self):
+        return self.__class__.__name__
+
 
 
 def fa(v):
@@ -257,7 +296,7 @@ class CounterTree(object):
 Tree = CounterTree
 
 class ChainLink(object):
-    short_name = 'H'
+    short_name = 'L'
 
     def __init__(self, node, x, y):
         self.node = node
@@ -274,7 +313,7 @@ class ChainLink(object):
 
 class EdgeLink(object):
 
-    short_name = '---'
+    short_name = '_'
 
     def __init__(self, edge, node_a, node_b, x, y):
         self.edge = edge
@@ -283,12 +322,17 @@ class EdgeLink(object):
         self.x = x
         self.y = y
 
+    @property
+    def node(self):
+        return self.edge
+
+
     def get_short_name(self):
         return self.short_name or self.__class__.__name__
 
     def str_name(self):
         n = self.get_short_name()
-        return f'{n} ({self.x:>2},{self.y:>2}) {self.edge}: "{self.node_a}" "{self.node_b}"'
+        return f'{n}({self.x:>2},{self.y:>2}) {self.edge}: "{self.node_a}" "{self.node_b}"'
 
     def __repr__(self):
         return f'<{self.str_name()}>'
@@ -308,6 +352,7 @@ def add_edge_link(r, edge, a_node, b_node, x, y):
     r.append(link)
     return r
 
+
 class NoEdge(Edge):
 
     def str_name(self):
@@ -317,7 +362,14 @@ class NoEdge(Edge):
         return f'<{self.str_name()}>'
 
 
-def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None, index=-1, stash=None, edge_count=-1):
+def flat_get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
+    index=-1, stash=None, edge_count=-1, keep_exit_node=True, keep_noedge=None):
+    """
+    If None, The system checks for NoEdge and drops the edge.
+    If True, enforce the edge keep, allowing a null edge within the result
+    If False, do not add any edge; (edgeless)
+    """
+    # keep_noedge = True
 
     stash = stash or {}
     r = r or []
@@ -327,7 +379,14 @@ def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None, index=
         return r
 
     nodelist = start.get_next()
-    r = add_link(r, start, depth, index)
+
+    ignore_node = False
+    if isinstance(start, ExitNode):
+        if keep_exit_node is False:
+            ignore_node = True
+
+    if ignore_node is False:
+        r = add_link(r, start, depth, index)
 
     # stash[id(start)] = depth
     for i, node_name in enumerate(nodelist):
@@ -340,22 +399,27 @@ def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None, index=
         if len(edges) == 0:
             edges = (NoEdge(), )
 
+
         orig_r = r.copy()
 
         for edge_i, e in enumerate(edges):
+            is_noedge = isinstance(e, NoEdge)
+            has_edge = keep_noedge if keep_noedge is not None else (not is_noedge)
 
-            if isinstance(e, NoEdge) is False:
+            if has_edge:
                 r = orig_r.copy()
                 edge_count += 1
                 add_edge_link(r, e, start, next_node, edge_count, edge_i)
 
             if isinstance(next_node, ExitNode):
-                add_link(r, next_node, depth+1, i)
+                if keep_exit_node is not False:
+                    add_link(r, next_node, depth+1, i)
                 # print('STOP', r)
-                stash[id(r)] = r
+
+                stash[id(r)] = Chain(graph, r)
                 return r
 
-            v = get_chains(
+            v = flat_get_chains(
                 graph=graph,
                 start=next_node,
                 end=end,
@@ -365,12 +429,162 @@ def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None, index=
                 index=i,
                 stash=stash,
                 edge_count=edge_count,
+                keep_exit_node=keep_exit_node,
+                keep_noedge=keep_noedge,
                 )
 
     return r
 
 
-import random
+def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
+    index=-1, stash=None, edge_count=-1, keep_exit_node=True, keep_noedge=None):
+    """
+    If None, The system checks for NoEdge and drops the edge.
+    If True, enforce the edge keep, allowing a null edge within the result
+    If False, do not add any edge; (edgeless)
+    """
+    # keep_noedge = True
+
+    stash = stash or {}
+    r = r or []
+
+    if depth > 10:
+        print(' --- Recurse protection.')
+        return r
+
+    nodelist = start.get_next()
+
+    ignore_node = False
+    if isinstance(start, ExitNode):
+        if keep_exit_node is False:
+            ignore_node = True
+
+    if ignore_node is False:
+        r = add_link(r, start, depth, index)
+
+    # stash[id(start)] = depth
+    for i, node_name in enumerate(nodelist):
+        # r = r.copy()
+        # print(' '*depth, node_name)
+        next_node = nodelist[node_name]
+        chain_step(
+            graph=graph,
+            current_node=start,
+            next_node=next_node,
+            end=end,
+            root_start_node=root_start_node or start,
+            depth=depth+1,
+            r=r,
+            index=i,
+            stash=stash,
+            edge_count=edge_count,
+            keep_exit_node=keep_exit_node,
+            keep_noedge=keep_noedge,
+            node_name=node_name,
+        )
+    return r
+
+
+def chain_step(graph, current_node, next_node, **kw):
+    edges = get_edges(graph, current_node.name, next_node.name)
+    return chain_edges(graph, edges, current_node, next_node, **kw)
+
+
+def get_edges(graph, start_name, next_name):
+    edges = graph.get_edges(start_name, next_name)
+    print('edges:', edges)
+    if len(edges) == 0:
+        edges = (NoEdge(), )
+    return edges
+
+
+def chain_edges(graph, edges, current_node, next_node, **kw):
+
+    orig_r = kw.get('r').copy()
+
+    for edge_index, edge in enumerate(edges):
+        v = chain_through_edge(
+                graph=graph,
+                edge=edge,
+                current_node=current_node,
+                next_node=next_node,
+                orig_r=orig_r,
+                edge_index=edge_index,
+                **kw
+            )
+    return kw.get('r')
+
+
+def store_history(graph, history, stash):
+    v = Chain(graph, history)
+    stash[id(history)] = v
+    return v
+
+
+def is_exit_node(node):
+    return isinstance(node, ExitNode)
+
+
+def chain_through_edge(graph, edge, current_node, next_node, **kw):
+
+    g = kw.get
+
+    edge_count = g('edge_count')
+    keep_noedge = g('keep_noedge')
+
+    is_noedge = isinstance(edge, NoEdge)
+    keep_edge = keep_noedge if keep_noedge is not None else (not is_noedge)
+
+    if keep_edge:
+        orig_r = g('orig_r')
+        edge_index = g('edge_index')
+
+        history = orig_r.copy()
+        kw['edge_count'] += 1
+
+        add_edge_link(history, edge, current_node, next_node, kw['edge_count'], edge_index)
+
+    return continue_chain(graph, current_node, next_node, history, **kw)
+
+
+def continue_chain(graph, current_node, next_node, history, **kw):
+    g = kw.get
+    depth = g('depth')
+    stash = g('stash')
+    index = g('index')
+    keep_exit_node = g('keep_exit_node')
+
+    if is_exit_node(next_node):
+        if keep_exit_node is not False:
+            add_link(history, next_node, depth+1, index)
+        return store_history(graph, history, stash)
+
+    return get_chains(
+        graph=graph,
+        start=next_node,
+        end=g('end'),
+        root_start_node=g('root_start_node') or current_node,
+        depth=depth+1,
+        r=history,
+        index=index,
+        stash=stash,
+        edge_count=g('edge_count'),
+        keep_exit_node=keep_exit_node,
+        keep_noedge=g('keep_noedge'),
+    )
+
+
+
+
+class Chain(UserList):
+
+    def __init__(self, graph, data):
+        self.data = data
+        self.graph = graph
+
+
+    # def __repr__(self):
+    #     return f'<Chain: {self.data}>'
 
 
 class GetNextMixin(object):
@@ -387,15 +601,17 @@ class GetNextMixin(object):
         print('get_next', current_node)
         return current_node.graph.start_pins
 
-    def get_chain(self, start=None, end=None):
+    def get_chain(self, start=None, end=None, **kw):
         """Get a chain of nodes, if None is passed use the relative baked node
         """
         start = start or self.get_start_node()
         end = end or self.get_end_node()
         stash = { '_': random.random()}
-        v = get_chains(self, start, end, stash=stash)
+        v = get_chains(self, start, end, stash=stash, **kw)
+
         # pp(new_stash)
-        return stash
+        stash.pop('_')
+        return tuple(stash.values())
 
     def get_edges(self, a, b, direction='forward'):
         _next = self.tree.get_edges(a,b, direction=direction)
@@ -517,8 +733,6 @@ class ExitNode(Node):
             return 'end'
 
         return tuple(_next.keys())
-
-
 
 
 START = '_start_'
