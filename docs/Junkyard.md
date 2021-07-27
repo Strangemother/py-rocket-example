@@ -7,7 +7,7 @@ A fun advantage of a plug-in base flight system will be the salvage site for shi
 
 You can consider the junkyard as a scrappy hodge-podge of (galaxy?) ship bits. Imagine the junkyards of Rick and morty.
 
-<img src="F:\godot\python-rocket-software\docs\rick-and-morty-at-the-junkyard.jpg" alt="rick-and-morty-at-the-junkyard" style="zoom:50%;" />
+<img src="images/rick-and-morty-at-the-junkyard.jpg" alt="rick-and-morty-at-the-junkyard" style="zoom:50%;" />
 
 ## Electrical System:
 

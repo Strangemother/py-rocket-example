@@ -10,7 +10,7 @@ Firstly a futuristic look to the game with the exception can handle most items (
 
 Frankly I love Atompunk and it's easier to design and render. A perfect example is "The Jetsons". All game aspects would map to a _Jetsons Universe_.
 
-<img src="F:\godot\python-rocket-software\docs\the-jetsons.jpg" alt="the-jetsons" style="zoom:67%;" />
+<img src="images/the-jetsons.jpg" alt="the-jetsons" style="zoom:67%;" />
 
 
 #### Atompunk:
@@ -24,44 +24,44 @@ Stylistically the Atompunk style entails:
 
 With a focus on "Googie" Architecture:
 
-![20120615094030todd-lapin-theme-building-470x251](F:\godot\python-rocket-software\docs\20120615094030todd-lapin-theme-building-470x251.jpg)
+![20120615094030todd-lapin-theme-building-470x251](images/20120615094030todd-lapin-theme-building-470x251.jpg)
 
 And art by "Robert T McCall":
 
-![city-in-flight-by-Robert-T-McCall_large](F:\godot\python-rocket-software\docs\city-in-flight-by-Robert-T-McCall_large.jpg)<img src="C:\Users\jay\Pictures\atomtronics\Atom10.jpg" alt="Atom10" style="zoom:30%;" />
+![city-in-flight-by-Robert-T-McCall_large](images/city-in-flight-by-Robert-T-McCall_large.jpg)<img src="C:\Users\jay\Pictures\atomtronics\Atom10.jpg" alt="Atom10" style="zoom:30%;" />
 
 
 
 # Inspiration
 
-![Atom7](F:\godot\python-rocket-software\docs\images\Atom7.webp)
+![Atom7](images/Atom7.webp)
 
-![Atom9](F:\godot\python-rocket-software\docs\images\Atom9.jpg)
+![Atom9](images/Atom9.jpg)
 
-![b_W1sicmVzaXplIiwxODAwXSxbIm1heCJdLFsid2UiXV0=](F:\godot\python-rocket-software\docs\images\b_W1sicmVzaXplIiwxODAwXSxbIm1heCJdLFsid2UiXV0=.jpg)
+![b_W1sicmVzaXplIiwxODAwXSxbIm1heCJdLFsid2UiXV0=](images/b_W1sicmVzaXplIiwxODAwXSxbIm1heCJdLFsid2UiXV0=.jpg)
 
-![original](F:\godot\python-rocket-software\docs\images\original.jpg)
+![original](images/original.jpg)
 
-![](F:\godot\python-rocket-software\docs\images\Outer-Space-Real-Estate-art-by-Alex-Schomburg.jpg)
+![](images/Outer-Space-Real-Estate-art-by-Alex-Schomburg.jpg)
 
 
 
-![personenrohrpost_dnu84_1967_1](F:\godot\python-rocket-software\docs\images\personenrohrpost_dnu84_1967_1.jpg)
+![personenrohrpost_dnu84_1967_1](images/personenrohrpost_dnu84_1967_1.jpg)
 
-![pict5719a_1](F:\godot\python-rocket-software\docs\images\pict5719a_1.jpg)
+![pict5719a_1](images/pict5719a_1.jpg)
 
-![pict7249_1](F:\godot\python-rocket-software\docs\images\pict7249_1.jpg)
+![pict7249_1](images/pict7249_1.jpg)
 
-![radtke_energieinsel_farmfabrik_1](F:\godot\python-rocket-software\docs\images\radtke_energieinsel_farmfabrik_1.jpg)
+![radtke_energieinsel_farmfabrik_1](images/radtke_energieinsel_farmfabrik_1.jpg)
 
-![602329165a202](F:\godot\python-rocket-software\docs\images\602329165a202.jpg)
+![602329165a202](images/602329165a202.jpg)
 
-![602329197db09](F:\godot\python-rocket-software\docs\images\602329197db09.jpg)
+![602329197db09](images/602329197db09.jpg)
 
-![602329210eb05](F:\godot\python-rocket-software\docs\images\602329210eb05.jpg)
+![602329210eb05](images/602329210eb05.jpg)
 
-![60232935478e1](F:\godot\python-rocket-software\docs\images\60232935478e1.jpg)
+![60232935478e1](images/60232935478e1.jpg)
 
-![Atom3](F:\godot\python-rocket-software\docs\images\Atom3.jpg)
+![Atom3](images/Atom3.jpg)
 
-![Atom7](F:\godot\python-rocket-software\docs\images\Atom7.jpg)
+![Atom7](images/Atom7.jpg)

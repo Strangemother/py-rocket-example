@@ -13,46 +13,46 @@ The software level consists of a mass graph of "wire to component" connections. 
 
 As an analogy of any TV program with a ship; Futurama, Star Trek, or Red Dwarf - and imagine the ability to _run around_ the ship and futz with everything. It's my ship I can do what I want.
 
-![cockpit 4](G:\3D\cockpit 4.jpg)
+![cockpit 4](images/cockpit 4.jpg)
 
 
 
-![Ship-to-ship communications](F:\godot\python-rocket-software\pdfs\New folder\Ship-to-ship communications.PNG)
+![Ship-to-ship communications](images/Ship-to-ship communications.PNG)
 
-![SL-12-global-avionics-architecture](F:\godot\python-rocket-software\pdfs\New folder\SL-12-global-avionics-architecture.png)
+![SL-12-global-avionics-architecture](images/SL-12-global-avionics-architecture.png)
 
-![Universal Translator](F:\godot\python-rocket-software\pdfs\New folder\Universal Translator.PNG)
+![Universal Translator](images/Universal Translator.PNG)
 
-![warp drive system](F:\godot\python-rocket-software\pdfs\New folder\warp drive system.PNG)
+![warp drive system](images/warp drive system.PNG)
 
-![Atmospheric system](F:\godot\python-rocket-software\pdfs\New folder\Atmospheric system.PNG)
+![Atmospheric system](images/Atmospheric system.PNG)
 
-![Battle Bridge control stations](F:\godot\python-rocket-software\pdfs\New folder\Battle Bridge control stations.PNG)
+![Battle Bridge control stations](images/Battle Bridge control stations.PNG)
 
-![Command intelligence links to major systems](F:\godot\python-rocket-software\pdfs\New folder\Command intelligence links to major systems.PNG)
+![Command intelligence links to major systems](images/Command intelligence links to major systems.PNG)
 
-![Food replication system](F:\godot\python-rocket-software\pdfs\New folder\Food replication system.PNG)
+![Food replication system](images/Food replication system.PNG)
 
-![galactic navigational reference system](F:\godot\python-rocket-software\pdfs\New folder\galactic navigational reference system.PNG)
+![galactic navigational reference system](images/galactic navigational reference system.PNG)
 
-![galatic nagivational reference syste](F:\godot\python-rocket-software\pdfs\New folder\galatic nagivational reference syste.PNG)
+![galatic nagivational reference syste](images/galatic nagivational reference syste.PNG)
 
-![impulse engine system](F:\godot\python-rocket-software\pdfs\New folder\impulse engine system.PNG)
+![impulse engine system](images/impulse engine system.PNG)
 
-![Intraship communications](F:\godot\python-rocket-software\pdfs\New folder\Intraship communications.PNG)
+![Intraship communications](images/Intraship communications.PNG)
 
-![Major utilities trunks](F:\godot\python-rocket-software\pdfs\New folder\Major utilities trunks.PNG)
+![Major utilities trunks](images/Major utilities trunks.PNG)
 
-![nagivational reference aids](F:\godot\python-rocket-software\pdfs\New folder\nagivational reference aids.PNG)
+![nagivational reference aids](images/nagivational reference aids.PNG)
 
-![navigational reference aids](F:\godot\python-rocket-software\pdfs\New folder\navigational reference aids.PNG)
+![navigational reference aids](images/navigational reference aids.PNG)
 
-![optical data network interconnects](F:\godot\python-rocket-software\pdfs\New folder\optical data network interconnects.PNG)
+![optical data network interconnects](images/optical data network interconnects.PNG)
 
-![Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various](F:\godot\python-rocket-software\pdfs\New folder\Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various.png)
+![Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various](images/Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various.png)
 
-![Personal communicator schematic](F:\godot\python-rocket-software\pdfs\New folder\Personal communicator schematic.PNG)
+![Personal communicator schematic](images/Personal communicator schematic.PNG)
 
-![Saucer separation latching and umbilical systems](F:\godot\python-rocket-software\pdfs\New folder\Saucer separation latching and umbilical systems.PNG)
+![Saucer separation latching and umbilical systems](images/Saucer separation latching and umbilical systems.PNG)
 
-![Sensor tie-ins to bridge science stations](F:\godot\python-rocket-software\pdfs\New folder\Sensor tie-ins to bridge science stations.PNG)
+![Sensor tie-ins to bridge science stations](images/Sensor tie-ins to bridge science stations.PNG)

@@ -26,7 +26,7 @@ And so on, A design layout for each new company, in-keeping with the standard ca
 
 + The "One Corp Everyone 1.0" generic style vehicle.
 
-  
+
 
 ---
 
@@ -51,46 +51,46 @@ The core concept is _the ship_ and the player should own as much as possible. th
 
 With these features, it's extremely easy to hammer together _ship shapes_ to fly. Given there is a 'spaceship kit-bash' a user can component build their ship with pre-build rigid body components, and custom "flight system".
 
-![skyway](G:\3D\skyway.jpg)
+![skyway](images/skyway.jpg)
 
-![ufo house](G:\3D\ufo house.jpg)
+![ufo house](images/ufo house.jpg)
 
-![booster 1](G:\3D\booster 1.jpg)
+![booster 1](images/booster 1.jpg)
 
-![booster2](G:\3D\booster2.jpg)
+![booster2](images/booster2.jpg)
 
-![bubbleship](G:\3D\bubbleship.jpg)
+![bubbleship](images/bubbleship.jpg)
 
-![car 2](G:\3D\car 2.jpg)
+![car 2](images/car 2.jpg)
 
-![car](G:\3D\car.jpg)
+![car](images/car.jpg)
 
-![Class II Gallactic Cruiser](G:\3D\Class II Gallactic Cruiser.jpg)
+![Class II Gallactic Cruiser](images/Class II Gallactic Cruiser.jpg)
 
-![cockpit 1](G:\3D\cockpit 1.jpg)
+![cockpit 1](images/cockpit 1.jpg)
 
-![cockpit 2](G:\3D\cockpit 2.jpg)
+![cockpit 2](images/cockpit 2.jpg)
 
-![cockpit 3](G:\3D\cockpit 3.jpg)
+![cockpit 3](images/cockpit 3.jpg)
 
-![cockpit 4](G:\3D\cockpit 4.jpg)
+![cockpit 4](images/cockpit 4.jpg)
 
-![corvette](G:\3D\corvette.jpg)
+![corvette](images/corvette.jpg)
 
-![Freigther_BI_Export](G:\3D\Freigther_BI_Export.jpg)
+![Freigther_BI_Export](images/Freigther_BI_Export.jpg)
 
-![future bus 3](G:\3D\future bus 3.jpg)
+![future bus 3](images/future bus 3.jpg)
 
-![Heavy Airship](G:\3D\Heavy Airship.jpg)
+![Heavy Airship](images/Heavy Airship.jpg)
 
-![ilya-zakharovskiy-votf-ilya-z-1](G:\3D\ilya-zakharovskiy-votf-ilya-z-1.jpg)
+![ilya-zakharovskiy-votf-ilya-z-1](images/ilya-zakharovskiy-votf-ilya-z-1.jpg)
 
-![landcruiser](G:\3D\landcruiser.jpg)
+![landcruiser](images/landcruiser.jpg)
 
-![nearly futurama 2](G:\3D\nearly futurama 2.jpg)
+![nearly futurama 2](images/nearly futurama 2.jpg)
 
-![nearly futurama](G:\3D\nearly futurama.jpg)
+![nearly futurama](images/nearly futurama.jpg)
 
-![Sci Fi Corridor](G:\3D\Sci Fi Corridor.jpg)
+![Sci Fi Corridor](images/Sci Fi Corridor.jpg)
 
-![ship clean 1](G:\3D\ship clean 1.jpg)
+![ship clean 1](images/ship clean 1.jpg)
