@@ -1,18 +1,39 @@
-from collections import UserDict
+# from collections import UserDict
+# from pprint import pprint as pp
+# from itertools import chain
+# from collections import Counter
+# from collections import defaultdict
+
+# from collections import UserList
+# import random
+
+# from nodes import *
+# from edges import *
+# import chains
+
+import graph
+from edges import Edge
 from pprint import pprint as pp
-from itertools import chain
-from collections import Counter
-from collections import defaultdict
 
-from collections import UserList
-import random
-
+from itertools import repeat, accumulate
 
 def main():
     global g
+    g = output_run(log_map, 'g')
+    # g = output_run(functions, 'g')
+    # output_run(alphabet, 'g')
+    # g = output_run(pop_song, 'g')
+    to_visjs_json(g.paths, './view/g_tree_vis.json', split_ends=False, exit_nodes=False)
+    to_visjs_json(g.paths.paths, './view/g_tree_tree_vis.json', split_ends=True, exit_nodes=True)
+
+
+def chain_main():
+    global g
     global c
-    g=functions()
-    # g=alphabet()
+    g = functions()
+    # g = alphabet()
+    # g = pop_song()
+
     pp(vars(g))
     pp(vars(g.tree))
 
@@ -20,14 +41,213 @@ def main():
     pp(c)
     # print(c)
     print(len(c))
+
     t = (
         "_start_, NoEdge, fa, Edge, fb, Edge, fc, Edge, fd, NoEdge, _end_",
         "_start_, NoEdge, fa, NoEdge, fab, NoEdge, fac, NoEdge, fad, NoEdge, _end_",
-        "_start_, NoEdge, b_a, Edge, b_b, Edge, b_c, Edge, b_d, NoEdge, _end_"
+        # "_start_, NoEdge, b_a, Edge, b_b, Edge, b_c, Edge, b_d, NoEdge, _end_",
+        "_start_, NoEdge, b_a, BlankEdge, b_b, BlankEdge, b_c, BlankEdge, b_d, NoEdge, _end_",
         )
 
-    assert_paths(c,t)
+    # assert_paths(c,t)
+    # to_sigmajs_json(g, './view/g.json')
+    to_visjs_json(g, './view/g_vis.json')
+    to_visjs_json(g.paths, './view/g_tree_vis.json')
 
+
+def output_run(func, filename):
+    g = func()
+    to_sigmajs_json(g, f'./view/{filename}.json')
+    to_visjs_json(g, f'./view/{filename}_vis.json')
+    return g
+
+
+def add_ends(graph):
+    nodes = ()
+    edges = []
+    # Add as nodes
+    for enode in (graph.get_start_node(), graph.get_end_node(),):
+        nn = enode.name
+        n = {
+            "label": str(nn),
+            "id": nn,
+            "color": '#e36d6d'
+        }
+
+        nodes += (n,)
+
+    enode = graph.get_start_node()
+    for next_name in enode.get_next_ids('forward'):
+        item = {
+            "from": enode.name,
+            "to": next_name,
+            }
+        edges.append(item)
+
+    enode = graph.get_end_node()
+    for next_name in enode.get_next_ids('forward'):
+        item = {
+            "from": next_name,
+            "to": enode.name,
+            }
+        edges.append(item)
+
+    return nodes,edges
+
+
+def add_split_ends(graph):
+    nodes = ()
+    edges = []
+
+
+    ## Add as single nodes
+    # for enode in (graph.get_start_node(), graph.get_end_node(),):
+    #     nn = enode.name
+    #     n = {
+    #         "label": str(nn),
+    #         "id": nn,
+    #         "color": '#e36d6d'
+    #     }
+
+    #     nodes += (n,)
+
+    START_NODE_COLOR = '#d9ed53'
+    enode = graph.get_start_node()
+    for ni, next_name in enumerate(enode.get_next_ids('forward')):
+        nn = enode.name
+        _id = f'{nn}_{ni}'
+        item = {
+            "from": _id,
+            "to": next_name,
+            }
+
+        n = {
+            "label": str(nn),
+            "id": _id,
+            "color": {
+                "background": START_NODE_COLOR,
+                "border": START_NODE_COLOR,
+                'highlight': {
+                    "background": "#444",
+                }
+            }
+        }
+
+        edges.append(item)
+        nodes += (n,)
+
+
+    enode = graph.get_end_node()
+    for ni, next_name in enumerate(enode.get_next_ids('forward')):
+        nn = enode.name
+        _id = f'{nn}_{ni}'
+        item = {
+            "from": next_name,
+            "to": _id,
+            }
+
+        n = {
+            "label": str(nn),
+            "id": _id,
+            "color": '#e36d6d'
+        }
+        nodes += (n,)
+        edges.append(item)
+
+    return nodes,edges
+
+
+
+def to_visjs_json(g, path='./g_vis.json',
+                  split_ends=True, exit_nodes=True, direction='forward'):
+
+    i = 0
+    ft = g.tree[direction]
+    node_names = tuple(g.data.keys())
+    edges = []
+    nodes = ()
+
+    if exit_nodes:
+        nodes ,edges = [add_ends, add_split_ends][split_ends](g)
+    # nodes,edges = add_split_ends(g)
+
+    # nodes
+    for index, nn in enumerate(node_names):
+        node = g.get_node(nn)
+        _node = {
+                "id": nn,
+                "label": str(nn),
+                # "size": 5,
+                # "x": node.x,
+                "group_index": index,
+            }
+        nodes += (_node,)
+
+    # edges
+    for node_index, (node_name, d) in enumerate(ft.items()):
+        for edge_i, (other_node, count) in enumerate(d.items()):
+            i += 1
+            item = {
+                    "from": node_name,
+                    "to": other_node,
+                    "meta": count,# (float(count) * 1.0 ) + 2,
+                    "title": count,
+                    "node_index": node_index, # x
+                    "edge_index": edge_i, # y
+                    "x": node_index,
+                    "y": edge_i,
+                    }
+            edges.append(item)
+
+    fp = pathlib.Path(path)
+    content = {
+        "edges": edges,
+        "nodes": nodes,
+    }
+    _json = json.dumps(content, indent=4)
+    fp.write_text(_json)
+
+
+def to_sigmajs_json(graph, path='./g.json'):
+    # nodes
+    # edges
+    r = []
+    i = 0
+    ft = graph.tree.forward
+    node_names = tuple(graph.data.keys())
+    nodes = ()
+    for index, nn in enumerate(node_names):
+        node = graph.get_node(nn)
+        _node = {
+                "id": nn,
+                "label": nn,
+                "size": 5,
+                "x": index,
+            }
+        nodes += (_node,)
+
+    for node_name, d in ft.items():
+        for other_node, count in d.items():
+            i += 1
+            item = {
+                    "source": node_name,
+                    "target": other_node,
+                    "weight": count,
+                    "id": i
+                    }
+            r.append(item)
+
+    fp = pathlib.Path(path)
+    content = {
+        "edges": r,
+        "nodes": nodes,
+    }
+    _json = json.dumps(content, indent=4)
+    fp.write_text(_json)
+
+
+import pathlib
+import json
 
 def assert_paths(c,t):
     r = ()
@@ -52,6 +272,7 @@ def assert_paths(c,t):
         print('')
 
     # pp(r)
+
 
 def poppins():
     word = "supercalifragilisticexpialidocious"
@@ -112,7 +333,7 @@ def alphabet():
         ('B', 'A', 'N', 'A', 'N', 'A')
 
     """
-    g = Graph(id_method=None)#id)
+    g = graph.Graph(id_method=None)#id)
     v= g.connect(*'ABCD')
     print('ABCD     ', v)
     v= g.connect(*'DEFGHIJKL')
@@ -131,36 +352,134 @@ def alphabet():
     return g
 
 
+def pop_song():
+    lines = (
+    "I am the very model of a modern Major-General,",
+    "I've information vegetable, animal, and mineral,",
+    "I know the kings of England, and I quote the fights historical",
+    "From Marathon to Waterloo, in order categorical;",
+    "I'm very well acquainted, too, with matters mathematical,",
+    "I understand equations, both the simple and quadratical,",
+    "About binomial theorem I'm teeming with a lot o' news,",
+    "With many cheerful facts about the square of the hypotenuse.",
+    "I'm very good at integral and differential calculus;",
+    "I know the scientific names of beings animalculous:",
+    "In short, in matters vegetable, animal, and mineral,",
+    "I am the very model of a modern Major-General.",
+    "I know our mythic history, King Arthur's and Sir Caradoc's;",
+    "I answer hard acrostics, I've a pretty taste for paradox,",
+    "I quote in elegiacs all the crimes of Heliogabalus,",
+    "In conics I can floor peculiarities parabolous;",
+    "I can tell undoubted Raphaels from Gerard Dows and Zoffanies,",
+    "I know the croaking from The Frogs of Aristophanes!",
+    "Then I can hum a fugue of which I've heard the music's din afore,",
+    "And whistle all the airs from that infernal nonsense Pinafore.",
+    "Then I can write a washing bill in Babylonic cuneiform,",
+    "And tell you ev'ry detail of Caractacus's uniform:",
+    "In short, in matters vegetable, animal, and mineral,",
+    "I am the very model of a modern Major-General.",
+    "In fact, when I know what is meant by \"mamelon\" and \"ravelin\",",
+    "When I can tell at sight a Mauser rifle from a Javelin,",
+    "When such affairs as sorties and surprises I'm more wary at,",
+    "And when I know precisely what is meant by \"commissariat\"",
+    "When I have learnt what progress has been made in modern gunnery,",
+    "When I know more of tactics than a novice in a nunnery",
+    "In short, when I've a smattering of elemental strategy",
+    "You'll say a better Major-General has never sat a gee.",
+    "For my military knowledge, though I'm plucky and adventury,",
+    "Has only been brought down to the beginning of the century;",
+    "But still, in matters vegetable, animal, and mineral,",
+    "I am the very model of a modern Major-General.",
+    )
+
+    g = graph.Graph(id_method=None)#id)
+
+    for i, line in enumerate(lines):
+        clean_line = line
+        clean_line = clean_line.translate(str.maketrans('', '', string.punctuation))
+        vv = g.connect(*clean_line.lower().split(' '))
+
+    return g
+
+import string
+
 
 def id_method(v):
     if isinstance(v, (int, float)):
         return v
-    return v.__name__
+    return v.__name__ if hasattr(v, '__name__') else v
+
+
+class BlankEdge(Edge):
+    def get_value(self):
+        return self.caller
+
+    def caller(self):
+        print('BlankEdge caller')
 
 
 def functions():
-    g = Graph(id_method=id_method)
+    g = graph.Graph(id_method=id_method)
     g.connect(fa, fb, fc, fd)
     g.connect(fa, fab, fac, fad)
-    g.connect(b_a, b_b, b_c, b_d, edge=Edge())
+    g.connect(b_a, b_b, b_c, b_d, edge=BlankEdge())
+
+    # This applies edges to referenced functions above; essentially _overwriting_
+    # the previoue "no edge" connections.
     g.connect(fa, fb, fc, fd, edge=Edge())
 
+    g.add_edge(fc, fd, edge=Edge())
+    g.add_edge(fc, fd, edge=Edge())
     # g.add_edge(fc, fd, edge=Edge())
-    # g.add_edge(fc, fd, edge=Edge())
-    # g.add_edge(fc, fd, edge=Edge())
+    g.connect(fb, fd)
+    g.connect(fa, fd)
+    g.connect(fc, fab)
+    g.connect(fab, b_a)
+    g.connect(b_c, fad)
     # g.add_edge(fc, fd, edge=Edge())
     # g.add_edge(fc, fd, edge=Edge())
     # g.add_edge(fc, fd, edge=Edge())
     return g
 
+from itertools import tee
 
-class Edge(object):
+def pairwise(iterable):
+    "s -> (s0,s1), (s1,s2), (s2, s3), ..."
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
 
-    @property
-    def name(self):
-        return self.__class__.__name__
+def log_map():
+    # Chaotic recurrence relation https://en.wikipedia.org/wiki/Logistic_map
+    # >>> logistic_map = lambda x, _:  r * x * (1 - x)
+    # >>> r = 3.8
+    # >>> x0 = 0.4
+    # >>> inputs = repeat(x0, 36)     # only the initial value is used
+
+    # # >>> [format(x, '.2f') for x in accumulate(inputs, logistic_map)]
+    # # ['0.40', '0.91', '0.30', '0.81', '0.60', '0.92', '0.29', '0.79', '0.63',
+    # #  '0.88', '0.39', '0.90', '0.33', '0.84', '0.52', '0.95', '0.18', '0.57',
+    # #  '0.93', '0.25', '0.71', '0.79', '0.63', '0.88', '0.39', '0.91', '0.32',
+    # #  '0.83', '0.54', '0.95', '0.20', '0.60', '0.91', '0.30', '0.80', '0.60']
+
+    logistic_map = lambda x, _:  r * x * (1 - x)
+    r = 3.8
+    x0 = 0.4
+    inputs = repeat(x0, 100)     # only the initial value is used
+    values = [format(x, '.2f') for x in accumulate(inputs, logistic_map)]
+
+    g = graph.Graph(id_method=None)
+    g.pair_connect(values, pinned=False, foo='bar')
+    g.pin_ends(values)
+    # print('pin ends')
+    # g.bind_pair(g.get_start_node(), values[0])
+    # g.bind_pair(values[-1], g.get_end_node())
 
 
+    # vv = tuple(pairwise(values))
+    # for a,b in vv:
+    #     g.connect(a,b,)
+    return g
 
 def fa(v):
     return v + 1
@@ -208,158 +527,6 @@ def fac(v):
 def fad(v):
     return v + 4
 
-
-
-
-class IDMethod(object):
-    """A node applied to the graph may be anything, such as a int, str, dict, or
-    function etc..
-
-    The ID should be predicable across sessions.
-    When applying an item to the tree, the ID references siblings.
-
-    If the ID is none, the given node value is used. This is very usable, but
-    not great for storing long-values or secure data.
-    Using `id` is generally acceptable, but may bloat dev work.
-    """
-    id_method = None # hash # id
-
-    def get_id_method(self):
-        method = self.id_method
-        if method is None:
-            method = lambda x:x
-        return method
-
-    def get_ids(self, *items):
-        return tuple(self.get_id(x) for x in items)
-
-    def get_id(self, item):
-        method = self.get_id_method()
-        return method(item)
-
-
-class CounterTree(object):
-    """A Tree binds all the connections of the info dict, associated to a graph (dict) type.
-        """
-    def __init__(self, direction=None):
-        self.forward = self.get_store()
-        self.reverse = self.get_store()
-        self.forward_edges = defaultdict(set)
-        self.reverse_edges = defaultdict(set)
-
-    def get_store(self):
-        return defaultdict(Counter)
-
-    def __getitem__(self, k):
-        return getattr(self, k)
-
-    def get_connected(self, name, direction='forward'):
-        _tree = self[direction]
-
-        if name in _tree:
-            return _tree[name]
-
-    def get_edges(self, name_a, name_b, direction='forward'):
-
-        edges = f"{direction}_edges"
-        _edge_tree = self[edges]
-        name = f'{name_a}{name_b}'
-
-        if name in _edge_tree:
-            return tuple(_edge_tree[name])
-
-        return ()
-
-    def bind(self, a, b, edge=None, meta_data=None):
-        """Connect entity A to entity B through the given edge. The two entities
-        should be key hasable.
-        """
-        self.set_bound_meta(a,b, meta_data)
-
-        if edge is not None:
-            self.add_edge(a,b, edge)
-
-        return tuple(self.forward[a]).index(b)
-
-    def add_edge(self, a,b, edge):
-        _fe = self.forward_edges[f"{a}{b}"]
-        _re = self.reverse_edges[f"{b}{a}"]
-        _fe.add(edge)
-        _re.add(edge)
-        return len(_fe), len(_re)
-
-    def set_bound_meta(self, a,b, meta_data=None):
-        self.forward[a][b] += (meta_data or 1)
-        self.reverse[b][a] += (meta_data or 1)
-
-
-Tree = CounterTree
-
-class ChainLink(object):
-    short_name = 'L'
-
-    def __init__(self, node, x, y):
-        self.node = node
-        self.x = x
-        self.y = y
-
-    def get_short_name(self):
-        return self.short_name or self.__class__.__name__
-
-    def __repr__(self):
-        n = self.get_short_name()
-        return f'<{n}({self.x:>2},{self.y:>2}) "{self.node}">'
-
-
-class EdgeLink(object):
-
-    short_name = '_'
-
-    def __init__(self, edge, node_a, node_b, x, y):
-        self.edge = edge
-        self.node_a = node_a
-        self.node_b = node_b
-        self.x = x
-        self.y = y
-
-    @property
-    def node(self):
-        return self.edge
-
-
-    def get_short_name(self):
-        return self.short_name or self.__class__.__name__
-
-    def str_name(self):
-        n = self.get_short_name()
-        return f'{n}({self.x:>2},{self.y:>2}) {self.edge}: "{self.node_a}" "{self.node_b}"'
-
-    def __repr__(self):
-        return f'<{self.str_name()}>'
-
-    def __str__(self):
-        return self.str_name()
-
-
-def add_link(r, node, x, y):
-    link = ChainLink(node, x, y)
-    r.append(link)
-    return r
-
-
-def add_edge_link(r, edge, a_node, b_node, x, y):
-    link = EdgeLink(edge, a_node, b_node, x, y)
-    r.append(link)
-    return r
-
-
-class NoEdge(Edge):
-
-    def str_name(self):
-        return f'{self.__class__.__name__}'
-
-    def __repr__(self):
-        return f'<{self.str_name()}>'
 
 
 def flat_get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
@@ -435,403 +602,8 @@ def flat_get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
 
     return r
 
-
-def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
-    index=-1, stash=None, edge_count=-1, keep_exit_node=True, keep_noedge=None):
-    """
-    If None, The system checks for NoEdge and drops the edge.
-    If True, enforce the edge keep, allowing a null edge within the result
-    If False, do not add any edge; (edgeless)
-    """
-    # keep_noedge = True
-
-    stash = stash or {}
-    r = r or []
-
-    if depth > 10:
-        print(' --- Recurse protection.')
-        return r
-
-    nodelist = start.get_next()
-
-    ignore_node = False
-    if isinstance(start, ExitNode):
-        if keep_exit_node is False:
-            ignore_node = True
-
-    if ignore_node is False:
-        r = add_link(r, start, depth, index)
-
-    # stash[id(start)] = depth
-    for i, node_name in enumerate(nodelist):
-        # r = r.copy()
-        # print(' '*depth, node_name)
-        next_node = nodelist[node_name]
-        chain_step(
-            graph=graph,
-            current_node=start,
-            next_node=next_node,
-            end=end,
-            root_start_node=root_start_node or start,
-            depth=depth+1,
-            r=r,
-            index=i,
-            stash=stash,
-            edge_count=edge_count,
-            keep_exit_node=keep_exit_node,
-            keep_noedge=keep_noedge,
-            node_name=node_name,
-        )
-    return r
-
-
-def chain_step(graph, current_node, next_node, **kw):
-    edges = get_edges(graph, current_node.name, next_node.name)
-    return chain_edges(graph, edges, current_node, next_node, **kw)
-
-
-def get_edges(graph, start_name, next_name):
-    edges = graph.get_edges(start_name, next_name)
-    print('edges:', edges)
-    if len(edges) == 0:
-        edges = (NoEdge(), )
-    return edges
-
-
-def chain_edges(graph, edges, current_node, next_node, **kw):
-
-    orig_r = kw.get('r').copy()
-
-    for edge_index, edge in enumerate(edges):
-        v = chain_through_edge(
-                graph=graph,
-                edge=edge,
-                current_node=current_node,
-                next_node=next_node,
-                orig_r=orig_r,
-                edge_index=edge_index,
-                **kw
-            )
-    return kw.get('r')
-
-
-def store_history(graph, history, stash):
-    v = Chain(graph, history)
-    stash[id(history)] = v
-    return v
-
-
-def is_exit_node(node):
-    return isinstance(node, ExitNode)
-
-
-def chain_through_edge(graph, edge, current_node, next_node, **kw):
-
-    g = kw.get
-
-    edge_count = g('edge_count')
-    keep_noedge = g('keep_noedge')
-
-    is_noedge = isinstance(edge, NoEdge)
-    keep_edge = keep_noedge if keep_noedge is not None else (not is_noedge)
-
-    if keep_edge:
-        orig_r = g('orig_r')
-        edge_index = g('edge_index')
-
-        history = orig_r.copy()
-        kw['edge_count'] += 1
-
-        add_edge_link(history, edge, current_node, next_node, kw['edge_count'], edge_index)
-
-    return continue_chain(graph, current_node, next_node, history, **kw)
-
-
-def continue_chain(graph, current_node, next_node, history, **kw):
-    g = kw.get
-    depth = g('depth')
-    stash = g('stash')
-    index = g('index')
-    keep_exit_node = g('keep_exit_node')
-
-    if is_exit_node(next_node):
-        if keep_exit_node is not False:
-            add_link(history, next_node, depth+1, index)
-        return store_history(graph, history, stash)
-
-    return get_chains(
-        graph=graph,
-        start=next_node,
-        end=g('end'),
-        root_start_node=g('root_start_node') or current_node,
-        depth=depth+1,
-        r=history,
-        index=index,
-        stash=stash,
-        edge_count=g('edge_count'),
-        keep_exit_node=keep_exit_node,
-        keep_noedge=g('keep_noedge'),
-    )
-
-
-
-
-class Chain(UserList):
-
-    def __init__(self, graph, data):
-        self.data = data
-        self.graph = graph
-
-
-    # def __repr__(self):
-    #     return f'<Chain: {self.data}>'
-
-
-class GetNextMixin(object):
-
-
-    def get_node(self, node_name):
-        return Node(self, node_name)
-
-    def get_next(self, current_node=None):
-        if not isinstance(current_node, Node):
-            current_node = self.get_node(current_node)
-
-        current_node = current_node or self.get_start_node()
-        print('get_next', current_node)
-        return current_node.graph.start_pins
-
-    def get_chain(self, start=None, end=None, **kw):
-        """Get a chain of nodes, if None is passed use the relative baked node
-        """
-        start = start or self.get_start_node()
-        end = end or self.get_end_node()
-        stash = { '_': random.random()}
-        v = get_chains(self, start, end, stash=stash, **kw)
-
-        # pp(new_stash)
-        stash.pop('_')
-        return tuple(stash.values())
-
-    def get_edges(self, a, b, direction='forward'):
-        _next = self.tree.get_edges(a,b, direction=direction)
-        return _next
-
-
-class Node(object):
-
-    def __init__(self, graph, name=None):
-        self.graph = graph
-        self.name = name
-
-    def __repr__(self):
-        return f'<{self.__class__.__name__} "{self.name}">'
-
-    def get_value(self):
-        return self.graph.data[self.name]
-
-    def get_next(self, direction='forward'):
-        """Return a single list of next attached nodes in one direction.
-        """
-        next_ids = self.get_next_ids(direction)
-        return NodeList(self.graph, next_ids, self.name)
-
-    def _opposite_tree(self, direction):
-        op_dir ={
-            'forward': 'start_pins',
-            'reverse': 'end_pins',
-        }
-
-        op_dir.pop(direction)
-        op_dir = tuple(op_dir.values())[0]
-
-        return getattr(self.graph, op_dir)
-
-    def get_next_ids(self, direction):
-        _next = self.graph.tree.get_connected(self.name, direction=direction)
-
-        if _next is None:
-            opposite_tree = self._opposite_tree(direction)
-            if self.name in opposite_tree:
-                return (END,)
-
-            return ()
-
-        return tuple(_next.keys())
-
-
-class NodeList(object):
-
-    def __init__(self, graph, names, origin=None):
-        self.graph = graph
-        self.origin = origin
-        self.names = names
-
-    def get_origin_node(self):
-        return self.graph.get_node(self.origin)
-
-    def __repr__(self):
-        return f'<{self.__class__.__name__} "{self.names}" from "{self.origin}">'
-
-    def keys(self):
-        return self.names
-
-    def values(self):
-        return (self.graph[x] for x in self.names)
-
-    def as_dict(self):
-        g = self.graph
-        return {x: self.get_node(x) for x in self.names}
-
-    def __len__(self):
-        return len(self.keys())
-
-    def __iter__(self):
-        return iter(self.as_dict())
-
-    def __getitem__(self, key):
-        return self.get_node(key)
-
-    def get_node(self,key):
-        classmap = {
-            START: ExitNode,
-            END: ExitNode,
-            'default': Node,
-        }
-
-        # print('Get', key)
-
-        if key in self.names:
-            Class = classmap.get(key) or classmap['default']
-            return Class(self.graph, key)
-
-        if isinstance(key, int):
-            found = self.names[key]
-            Class = classmap.get(found) or classmap['default']
-            return Class(self.graph, found)
-
-    def get_value(self, key):
-        if key in self.names:
-            return self.graph[key]
-        return self.graph[self.names[key]]
-
-
-class ExitNode(Node):
-
-    def get_next_ids(self, direction):
-
-        funcs = {
-            START: 'start_pins',
-            END: 'end_pins',
-        }
-
-        _next = getattr(self.graph, funcs[self.name])
-
-        opposite_tree = self._opposite_tree(direction)
-
-        if _next is None and self.name in opposite_tree:
-            return 'end'
-
-        return tuple(_next.keys())
-
-
-START = '_start_'
-END = '_end_'
-
-class Graph(UserDict, IDMethod, GetNextMixin):
-
-    def __init__(self, initdata=None, id_method=None, depth=-1):
-        super().__init__(initdata)
-        self.depth = depth + 1
-        self.id_method = id_method or self.id_method
-        self.reset()
-
-    def get_start_node(self):
-        return ExitNode(self, START)
-
-    def get_end_node(self):
-        return ExitNode(self, END)
-
-    def reset(self):
-        tree = self.get_init_tree
-        self.tree = tree()
-        self.start_pins = defaultdict(int)# set()
-        self.end_pins = defaultdict(int)# set()
-        self.paths = None
-        if self.depth < 3:
-            self.paths = self.__class__(id_method=self.id_method, depth=self.depth)
-
-    def get_init_tree(self, direction=None):
-        return Tree(direction) #defaultdict(set)
-
-    def connect(self, *nodes, edge=None):
-        pairs, positions = self.linear_connect(nodes, edge=edge)
-        if self.paths is not None:
-            self.paths.connect(*positions)
-
-        return positions
-
-    def linear_connect(self, items, pinned=True, init_position=-1, edge=None):
-
-        pairs = ()
-        items = tuple(items)
-
-        id_first, id_last = self.get_ids(items[0], items[-1])
-        if pinned:
-            # self.start_pins.add(items[0])
-            self.start_pins[id_first] += 1
-            # self.end_pins.add(items[-1])
-            self.end_pins[id_last] += 1
-
-        if init_position == -1:
-            # position from pinned_node
-            init_position = tuple(self.start_pins).index(id_first)
-
-        positions = (init_position,)# {}
-
-        for i, node in enumerate(items):
-            # print(f"Inserting node #{i} '{ni}'", node, end='')
-            to_node = None
-
-            if i+1 < len(items):
-                # The next node does exist, grab its name to connect _this_
-                # as a forward relation.
-                to_node = items[i+1]
-
-            # next_node = self.get_entry(to_node)
-            # print(' next:', next_node)
-            #
-            if len(items) == i+1:
-                # print(' - done')
-                continue
-
-            *ids, branch_position = self.bind_pair(node, to_node, edge=edge)
-            # positions[i] = branch_position
-            positions += (branch_position,)
-            pairs += (ids, )
-
-        return pairs, positions
-
-    def bind_pair(self, a, b, edge=None):
-        id_a, id_b = self.get_ids(a,b)
-        # record data attributes to flat _self_ dict
-        self.store_items({id_a:a,id_b:b})
-        # Build an a to b connection through e
-        branch_position = self.bridge(id_a, id_b, edge=edge)
-        return id_a, id_b, branch_position
-
-    def add_edge(self, a,b, edge):
-        id_a, id_b = self.get_ids(a,b)
-        edge_positions = self.tree.add_edge(id_a, id_b, edge)
-        return id_a, id_b, edge_positions
-
-    def bridge(self, a, b, edge=None):
-        # print('bridge', a, '=>', b)
-        return self.tree.bind(a, b, edge=edge)
-
-    def store_items(self, d):
-        # print('store', d)
-        self.update(d)
+#
+#
 
 
 

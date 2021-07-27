@@ -37,3 +37,4 @@ class PointTree(object):
 
     def get_junction(self, pointer_id):
         return self._tree[pointer_id]
+

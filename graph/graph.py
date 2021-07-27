@@ -137,10 +137,13 @@ class GraphTree(PointTree, TreePump, FindMixin):
         extending chain for the given start entity.
 
             g.append('torso', 'arms', 'hands', 'fingers', 'fingernails')
+            #                 ^^^^^^  ^^^^^^^
             # get('arms') hands, fingers, fingernails
 
             g.splice('arms', 'elbows', 'forearms', 'wrists', 'hands')
+            #        ^^^^^^ [ --------- splice in -------- ] ^^^^^^^
             # get('arms') elbows, forearms, wrists, hands, fingers, fingernails
+            #     ^^^^^^                            ^^^^^ [ ---- continue -----
 
         Synonymous to:
 
@@ -159,7 +162,6 @@ class GraphTree(PointTree, TreePump, FindMixin):
         is_undef = default == self.UNDEF
         return ps[pointer_id] if is_undef else ps.get(pointer_id, default)
 
-
     def x_resolve(self, pointer_id, default=UNDEF):
         """Given a pointer ID, resolve to the end unit - A GraphPointer
         """
@@ -167,7 +169,6 @@ class GraphTree(PointTree, TreePump, FindMixin):
             return self.pointers[pointer_id]
 
         return self.pointers.get(pointer_id, default)
-
 
     def pointer_store(self, *entities):
         """

@@ -1,0 +1,71 @@
+{
+    "edges": [
+        {
+            "from": "0_-1",
+            "to": "1_0",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 0,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "from": "0_-1",
+            "to": "1_1",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 1,
+            "x": 0,
+            "y": 1
+        },
+        {
+            "from": "0_-1",
+            "to": "1_2",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 2,
+            "x": 0,
+            "y": 2
+        },
+        {
+            "from": "0_-1",
+            "to": "1_3",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 3,
+            "x": 0,
+            "y": 3
+        }
+    ],
+    "nodes": [
+        {
+            "id": "0_-1",
+            "label": "0_-1",
+            "group_index": 0
+        },
+        {
+            "id": "1_0",
+            "label": "1_0",
+            "group_index": 1
+        },
+        {
+            "id": "1_1",
+            "label": "1_1",
+            "group_index": 2
+        },
+        {
+            "id": "1_2",
+            "label": "1_2",
+            "group_index": 3
+        },
+        {
+            "id": "1_3",
+            "label": "1_3",
+            "group_index": 4
+        }
+    ]
+}

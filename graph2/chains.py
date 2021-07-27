@@ -1,3 +1,98 @@
+from collections import UserDict
+from pprint import pprint as pp
+from itertools import chain
+from collections import Counter
+from collections import defaultdict
+
+from collections import UserList
+import random
+
+from edges import *
+from nodes import *
+
+
+
+class Chain(UserList):
+
+    def __init__(self, graph, data):
+        self.data = data
+        self.graph = graph
+
+    def values(self):
+        res= ()
+        for item in self.data:
+            node = item.node
+            try:
+                value = node.get_value()
+            except KeyError:
+                # value = node.name
+                value = f"{node.name}?get_value"
+            except AttributeError:
+                value = f"{node.name}?get_value"
+            res += (value, )
+        return res
+    # def __repr__(self):
+    #     return f'<Chain: {self.data}>'
+
+
+class ChainLink(object):
+    short_name = 'L'
+
+    def __init__(self, node, x, y):
+        self.node = node
+        self.x = x
+        self.y = y
+
+    def get_short_name(self):
+        return self.short_name or self.__class__.__name__
+
+    def __repr__(self):
+        n = self.get_short_name()
+        return f'<{n}({self.x:>2},{self.y:>2}) "{self.node}">'
+
+
+class EdgeLink(object):
+
+    short_name = '_'
+
+    def __init__(self, edge, node_a, node_b, x, y):
+        self.edge = edge
+        self.node_a = node_a
+        self.node_b = node_b
+        self.x = x
+        self.y = y
+
+    @property
+    def node(self):
+        return self.edge
+
+
+    def get_short_name(self):
+        return self.short_name or self.__class__.__name__
+
+    def str_name(self):
+        n = self.get_short_name()
+        return f'{n}({self.x:>2},{self.y:>2}) {self.edge}: "{self.node_a}" "{self.node_b}"'
+
+    def __repr__(self):
+        return f'<{self.str_name()}>'
+
+    def __str__(self):
+        return self.str_name()
+
+
+def add_link(r, node, x, y):
+    link = ChainLink(node, x, y)
+    r.append(link)
+    return r
+
+
+def add_edge_link(r, edge, a_node, b_node, x, y):
+    link = EdgeLink(edge, a_node, b_node, x, y)
+    r.append(link)
+    return r
+
+
 def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
     index=-1, stash=None, edge_count=-1, keep_exit_node=True, keep_noedge=None):
     """
@@ -134,3 +229,5 @@ def continue_chain(graph, current_node, next_node, history, **kw):
         keep_exit_node=keep_exit_node,
         keep_noedge=g('keep_noedge'),
     )
+
+
