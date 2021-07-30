@@ -19,7 +19,11 @@ let tidy = function(d){
         node.color = node.color || {
             background: nodeColor
             , border: nodeColor
+
             // , border: '#257a36'
+        }
+        node.font = {
+            size: 16
         }
         // node.label = `${node.label} ${node.x}, ${node.y}`
     }
@@ -39,6 +43,12 @@ let tidy = function(d){
         let y = String(edge.y ? edge.y: '0')
         let x = String(edge.x ? edge.x: '0')
         edge.label = `(${x}, ${y})`
+        edge.width = edge.width?edge.width + 3: 3
+        edge.color = {
+            highlight: '#880000'
+            , color: nodeColor
+            , inherit:'from'
+        }
         // console.log(edge)
 
     }
@@ -65,27 +75,43 @@ let createGraph = function(data){
   var options = {
     layout: {
         // improvedLayout: false
+        // hoverWidth:2
+    }
+    , edges: {
+        hoverWidth: function (width) {return width+2;}
+        ,selectionWidth: function (width) {return width*2;}
+
     }
   };
+
   var network = new vis.Network(container, data, options);
+  network.once('afterDrawing', () => {
+      container.style.height = '100vh'
+  })
   return {data, network}
 }
 
 var downloadAppend = function(name){
 
     let update = function(data) {
-        if(dn.data == undefined) {
+        if(window.dn.data == undefined) {
             return createGraph(data)
         }
 
-        dn.data.edges.add(data.edges)
-        dn.data.nodes.add(data.nodes)
+        window.dn.data.edges.add(data.edges)
+        window.dn.data.nodes.add(data.nodes)
     }
 
     fetch(name).then(x=>x.json()).then(tidy).then(update)
 }
 
+var downloadAppendStore = function(){
+  if(window.dn.data == undefined) {
+      return download.apply(this, arguments)
+  }
 
+  return downloadAppend.apply(this, arguments)
+}
 // download('g_vis.json')
-downloadAppend('g_vis.json')
+// downloadAppend('shuffled_letter.json')
 // download('g_vis.json')

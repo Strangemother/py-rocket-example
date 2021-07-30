@@ -66,7 +66,6 @@ class EdgeLink(object):
     def node(self):
         return self.edge
 
-
     def get_short_name(self):
         return self.short_name or self.__class__.__name__
 
@@ -83,7 +82,10 @@ class EdgeLink(object):
 
 def add_link(r, node, x, y):
     link = ChainLink(node, x, y)
-    r.append(link)
+    try:
+        r.append(link)
+    except AttributeError:
+        return [link]
     return r
 
 
@@ -93,8 +95,9 @@ def add_edge_link(r, edge, a_node, b_node, x, y):
     return r
 
 
-def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
-    index=-1, stash=None, edge_count=-1, keep_exit_node=True, keep_noedge=None):
+def get_chains(graph, start, end, root_start_node=None, depth=-1, history=None,
+    index=-1, stash=None, edge_count=-1, keep_exit_node=True,
+    keep_noedge=None):
     """
     If None, The system checks for NoEdge and drops the edge.
     If True, enforce the edge keep, allowing a null edge within the result
@@ -103,11 +106,11 @@ def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
     # keep_noedge = True
 
     stash = stash or {}
-    r = r or []
+    history = history or []
 
     if depth > 10:
         print(' --- Recurse protection.')
-        return r
+        return history
 
     nodelist = start.get_next()
 
@@ -117,7 +120,7 @@ def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
             ignore_node = True
 
     if ignore_node is False:
-        r = add_link(r, start, depth, index)
+        history = add_link(history, start, depth, index)
 
     # stash[id(start)] = depth
     for i, node_name in enumerate(nodelist):
@@ -131,7 +134,7 @@ def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
             end=end,
             root_start_node=root_start_node or start,
             depth=depth+1,
-            r=r,
+            history=history,
             index=i,
             stash=stash,
             edge_count=edge_count,
@@ -139,7 +142,7 @@ def get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
             keep_noedge=keep_noedge,
             node_name=node_name,
         )
-    return r
+    return history
 
 
 def chain_step(graph, current_node, next_node, **kw):
@@ -157,7 +160,9 @@ def get_edges(graph, start_name, next_name):
 
 def chain_edges(graph, edges, current_node, next_node, **kw):
 
-    orig_r = kw.get('r').copy()
+    history = None
+    if 'history' in kw:
+        history = kw.pop('history').copy()
 
     for edge_index, edge in enumerate(edges):
         v = chain_through_edge(
@@ -165,11 +170,11 @@ def chain_edges(graph, edges, current_node, next_node, **kw):
                 edge=edge,
                 current_node=current_node,
                 next_node=next_node,
-                orig_r=orig_r,
+                history=history,
                 edge_index=edge_index,
                 **kw
             )
-    return kw.get('r')
+    return kw.get('history')
 
 
 def store_history(graph, history, stash):
@@ -188,15 +193,21 @@ def chain_through_edge(graph, edge, current_node, next_node, **kw):
 
     edge_count = g('edge_count')
     keep_noedge = g('keep_noedge')
+    history = g('history')
 
     is_noedge = isinstance(edge, NoEdge)
     keep_edge = keep_noedge if keep_noedge is not None else (not is_noedge)
 
+    try:
+        kw.pop('history')
+    except KeyError:
+        pass
+
     if keep_edge:
-        orig_r = g('orig_r')
+        #history = g('history')
         edge_index = g('edge_index')
 
-        history = orig_r.copy()
+        history = history.copy()
         kw['edge_count'] += 1
 
         add_edge_link(history, edge, current_node, next_node, kw['edge_count'], edge_index)
@@ -213,7 +224,7 @@ def continue_chain(graph, current_node, next_node, history, **kw):
 
     if is_exit_node(next_node):
         if keep_exit_node is not False:
-            add_link(history, next_node, depth+1, index)
+            history = add_link(history, next_node, depth+1, index)
         return store_history(graph, history, stash)
 
     return get_chains(
@@ -222,7 +233,7 @@ def continue_chain(graph, current_node, next_node, history, **kw):
         end=g('end'),
         root_start_node=g('root_start_node') or current_node,
         depth=depth+1,
-        r=history,
+        history=history,
         index=index,
         stash=stash,
         edge_count=g('edge_count'),

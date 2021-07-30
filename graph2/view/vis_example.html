@@ -9,30 +9,26 @@
     Including other packages like Vis Timeline or Vis Graph3D here won't work.
     You need the peer build to do that.
   -->
-  <style>
-    #mynetwork {
-        border: solid;
-        /*height: 100%;*/
-        display: flex;
-        min-height: 32em;
-        height: 32em;
-    }
-
-    .vis-network {
-        height: 32em;
-        height: 40em;
-    }
-
-  </style>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
+  <div class="content">
 
-<div id="mynetwork"></div>
+      <div class="filename">
+        <label>
+          <input type="text" name="filename" id="filename" value='shuffled_letter.json'>
+        </label>
+        <button onclick='javascript:downloadAppendStore(filename.value)'>Load</button>
+      </div>
+
+      <div id="mynetwork"></div>
+
+  </div>
   <script type="text/javascript" src="js/vis/simple_json.js"></script>
-<script type="text/javascript">
+  <script type="text/javascript">
 
-</script>
+  </script>
 
 </body>
 </html>

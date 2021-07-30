@@ -12,20 +12,38 @@
 # import chains
 
 import graph
-from edges import Edge
+from edges import Edge, BlankEdge
 from pprint import pprint as pp
 
 from itertools import repeat, accumulate
+from itertools import tee
+
+import string
+import pathlib
+import json
+
 
 def main():
     global g
-    g = output_run(log_map, 'g')
+    func = functions
+
+    g = output_run(alphabet, 'g')
+    get_path(g)
     # g = output_run(functions, 'g')
     # output_run(alphabet, 'g')
     # g = output_run(pop_song, 'g')
-    to_visjs_json(g.paths, './view/g_tree_vis.json', split_ends=False, exit_nodes=False)
-    to_visjs_json(g.paths.paths, './view/g_tree_tree_vis.json', split_ends=True, exit_nodes=True)
+    n = func.__name__
+    to_visjs_json(g.paths, f'./view/g_{n}_paths_vis.json', split_ends=False, exit_nodes=False)
+    to_visjs_json(g.paths.paths, f'./view/g_{n}_paths_paths_vis.json', split_ends=True, exit_nodes=True)
 
+
+def get_path(g):
+    p = (4, 1, 1, 0, 1, 0)
+    p2= (0, 2, 0, 1, 0, 1)
+    p3 = (1, 0, 0, 0, 0, 0, 0, 0, 0)
+    # g.get_path(p)
+    v =g.get_parapaths( (p, p2, p3))
+    pp(v)
 
 def chain_main():
     global g
@@ -158,8 +176,7 @@ def add_split_ends(graph):
 
 
 
-def to_visjs_json(g, path='./g_vis.json',
-                  split_ends=True, exit_nodes=True, direction='forward'):
+def to_visjs_json(g, path='./g_vis.json',  split_ends=True, exit_nodes=True, direction='forward'):
 
     i = 0
     ft = g.tree[direction]
@@ -246,8 +263,6 @@ def to_sigmajs_json(graph, path='./g.json'):
     fp.write_text(_json)
 
 
-import pathlib
-import json
 
 def assert_paths(c,t):
     r = ()
@@ -287,7 +302,7 @@ def poppins():
     return g
 
 
-def alphabet():
+def alphabet(print_table=True):
     """
 
     Each graph connection builds a bridged path, for chained execution
@@ -334,21 +349,26 @@ def alphabet():
 
     """
     g = graph.Graph(id_method=None)#id)
-    v= g.connect(*'ABCD')
-    print('ABCD     ', v)
-    v= g.connect(*'DEFGHIJKL')
-    print('DEFGHIJKL', v)
-    v= g.connect(*'DOGGY')
-    print('DOGGY    ', v)
-    v= g.connect(*'HORSE')
-    print('HORSE    ', v)
-    v= g.connect(*'MOUSE')
-    print('MOUSE    ', v)
-    v= g.connect(*'BANANA')
-    print('BANANA   ', v)
-    v= g.connect(*'APPLES')
-    print('APPLES   ', v)
 
+    def _con(items):
+        v = g.connect(*items)
+        if print_table:
+            print(f"{items:<10}", v)
+
+    _con('ABCD')
+    _con('DEFGHIJKL')
+    _con('DOGGY')
+    _con('HORSE')
+    _con('MOUSE')
+    _con('BANANA')
+    _con('APPLES')
+
+    # print('DEFGHIJKL', v)
+    # print('DOGGY    ', v)
+    # print('HORSE    ', v)
+    # print('MOUSE    ', v)
+    # print('BANANA   ', v)
+    # print('APPLES   ', v)
     return g
 
 
@@ -401,21 +421,40 @@ def pop_song():
 
     return g
 
-import string
+
+def shuffle_hotwire(g):
+    v=list(g.keys())
+    random.shuffle(v)
+    g.pair_connect(v)
+    return g
+
+import random
+
+def shuffled_graph():
+
+    g = graph.Graph()
+    v = alpha_ints()
+    g.update(v)
+    g.connect(*g.keys())
+    return shuffle_hotwire(g)
+
+def alpha_ints():
+    """Return a tuple of tuples as a list (char, int) from a through z.
+
+    Useful to case a letter list of graph nodes.
+
+        >>> g=graph.Graph()
+        >>> v=alpha_ints()
+        >>> g.update(v)
+        >>> g.connect(*g.keys())
+    """
+    return tuple((c,i) for i,c in enumerate(string.ascii_lowercase))
 
 
 def id_method(v):
     if isinstance(v, (int, float)):
         return v
     return v.__name__ if hasattr(v, '__name__') else v
-
-
-class BlankEdge(Edge):
-    def get_value(self):
-        return self.caller
-
-    def caller(self):
-        print('BlankEdge caller')
 
 
 def functions():
@@ -441,13 +480,13 @@ def functions():
     # g.add_edge(fc, fd, edge=Edge())
     return g
 
-from itertools import tee
 
 def pairwise(iterable):
     "s -> (s0,s1), (s1,s2), (s2, s3), ..."
     a, b = tee(iterable)
     next(b, None)
     return zip(a, b)
+
 
 def log_map():
     # Chaotic recurrence relation https://en.wikipedia.org/wiki/Logistic_map
@@ -514,8 +553,6 @@ def b_d(v):
     return v + 4
 
 
-
-
 def fab(v):
     return v + 2
 
@@ -526,7 +563,6 @@ def fac(v):
 
 def fad(v):
     return v + 4
-
 
 
 def flat_get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
@@ -601,12 +637,6 @@ def flat_get_chains(graph, start, end, root_start_node=None, depth=-1, r=None,
                 )
 
     return r
-
-#
-#
-
-
-
 
 
 if __name__ == '__main__':

@@ -1,924 +1,306 @@
 {
     "edges": [
         {
-            "source": "0.40",
-            "target": "0.91",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "A",
+            "target": "B",
+            "weight": {},
             "id": 1
         },
         {
-            "source": "0.91",
-            "target": "0.30",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "A",
+            "target": "N",
+            "weight": {},
             "id": 2
         },
         {
-            "source": "0.91",
-            "target": "0.32",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "A",
+            "target": "P",
+            "weight": {},
             "id": 3
         },
         {
-            "source": "0.30",
-            "target": "0.81",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "B",
+            "target": "C",
+            "weight": {},
             "id": 4
         },
         {
-            "source": "0.30",
-            "target": "0.80",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "B",
+            "target": "A",
+            "weight": {},
             "id": 5
         },
         {
-            "source": "0.30",
-            "target": "_end_",
+            "source": "C",
+            "target": "D",
             "weight": {},
             "id": 6
         },
         {
-            "source": "0.81",
-            "target": "0.60",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "D",
+            "target": "E",
+            "weight": {},
             "id": 7
         },
         {
-            "source": "0.60",
-            "target": "0.92",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "D",
+            "target": "O",
+            "weight": {},
             "id": 8
         },
         {
-            "source": "0.60",
-            "target": "0.91",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "E",
+            "target": "F",
+            "weight": {},
             "id": 9
         },
         {
-            "source": "0.92",
-            "target": "0.29",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "E",
+            "target": "S",
+            "weight": {},
             "id": 10
         },
         {
-            "source": "0.29",
-            "target": "0.79",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "F",
+            "target": "G",
+            "weight": {},
             "id": 11
         },
         {
-            "source": "0.79",
-            "target": "0.63",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "G",
+            "target": "H",
+            "weight": {},
             "id": 12
         },
         {
-            "source": "0.63",
-            "target": "0.88",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "G",
+            "target": "G",
+            "weight": {},
             "id": 13
         },
         {
-            "source": "0.63",
-            "target": "0.89",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "G",
+            "target": "Y",
+            "weight": {},
             "id": 14
         },
         {
-            "source": "0.88",
-            "target": "0.39",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "H",
+            "target": "I",
+            "weight": {},
             "id": 15
         },
         {
-            "source": "0.39",
-            "target": "0.90",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "H",
+            "target": "O",
+            "weight": {},
             "id": 16
         },
         {
-            "source": "0.39",
-            "target": "0.91",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "I",
+            "target": "J",
+            "weight": {},
             "id": 17
         },
         {
-            "source": "0.90",
-            "target": "0.33",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "J",
+            "target": "K",
+            "weight": {},
             "id": 18
         },
         {
-            "source": "0.90",
-            "target": "0.35",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "K",
+            "target": "L",
+            "weight": {},
             "id": 19
         },
         {
-            "source": "0.90",
-            "target": "0.36",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "O",
+            "target": "G",
+            "weight": {},
             "id": 20
         },
         {
-            "source": "0.33",
-            "target": "0.84",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "O",
+            "target": "R",
+            "weight": {},
             "id": 21
         },
         {
-            "source": "0.84",
-            "target": "0.52",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "O",
+            "target": "U",
+            "weight": {},
             "id": 22
         },
         {
-            "source": "0.84",
-            "target": "0.51",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "R",
+            "target": "S",
+            "weight": {},
             "id": 23
         },
         {
-            "source": "0.52",
-            "target": "0.95",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "S",
+            "target": "E",
+            "weight": {},
             "id": 24
         },
         {
-            "source": "0.95",
-            "target": "0.18",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "M",
+            "target": "O",
+            "weight": {},
             "id": 25
         },
         {
-            "source": "0.95",
-            "target": "0.20",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "U",
+            "target": "S",
+            "weight": {},
             "id": 26
         },
         {
-            "source": "0.18",
-            "target": "0.57",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "N",
+            "target": "A",
+            "weight": {},
             "id": 27
         },
         {
-            "source": "0.57",
-            "target": "0.93",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "P",
+            "target": "P",
+            "weight": {},
             "id": 28
         },
         {
-            "source": "0.93",
-            "target": "0.25",
-            "weight": {
-                "foo": "bar"
-            },
+            "source": "P",
+            "target": "L",
+            "weight": {},
             "id": 29
         },
         {
-            "source": "0.93",
-            "target": "0.24",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 30
-        },
-        {
-            "source": "0.25",
-            "target": "0.71",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 31
-        },
-        {
-            "source": "0.71",
-            "target": "0.79",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 32
-        },
-        {
-            "source": "0.71",
-            "target": "0.78",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 33
-        },
-        {
-            "source": "0.32",
-            "target": "0.83",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 34
-        },
-        {
-            "source": "0.83",
-            "target": "0.54",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 35
-        },
-        {
-            "source": "0.54",
-            "target": "0.95",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 36
-        },
-        {
-            "source": "0.54",
-            "target": "0.94",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 37
-        },
-        {
-            "source": "0.20",
-            "target": "0.60",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 38
-        },
-        {
-            "source": "0.20",
-            "target": "0.62",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 39
-        },
-        {
-            "source": "0.80",
-            "target": "0.60",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 40
-        },
-        {
-            "source": "0.80",
-            "target": "0.61",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 41
-        },
-        {
-            "source": "0.61",
-            "target": "0.91",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 42
-        },
-        {
-            "source": "0.94",
-            "target": "0.20",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 43
-        },
-        {
-            "source": "0.94",
-            "target": "0.23",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 44
-        },
-        {
-            "source": "0.94",
-            "target": "0.22",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 45
-        },
-        {
-            "source": "0.94",
-            "target": "0.21",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 46
-        },
-        {
-            "source": "0.62",
-            "target": "0.90",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 47
-        },
-        {
-            "source": "0.35",
-            "target": "0.87",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 48
-        },
-        {
-            "source": "0.87",
-            "target": "0.43",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 49
-        },
-        {
-            "source": "0.43",
-            "target": "0.93",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 50
-        },
-        {
-            "source": "0.24",
-            "target": "0.69",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 51
-        },
-        {
-            "source": "0.24",
-            "target": "0.68",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 52
-        },
-        {
-            "source": "0.24",
-            "target": "0.70",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 53
-        },
-        {
-            "source": "0.69",
-            "target": "0.82",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 54
-        },
-        {
-            "source": "0.82",
-            "target": "0.56",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 55
-        },
-        {
-            "source": "0.56",
-            "target": "0.94",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 56
-        },
-        {
-            "source": "0.23",
-            "target": "0.67",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 57
-        },
-        {
-            "source": "0.67",
-            "target": "0.84",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 58
-        },
-        {
-            "source": "0.51",
-            "target": "0.95",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 59
-        },
-        {
-            "source": "0.68",
-            "target": "0.82",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 60
-        },
-        {
-            "source": "0.22",
-            "target": "0.65",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 61
-        },
-        {
-            "source": "0.65",
-            "target": "0.86",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 62
-        },
-        {
-            "source": "0.86",
-            "target": "0.45",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 63
-        },
-        {
-            "source": "0.45",
-            "target": "0.94",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 64
-        },
-        {
-            "source": "0.21",
-            "target": "0.63",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 65
-        },
-        {
-            "source": "0.89",
-            "target": "0.38",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 66
-        },
-        {
-            "source": "0.38",
-            "target": "0.90",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 67
-        },
-        {
-            "source": "0.36",
-            "target": "0.87",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 68
-        },
-        {
-            "source": "0.78",
-            "target": "0.66",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 69
-        },
-        {
-            "source": "0.66",
-            "target": "0.85",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 70
-        },
-        {
-            "source": "0.85",
-            "target": "0.49",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 71
-        },
-        {
-            "source": "0.49",
-            "target": "0.95",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 72
-        },
-        {
-            "source": "0.70",
-            "target": "0.80",
-            "weight": {
-                "foo": "bar"
-            },
-            "id": 73
-        },
-        {
-            "source": "_start_",
-            "target": "0.40",
+            "source": "L",
+            "target": "E",
             "weight": {},
-            "id": 74
+            "id": 30
         }
     ],
     "nodes": [
         {
-            "id": "0.40",
-            "label": "0.40",
+            "id": "A",
+            "label": "A",
             "size": 5,
             "x": 0
         },
         {
-            "id": "0.91",
-            "label": "0.91",
+            "id": "B",
+            "label": "B",
             "size": 5,
             "x": 1
         },
         {
-            "id": "0.30",
-            "label": "0.30",
+            "id": "C",
+            "label": "C",
             "size": 5,
             "x": 2
         },
         {
-            "id": "0.81",
-            "label": "0.81",
+            "id": "D",
+            "label": "D",
             "size": 5,
             "x": 3
         },
         {
-            "id": "0.60",
-            "label": "0.60",
+            "id": "E",
+            "label": "E",
             "size": 5,
             "x": 4
         },
         {
-            "id": "0.92",
-            "label": "0.92",
+            "id": "F",
+            "label": "F",
             "size": 5,
             "x": 5
         },
         {
-            "id": "0.29",
-            "label": "0.29",
+            "id": "G",
+            "label": "G",
             "size": 5,
             "x": 6
         },
         {
-            "id": "0.79",
-            "label": "0.79",
+            "id": "H",
+            "label": "H",
             "size": 5,
             "x": 7
         },
         {
-            "id": "0.63",
-            "label": "0.63",
+            "id": "I",
+            "label": "I",
             "size": 5,
             "x": 8
         },
         {
-            "id": "0.88",
-            "label": "0.88",
+            "id": "J",
+            "label": "J",
             "size": 5,
             "x": 9
         },
         {
-            "id": "0.39",
-            "label": "0.39",
+            "id": "K",
+            "label": "K",
             "size": 5,
             "x": 10
         },
         {
-            "id": "0.90",
-            "label": "0.90",
+            "id": "L",
+            "label": "L",
             "size": 5,
             "x": 11
         },
         {
-            "id": "0.33",
-            "label": "0.33",
+            "id": "O",
+            "label": "O",
             "size": 5,
             "x": 12
         },
         {
-            "id": "0.84",
-            "label": "0.84",
+            "id": "Y",
+            "label": "Y",
             "size": 5,
             "x": 13
         },
         {
-            "id": "0.52",
-            "label": "0.52",
+            "id": "R",
+            "label": "R",
             "size": 5,
             "x": 14
         },
         {
-            "id": "0.95",
-            "label": "0.95",
+            "id": "S",
+            "label": "S",
             "size": 5,
             "x": 15
         },
         {
-            "id": "0.18",
-            "label": "0.18",
+            "id": "M",
+            "label": "M",
             "size": 5,
             "x": 16
         },
         {
-            "id": "0.57",
-            "label": "0.57",
+            "id": "U",
+            "label": "U",
             "size": 5,
             "x": 17
         },
         {
-            "id": "0.93",
-            "label": "0.93",
+            "id": "N",
+            "label": "N",
             "size": 5,
             "x": 18
         },
         {
-            "id": "0.25",
-            "label": "0.25",
+            "id": "P",
+            "label": "P",
             "size": 5,
             "x": 19
-        },
-        {
-            "id": "0.71",
-            "label": "0.71",
-            "size": 5,
-            "x": 20
-        },
-        {
-            "id": "0.32",
-            "label": "0.32",
-            "size": 5,
-            "x": 21
-        },
-        {
-            "id": "0.83",
-            "label": "0.83",
-            "size": 5,
-            "x": 22
-        },
-        {
-            "id": "0.54",
-            "label": "0.54",
-            "size": 5,
-            "x": 23
-        },
-        {
-            "id": "0.20",
-            "label": "0.20",
-            "size": 5,
-            "x": 24
-        },
-        {
-            "id": "0.80",
-            "label": "0.80",
-            "size": 5,
-            "x": 25
-        },
-        {
-            "id": "0.61",
-            "label": "0.61",
-            "size": 5,
-            "x": 26
-        },
-        {
-            "id": "0.94",
-            "label": "0.94",
-            "size": 5,
-            "x": 27
-        },
-        {
-            "id": "0.62",
-            "label": "0.62",
-            "size": 5,
-            "x": 28
-        },
-        {
-            "id": "0.35",
-            "label": "0.35",
-            "size": 5,
-            "x": 29
-        },
-        {
-            "id": "0.87",
-            "label": "0.87",
-            "size": 5,
-            "x": 30
-        },
-        {
-            "id": "0.43",
-            "label": "0.43",
-            "size": 5,
-            "x": 31
-        },
-        {
-            "id": "0.24",
-            "label": "0.24",
-            "size": 5,
-            "x": 32
-        },
-        {
-            "id": "0.69",
-            "label": "0.69",
-            "size": 5,
-            "x": 33
-        },
-        {
-            "id": "0.82",
-            "label": "0.82",
-            "size": 5,
-            "x": 34
-        },
-        {
-            "id": "0.56",
-            "label": "0.56",
-            "size": 5,
-            "x": 35
-        },
-        {
-            "id": "0.23",
-            "label": "0.23",
-            "size": 5,
-            "x": 36
-        },
-        {
-            "id": "0.67",
-            "label": "0.67",
-            "size": 5,
-            "x": 37
-        },
-        {
-            "id": "0.51",
-            "label": "0.51",
-            "size": 5,
-            "x": 38
-        },
-        {
-            "id": "0.68",
-            "label": "0.68",
-            "size": 5,
-            "x": 39
-        },
-        {
-            "id": "0.22",
-            "label": "0.22",
-            "size": 5,
-            "x": 40
-        },
-        {
-            "id": "0.65",
-            "label": "0.65",
-            "size": 5,
-            "x": 41
-        },
-        {
-            "id": "0.86",
-            "label": "0.86",
-            "size": 5,
-            "x": 42
-        },
-        {
-            "id": "0.45",
-            "label": "0.45",
-            "size": 5,
-            "x": 43
-        },
-        {
-            "id": "0.21",
-            "label": "0.21",
-            "size": 5,
-            "x": 44
-        },
-        {
-            "id": "0.89",
-            "label": "0.89",
-            "size": 5,
-            "x": 45
-        },
-        {
-            "id": "0.38",
-            "label": "0.38",
-            "size": 5,
-            "x": 46
-        },
-        {
-            "id": "0.36",
-            "label": "0.36",
-            "size": 5,
-            "x": 47
-        },
-        {
-            "id": "0.78",
-            "label": "0.78",
-            "size": 5,
-            "x": 48
-        },
-        {
-            "id": "0.66",
-            "label": "0.66",
-            "size": 5,
-            "x": 49
-        },
-        {
-            "id": "0.85",
-            "label": "0.85",
-            "size": 5,
-            "x": 50
-        },
-        {
-            "id": "0.49",
-            "label": "0.49",
-            "size": 5,
-            "x": 51
-        },
-        {
-            "id": "0.70",
-            "label": "0.70",
-            "size": 5,
-            "x": 52
-        },
-        {
-            "id": "_start_",
-            "label": "_start_",
-            "size": 5,
-            "x": 53
-        },
-        {
-            "id": "_end_",
-            "label": "_end_",
-            "size": 5,
-            "x": 54
         }
     ]
 }

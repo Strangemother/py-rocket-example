@@ -230,6 +230,70 @@ class GetNextMixin(object):
         _next = self.tree.get_edges(a,b, direction=direction)
         return _next
 
+    def get_parapaths(self, paths=None):
+        """
+
+            p = (4, 1, 1, 0, 1, 0)
+            p2= (0, 2, 0, 1, 0, 1)
+            p3 = (1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+            dict_res = g.get_parapaths( (p, p2, p3))
+            pp(dict_res)
+
+            pp(g.get_parapaths(tuple(g.positions)))
+
+        """
+        paths = paths or tuple(self.positions)
+        start_node = self.get_start_node()
+
+        max_len = max(tuple(len(x)+1 for x in paths))
+        # A dict for each path, { p: (1,2,3), n: () }
+        d = { i: {'p': paths[i], 'n': (), } for i in range(len(paths)) }
+
+        res = {}
+
+        for lr_index in range(max_len):
+            # step the path into the left-right position
+            # and record.
+            pops = ()
+            for path_index in d:
+                path_dict = d[path_index]
+                path = path_dict['p']
+
+                try:
+                    current_index = path[lr_index]
+                except IndexError:
+                    # path is complete
+                    res[path] = path_dict['n']
+                    pops = (path_index, )
+                    # Stop here to ensure the stepper doesn't continue stacking
+                    # for this path - as continuation _is_ possible if
+                    # the node is futher connected past the given path.
+                    continue
+
+
+                try:
+                    last_node = path_dict['n'][lr_index-1].node
+                except IndexError:
+                    last_node = start_node
+
+                # step the item
+                next_node = last_node.next[current_index]
+
+                # Consider X as the Left-right walk of a chain,
+                # and Y as the edge step
+                cl = chains.ChainLink(next_node, x=lr_index, y=current_index)
+                path_dict['n'] += (cl,)
+
+            for path_index in pops:
+                d.pop(path_index)
+
+        return res
+
+    def get_path(self, path):
+        v = self.get_parapaths((path,))
+        return v
+
 
 class Positions(object):
     """Positions identify the _step path_ of a walker through the edges of

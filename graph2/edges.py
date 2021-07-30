@@ -8,7 +8,7 @@ class Edge(object):
     def get_value(self):
         return self.caller
 
-    def caller(self):
+    def caller(self, *a, **kw):
         print(f'{self.name} caller')
 
 
@@ -19,4 +19,12 @@ class NoEdge(Edge):
 
     def __repr__(self):
         return f'<{self.str_name()}>'
+
+
+class BlankEdge(Edge):
+    def get_value(self):
+        return self.caller
+
+    def caller(self, *a, **kw):
+        print('BlankEdge caller')
 

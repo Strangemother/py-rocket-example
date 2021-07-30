@@ -156,7 +156,7 @@ class NodeList(object):
     def __repr__(self):
         cn = self.__class__.__name__
         ns = self.names
-        return f'<{cn} len({len(ns)}) "{ns}" from "{self.origin}">'
+        return f'<{cn} from "{self.origin}"({len(ns)}) "{ns}">'
 
     def keys(self):
         return self.names
