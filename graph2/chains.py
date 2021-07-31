@@ -18,6 +18,18 @@ class Chain(UserList):
         self.data = data
         self.graph = graph
 
+    def get_nodes(self):
+        for item in self.data:
+            yield item.node
+
+    @property
+    def nodes(self):
+        return tuple(x for x in self.get_nodes())
+
+    @property
+    def path(self):
+        return tuple(x.y for x in self)
+
     def values(self):
         res= ()
         for item in self.data:
@@ -154,7 +166,7 @@ def get_edges(graph, start_name, next_name):
     edges = graph.get_edges(start_name, next_name)
     print('edges:', edges)
     if len(edges) == 0:
-        edges = (NoEdge(), )
+        edges = (NoEdge(start_name, next_name), )
     return edges
 
 

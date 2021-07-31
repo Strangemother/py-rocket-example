@@ -6,20 +6,35 @@ END = '_end_'
 class Node(object):
 
     def __init__(self, graph, name=None):
+
         self.graph = graph
-        self.name = name
+        if isinstance(graph, self.__class__):
+            self.__dict__.update(graph.__dict__)
+
+        if name is not None:
+            self.name = name
+
+    def __lt__(self, other):
+        return self.get_value() < other.get_value()
+
+    def __gt__(self, other):
+        return self.get_value() > other.get_value()
+
+    def __eq__(self, other):
+        return self.get_value() == other.get_value()
 
     def __repr__(self):
         return f'<{self.__class__.__name__} "{self.name}">'
 
     def get_value(self):
 
+        gid = self.get_id()
         try:
-            gid = self.get_id()
             return self.graph.data[gid]
         except KeyError as e:
             if self.name in [START, END]:
                 return ExitNode(self.graph, self.name).get_value()
+            print(f'Unknown node {gid}')
             raise e
 
     def get_id(self):
@@ -98,11 +113,37 @@ class Node(object):
         """
         return self.graph.tree.get_meta_chain(self.name, b=b, direction=direction)
 
-    def get_next(self, direction='forward'):
-        """Return a single list of next attached nodes in one direction.
+    def get_next(self, direction='forward', edge_filter=None):
+        """Choose the next nodes, given the edge matches a name within the
+        value data
         """
-        next_ids = self.get_next_ids(direction)
-        return NodeList(self.graph, next_ids, self.name)
+        ids = None
+        if edge_filter:
+            ids = self.get_next_ids_through_filter(edge_filter, direction)
+
+        return self.as_nodelist(ids or self.get_next_ids(direction))
+
+    def as_nodelist(self, ids):
+        return NodeList(self.graph, ids, self.name)
+        # fids = filter(None, ids)
+        # print(ids, fids)
+
+    def get_next_ids_through_filter(self, edge_filter, direction='forward'):
+        e_f = edge_filter
+        ids = tuple(x.end_node for x in self.get_edges(direction) if e_f(x))
+        return ids
+
+    def get_edges(self, direction='forward'):
+        _next = self.get_next_ids(direction)
+        res = ()
+        n = self.name
+        for nid in _next:
+            edges = self.graph.tree.get_edges(n, nid, direction)
+            res += edges
+        return res
+
+    def get_next_flat(self):
+        return self.get_next().nodes()
 
     @property
     def next(self):
@@ -145,7 +186,7 @@ class Node(object):
 
 class NodeList(object):
 
-    def __init__(self, graph, names, origin=None):
+    def __init__(self, graph=None, names=None, origin=None):
         self.graph = graph
         self.origin = origin
         self.names = names
@@ -162,11 +203,17 @@ class NodeList(object):
         return self.names
 
     def values(self):
-        return (self.graph[x] for x in self.names)
+        return tuple(self.graph[x] for x in self.names)
 
     def as_dict(self):
         g = self.graph
         return {x: self.get_node(x) for x in self.names}
+
+    def items(self):
+        return self.as_dict().items()
+
+    def nodes(self):
+        return tuple(self.as_dict().values())
 
     def __len__(self):
         return len(self.keys())
@@ -177,14 +224,23 @@ class NodeList(object):
     def __getitem__(self, key):
         return self.get_node(key)
 
+    def __add__(self, other):
+        if isinstance(other, self.__class__):
+            self.graph = self.graph or other.graph
+            self.origin = self.origin or other.origin
+
+        if self.names is None:
+            self.names = ()
+        if hasattr(other, '__iter__'):
+            self.names += other.names
+        return self
+
     def get_node(self,key):
         classmap = {
             START: ExitNode,
             END: ExitNode,
             'default': Node,
         }
-
-        # print('Get', key)
 
         if key in self.names:
             Class = classmap.get(key) or classmap['default']
@@ -199,6 +255,39 @@ class NodeList(object):
         if key in self.names:
             return self.graph[key]
         return self.graph[self.names[key]]
+
+    def get_next(self):
+        def r(x):
+            if hasattr(x, 'next'):
+                return x.next
+            return x
+
+        return itertools.chain((r(x) for x in self.nodes()))
+
+    def get_next_flat(self):
+        """
+        >>> g.get_node('A').get_next().get_next_flat()
+        (<Node "C">, <Node "A">, <Node "A">, <Node "P">, <Node "L">)
+
+
+        >>> g.get_node('A').get_next()
+        <NodeList from "A"(3) "('B', 'N', 'P')">
+
+        >>> g.get_node('A').get_next()[0].get_next()
+        <NodeList from "B"(2) "('C', 'A')">
+
+        >>> g.get_node('A').get_next()[1].get_next()
+        <NodeList from "N"(1) "('A',)">
+
+        >>> g.get_node('A').get_next()[2].get_next()
+        <NodeList from "P"(2) "('P', 'L')">
+        """
+        r = ()
+        for nl in self.get_next():
+            r += tuple(nl.nodes())
+        return r
+
+import itertools
 
 
 class ExitNode(Node):

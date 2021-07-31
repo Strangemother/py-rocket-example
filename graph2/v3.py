@@ -10,32 +10,99 @@
 # from nodes import *
 # from edges import *
 # import chains
-
-import graph
-from edges import Edge, BlankEdge
 from pprint import pprint as pp
-
 from itertools import repeat, accumulate
 from itertools import tee
 
 import string
 import pathlib
 import json
+import random
+
+import graph
+import walker
+from edges import Edge, BlankEdge
+from render import *
+import nodes
+
+
 
 
 def main():
     global g
-    func = functions
+    global v
 
-    g = output_run(alphabet, 'g')
-    get_path(g)
-    # g = output_run(functions, 'g')
-    # output_run(alphabet, 'g')
-    # g = output_run(pop_song, 'g')
-    n = func.__name__
-    to_visjs_json(g.paths, f'./view/g_{n}_paths_vis.json', split_ends=False, exit_nodes=False)
-    to_visjs_json(g.paths.paths, f'./view/g_{n}_paths_paths_vis.json', split_ends=True, exit_nodes=True)
+    func = body# alphabet#functions
 
+    # g = output_run(alphabet, 'g')
+    g = output_run(func, exit_nodes=True, split_ends=True)
+    v= emit_event(g)
+    pp(v)
+
+
+def body():
+    """
+
+         w=walker.bar_walk(g.get_node('head'))
+
+        >>> w=walker.bar_walk(g.get_node('head'))
+        >>> w
+        <generator object bar_walk at 0x000000000065DB88>
+        >>> next(w)
+        (<Node "neck">, <Node "face">, <Node "ears">, <Node "hair">)
+        >>> next(w)
+        (<Node "shoulders">, <Node "eyes">, <Node "nose">, <Node "mouth">)
+        >>> next(w)
+        (<Node "torso">, <Node "nostrils">, <Node "lips">)
+        >>> next(w)
+        (<Node "legs">, <Node "arms">, <Node "holes">)
+        >>> next(w)
+        (<Node "feet">, <Node "hands">)
+        >>> next(w)
+        (<Node "toes">, <Node "fingers">, <Node "thumbs">)
+        >>> next(w)
+        (<Node "fingernails">, <Node "thumbnails">)
+        >>> next(w)
+        ()
+
+        v=tuple(w)
+        pp(v)
+        ((<Node "neck">, <Node "face">, <Node "ears">, <Node "hair">),
+         (<Node "shoulders">, <Node "eyes">, <Node "nose">, <Node "mouth">),
+         (<Node "torso">, <Node "nostrils">, <Node "lips">),
+         (<Node "legs">, <Node "arms">, <Node "holes">),
+         (<Node "feet">, <Node "hands">),
+         (<Node "toes">, <Node "fingers">, <Node "thumbs">),
+         (<Node "fingernails">, <Node "thumbnails">),
+         ())
+    """
+    g = graph.Graph()
+    g.connect(
+    'head',
+    'neck',
+    'shoulders',
+    'torso',
+    'legs',
+    'feet',
+    'toes',
+    )
+
+    g.connect('head', 'face', 'eyes')
+    g.connect('head', 'ears')
+    g.connect('head', 'hair')
+
+    g.connect('face', 'nose')
+    g.connect('nose', 'nostrils', 'holes')
+    g.connect('face', 'mouth', 'lips')
+
+    g.connect('torso', 'arms', 'hands', 'fingers', 'fingernails')
+    g.connect('hands', 'thumbs', 'thumbnails')
+
+    return g
+    # v = get_path(g)
+
+def emit_event(g):
+    return walker.walk(g.get_node('A'))
 
 def get_path(g):
     p = (4, 1, 1, 0, 1, 0)
@@ -43,7 +110,8 @@ def get_path(g):
     p3 = (1, 0, 0, 0, 0, 0, 0, 0, 0)
     # g.get_path(p)
     v =g.get_parapaths( (p, p2, p3))
-    pp(v)
+
+    return v
 
 def chain_main():
     global g
@@ -73,194 +141,16 @@ def chain_main():
     to_visjs_json(g.paths, './view/g_tree_vis.json')
 
 
-def output_run(func, filename):
+def output_run(func, filename=None, **kw):
     g = func()
-    to_sigmajs_json(g, f'./view/{filename}.json')
-    to_visjs_json(g, f'./view/{filename}_vis.json')
+    filename = filename or func.__name__
+
+    # to_sigmajs_json(g, f'./view/{filename}.json')
+    to_visjs_json(g, f'./view/{filename}_vis.json', **kw)
+    # to_visjs_json(g.paths, f'./view/g_{n}_paths_vis.json', split_ends=False, exit_nodes=False)
+    # to_visjs_json(g.paths.paths, f'./view/g_{n}_paths_paths_vis.json', split_ends=True, exit_nodes=True)
+
     return g
-
-
-def add_ends(graph):
-    nodes = ()
-    edges = []
-    # Add as nodes
-    for enode in (graph.get_start_node(), graph.get_end_node(),):
-        nn = enode.name
-        n = {
-            "label": str(nn),
-            "id": nn,
-            "color": '#e36d6d'
-        }
-
-        nodes += (n,)
-
-    enode = graph.get_start_node()
-    for next_name in enode.get_next_ids('forward'):
-        item = {
-            "from": enode.name,
-            "to": next_name,
-            }
-        edges.append(item)
-
-    enode = graph.get_end_node()
-    for next_name in enode.get_next_ids('forward'):
-        item = {
-            "from": next_name,
-            "to": enode.name,
-            }
-        edges.append(item)
-
-    return nodes,edges
-
-
-def add_split_ends(graph):
-    nodes = ()
-    edges = []
-
-
-    ## Add as single nodes
-    # for enode in (graph.get_start_node(), graph.get_end_node(),):
-    #     nn = enode.name
-    #     n = {
-    #         "label": str(nn),
-    #         "id": nn,
-    #         "color": '#e36d6d'
-    #     }
-
-    #     nodes += (n,)
-
-    START_NODE_COLOR = '#d9ed53'
-    enode = graph.get_start_node()
-    for ni, next_name in enumerate(enode.get_next_ids('forward')):
-        nn = enode.name
-        _id = f'{nn}_{ni}'
-        item = {
-            "from": _id,
-            "to": next_name,
-            }
-
-        n = {
-            "label": str(nn),
-            "id": _id,
-            "color": {
-                "background": START_NODE_COLOR,
-                "border": START_NODE_COLOR,
-                'highlight': {
-                    "background": "#444",
-                }
-            }
-        }
-
-        edges.append(item)
-        nodes += (n,)
-
-
-    enode = graph.get_end_node()
-    for ni, next_name in enumerate(enode.get_next_ids('forward')):
-        nn = enode.name
-        _id = f'{nn}_{ni}'
-        item = {
-            "from": next_name,
-            "to": _id,
-            }
-
-        n = {
-            "label": str(nn),
-            "id": _id,
-            "color": '#e36d6d'
-        }
-        nodes += (n,)
-        edges.append(item)
-
-    return nodes,edges
-
-
-
-def to_visjs_json(g, path='./g_vis.json',  split_ends=True, exit_nodes=True, direction='forward'):
-
-    i = 0
-    ft = g.tree[direction]
-    node_names = tuple(g.data.keys())
-    edges = []
-    nodes = ()
-
-    if exit_nodes:
-        nodes ,edges = [add_ends, add_split_ends][split_ends](g)
-    # nodes,edges = add_split_ends(g)
-
-    # nodes
-    for index, nn in enumerate(node_names):
-        node = g.get_node(nn)
-        _node = {
-                "id": nn,
-                "label": str(nn),
-                # "size": 5,
-                # "x": node.x,
-                "group_index": index,
-            }
-        nodes += (_node,)
-
-    # edges
-    for node_index, (node_name, d) in enumerate(ft.items()):
-        for edge_i, (other_node, count) in enumerate(d.items()):
-            i += 1
-            item = {
-                    "from": node_name,
-                    "to": other_node,
-                    "meta": count,# (float(count) * 1.0 ) + 2,
-                    "title": count,
-                    "node_index": node_index, # x
-                    "edge_index": edge_i, # y
-                    "x": node_index,
-                    "y": edge_i,
-                    }
-            edges.append(item)
-
-    fp = pathlib.Path(path)
-    content = {
-        "edges": edges,
-        "nodes": nodes,
-    }
-    _json = json.dumps(content, indent=4)
-    fp.write_text(_json)
-
-
-def to_sigmajs_json(graph, path='./g.json'):
-    # nodes
-    # edges
-    r = []
-    i = 0
-    ft = graph.tree.forward
-    node_names = tuple(graph.data.keys())
-    nodes = ()
-    for index, nn in enumerate(node_names):
-        node = graph.get_node(nn)
-        _node = {
-                "id": nn,
-                "label": nn,
-                "size": 5,
-                "x": index,
-            }
-        nodes += (_node,)
-
-    for node_name, d in ft.items():
-        for other_node, count in d.items():
-            i += 1
-            item = {
-                    "source": node_name,
-                    "target": other_node,
-                    "weight": count,
-                    "id": i
-                    }
-            r.append(item)
-
-    fp = pathlib.Path(path)
-    content = {
-        "edges": r,
-        "nodes": nodes,
-    }
-    _json = json.dumps(content, indent=4)
-    fp.write_text(_json)
 
 
 
@@ -355,13 +245,18 @@ def alphabet(print_table=True):
         if print_table:
             print(f"{items:<10}", v)
 
-    _con('ABCD')
-    _con('DEFGHIJKL')
-    _con('DOGGY')
-    _con('HORSE')
-    _con('MOUSE')
-    _con('BANANA')
-    _con('APPLES')
+    rows = (
+        ('ABCD'),
+        ('DEFGHIJKL'),
+        ('DOGGY'),
+        ('HORSE'),
+        ('MOUSE'),
+        ('BANANA'),
+        ('APPLES'),
+    )
+
+    for row in rows:
+        _con(row)
 
     # print('DEFGHIJKL', v)
     # print('DOGGY    ', v)
@@ -374,42 +269,42 @@ def alphabet(print_table=True):
 
 def pop_song():
     lines = (
-    "I am the very model of a modern Major-General,",
-    "I've information vegetable, animal, and mineral,",
-    "I know the kings of England, and I quote the fights historical",
-    "From Marathon to Waterloo, in order categorical;",
-    "I'm very well acquainted, too, with matters mathematical,",
-    "I understand equations, both the simple and quadratical,",
-    "About binomial theorem I'm teeming with a lot o' news,",
-    "With many cheerful facts about the square of the hypotenuse.",
-    "I'm very good at integral and differential calculus;",
-    "I know the scientific names of beings animalculous:",
-    "In short, in matters vegetable, animal, and mineral,",
-    "I am the very model of a modern Major-General.",
-    "I know our mythic history, King Arthur's and Sir Caradoc's;",
-    "I answer hard acrostics, I've a pretty taste for paradox,",
-    "I quote in elegiacs all the crimes of Heliogabalus,",
-    "In conics I can floor peculiarities parabolous;",
-    "I can tell undoubted Raphaels from Gerard Dows and Zoffanies,",
-    "I know the croaking from The Frogs of Aristophanes!",
-    "Then I can hum a fugue of which I've heard the music's din afore,",
-    "And whistle all the airs from that infernal nonsense Pinafore.",
-    "Then I can write a washing bill in Babylonic cuneiform,",
-    "And tell you ev'ry detail of Caractacus's uniform:",
-    "In short, in matters vegetable, animal, and mineral,",
-    "I am the very model of a modern Major-General.",
-    "In fact, when I know what is meant by \"mamelon\" and \"ravelin\",",
-    "When I can tell at sight a Mauser rifle from a Javelin,",
-    "When such affairs as sorties and surprises I'm more wary at,",
-    "And when I know precisely what is meant by \"commissariat\"",
-    "When I have learnt what progress has been made in modern gunnery,",
-    "When I know more of tactics than a novice in a nunnery",
-    "In short, when I've a smattering of elemental strategy",
-    "You'll say a better Major-General has never sat a gee.",
-    "For my military knowledge, though I'm plucky and adventury,",
-    "Has only been brought down to the beginning of the century;",
-    "But still, in matters vegetable, animal, and mineral,",
-    "I am the very model of a modern Major-General.",
+        "I am the very model of a modern Major-General,",
+        "I've information vegetable, animal, and mineral,",
+        "I know the kings of England, and I quote the fights historical",
+        "From Marathon to Waterloo, in order categorical;",
+        "I'm very well acquainted, too, with matters mathematical,",
+        "I understand equations, both the simple and quadratical,",
+        "About binomial theorem I'm teeming with a lot o' news,",
+        "With many cheerful facts about the square of the hypotenuse.",
+        "I'm very good at integral and differential calculus;",
+        "I know the scientific names of beings animalculous:",
+        "In short, in matters vegetable, animal, and mineral,",
+        "I am the very model of a modern Major-General.",
+        "I know our mythic history, King Arthur's and Sir Caradoc's;",
+        "I answer hard acrostics, I've a pretty taste for paradox,",
+        "I quote in elegiacs all the crimes of Heliogabalus,",
+        "In conics I can floor peculiarities parabolous;",
+        "I can tell undoubted Raphaels from Gerard Dows and Zoffanies,",
+        "I know the croaking from The Frogs of Aristophanes!",
+        "Then I can hum a fugue of which I've heard the music's din afore,",
+        "And whistle all the airs from that infernal nonsense Pinafore.",
+        "Then I can write a washing bill in Babylonic cuneiform,",
+        "And tell you ev'ry detail of Caractacus's uniform:",
+        "In short, in matters vegetable, animal, and mineral,",
+        "I am the very model of a modern Major-General.",
+        "In fact, when I know what is meant by \"mamelon\" and \"ravelin\",",
+        "When I can tell at sight a Mauser rifle from a Javelin,",
+        "When such affairs as sorties and surprises I'm more wary at,",
+        "And when I know precisely what is meant by \"commissariat\"",
+        "When I have learnt what progress has been made in modern gunnery,",
+        "When I know more of tactics than a novice in a nunnery",
+        "In short, when I've a smattering of elemental strategy",
+        "You'll say a better Major-General has never sat a gee.",
+        "For my military knowledge, though I'm plucky and adventury,",
+        "Has only been brought down to the beginning of the century;",
+        "But still, in matters vegetable, animal, and mineral,",
+        "I am the very model of a modern Major-General.",
     )
 
     g = graph.Graph(id_method=None)#id)
@@ -428,7 +323,6 @@ def shuffle_hotwire(g):
     g.pair_connect(v)
     return g
 
-import random
 
 def shuffled_graph():
 

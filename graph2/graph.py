@@ -5,12 +5,14 @@ from collections import Counter
 from collections import defaultdict
 
 from collections import UserList
+from collections import ChainMap
+from itertools import tee
 import random
 
 from nodes import *
 from edges import *
 import chains
-
+import render
 
 class IDMethod(object):
     """A node applied to the graph may be anything, such as a int, str, dict, or
@@ -41,7 +43,9 @@ class IDMethod(object):
             item = item.get_value()
         return method(item)
 
+
 ONLY = '_only_'
+
 
 class CounterTree(object):
     """A Tree binds all the connections of the info dict, associated to a graph (dict) type.
@@ -71,7 +75,16 @@ class CounterTree(object):
         name = f'{name_a}{name_b}'
 
         if name in _edge_tree:
-            return tuple(_edge_tree[name])
+            _edges = _edge_tree[name]
+            r = ()
+            for _e in _edges:
+                r += (_e.render(name_a, name_b),)
+                # if (getattr(_e, 'factory', None) or False) is True:
+                #     r += (_e(name_a, name_b),)
+                #     continue
+                # r += (_e, )
+
+            return tuple(r)
 
         return ()
 
@@ -109,9 +122,6 @@ class CounterTree(object):
     def get_meta_data(self, a, b=None, direction='forward'):
         b = b or ONLY
         return self[direction][a][b]
-
-
-from collections import ChainMap
 
 
 class DictTree(CounterTree):
@@ -196,6 +206,7 @@ class DictTree(CounterTree):
         fw[node][other].update(d)
         rv[other][node].update(d)
 
+
 Tree = DictTree
 # Tree = CounterTree
 
@@ -204,10 +215,10 @@ class GetNextMixin(object):
 
 
     def get_node(self, node_name):
-        return Node(self, node_name)
+        return self.node_class(self, node_name)
 
     def get_next(self, current_node=None):
-        if not isinstance(current_node, Node):
+        if not isinstance(current_node, (Node, self.node_class)):
             current_node = self.get_node(current_node)
 
         current_node = current_node or self.get_start_node()
@@ -264,13 +275,12 @@ class GetNextMixin(object):
                     current_index = path[lr_index]
                 except IndexError:
                     # path is complete
-                    res[path] = path_dict['n']
+                    res[path] = chains.Chain(self, path_dict['n'])
                     pops = (path_index, )
                     # Stop here to ensure the stepper doesn't continue stacking
                     # for this path - as continuation _is_ possible if
                     # the node is futher connected past the given path.
                     continue
-
 
                 try:
                     last_node = path_dict['n'][lr_index-1].node
@@ -280,15 +290,18 @@ class GetNextMixin(object):
                 # step the item
                 next_node = last_node.next[current_index]
 
+                # edges = chains.get_edges(self, last_node, next_node)
+                # el = chains.EdgeLink(edge, last_node, next_node, x=current_index, y=lr_index)
                 # Consider X as the Left-right walk of a chain,
                 # and Y as the edge step
                 cl = chains.ChainLink(next_node, x=lr_index, y=current_index)
+                # path_dict['n'] += edges + (cl,)
                 path_dict['n'] += (cl,)
 
             for path_index in pops:
                 d.pop(path_index)
 
-        return res
+        return tuple(res.values())
 
     def get_path(self, path):
         v = self.get_parapaths((path,))
@@ -326,8 +339,6 @@ class Positions(object):
         # given a path, return a list of nodes.
         pass
 
-
-from itertools import tee
 
 def pairwise(iterable):
     "s -> (s0,s1), (s1,s2), (s2, s3), ..."
@@ -461,14 +472,25 @@ class Pins(object):
         return (b1, a2,), (a1, b2), (p1, p2)
 
 
-class Graph(UserDict, IDMethod, GetNextMixin, Positions, Connect, Reset, Pins):
+class RenderMixin(object):
 
+    def to_json(self, name, **options):
+        p = f"./view/{name}.json"
+        p2 = f"./view/{name}_paths.json"
+        render.to_visjs_json(self.paths, p2, **options)
+        return render.to_visjs_json(self, p, **options)
+
+
+class Graph(UserDict, IDMethod, GetNextMixin, Positions, Connect, Reset, Pins, RenderMixin):
+
+    node_class = Node
     max_depth = 3
 
-    def __init__(self, initdata=None, id_method=None, depth=-1):
+    def __init__(self, initdata=None, id_method=None, depth=-1, **kw):
         super().__init__(initdata)
         self.depth = depth + 1
         self.id_method = id_method or self.id_method
+        self.__dict__.update(kw)
         self.reset()
 
     def get_init_tree(self, direction=None):
@@ -482,7 +504,8 @@ class Graph(UserDict, IDMethod, GetNextMixin, Positions, Connect, Reset, Pins):
     def bind_pair(self, a, b, edge=None, meta_append=None):
         id_a, id_b = self.get_ids(a,b)
         # record data attributes to flat _self_ dict
-        self.store_items({id_a:a,id_b:b})
+        r = {x:x for x in (id_a, id_b) if x not in self} # {id_a:a,id_b:b}
+        self.store_items(r)
         # Build an a to b connection through e
         branch_position = self.bridge(id_a, id_b, edge=edge, meta_append=meta_append)
         return id_a, id_b, branch_position
