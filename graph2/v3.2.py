@@ -3,9 +3,7 @@ A programmed node should be allowed to send an event to the target edges,
 given params in the caller response.
 """
 
-from nodes import Node, NodeList
-from graph import Graph
-from edges import Edge
+from graph import Graph, Edge, Node, NodeList
 
 
 class ChoiceNode(Node):

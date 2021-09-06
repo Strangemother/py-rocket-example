@@ -1,0 +1,4 @@
+
+
+class NoGraph(Exception):
+    pass

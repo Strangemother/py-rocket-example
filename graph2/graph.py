@@ -11,8 +11,10 @@ import random
 
 from nodes import *
 from edges import *
+import walker
 import chains
 import render
+
 
 class IDMethod(object):
     """A node applied to the graph may be anything, such as a int, str, dict, or
@@ -28,19 +30,40 @@ class IDMethod(object):
     id_method = None # hash # id
 
     def get_id_method(self):
+        """Return the function used for the identification of a node.
+        If None, the entity given during inspection is returned as the ID,
+
+            g = Graph(id_method=None)
+            g.connect('a', 'b')
+            g['a'] == 'a'
+
+        Other useful methods are `id`, `hash` or any function to produce a
+        unique ID for the entity.
+        """
         method = self.id_method
         if method is None:
             method = lambda x:x
         return method
 
     def get_ids(self, *items):
-
+        """Return a tuple of IDS for all given items, calling upon `get_id`
+        for each unit.
+        """
         return tuple(self.get_id(x) for x in items)
 
     def get_id(self, item):
-        method = self.get_id_method()
+        """
+        Return the ID of the given entity. If the `item` is a Node type,
+        call to `item.get_value()`, else, call upon the `id_method`.
+
+        The return type is any valid dict key identifier
+        """
+        if hasattr(item, 'get_id'):
+            return item.get_id()
+
         if isinstance(item, Node):
             item = item.get_value()
+        method = self.get_id_method()
         return method(item)
 
 
@@ -215,10 +238,12 @@ class GetNextMixin(object):
 
 
     def get_node(self, node_name):
+        if isinstance(self.data.get(node_name), NodeBase):
+            return self.data[node_name]
         return self.node_class(self, node_name)
 
     def get_next(self, current_node=None):
-        if not isinstance(current_node, (Node, self.node_class)):
+        if not isinstance(current_node, (Node, NodeBase, self.node_class)):
             current_node = self.get_node(current_node)
 
         current_node = current_node or self.get_start_node()
@@ -361,6 +386,20 @@ class Connect(object):
         self.pin_ends(items)
 
     def connect(self, *nodes, edge=None, pinned=True, **kw):
+        """Perform a store and bind of all given nodes in linear order,
+        return list of positions for the edge path.
+
+            g = Graph()
+            g.connect(*'ABCDEF')
+            g.connect(*'ADPOEF')
+
+        The "nodes" may be any storable dict entity such as a string,
+        number or callable. The identity of the node is discovered during the
+        linear connect.
+
+        Usually a unique ID per node is created but this is dependent upon the
+        input data. E.g, strings are always the same string.
+        """
         pairs, positions = self.linear_connect(nodes, pinned=pinned, edge=edge, **kw)
 
         # edge_positions = tuple((1+i)*(x+1)-1 for i,x in enumerate(positions))
@@ -380,11 +419,16 @@ class Connect(object):
         [('a', 'b'), ('a', 'c'), ('a', 'd'), ('b', 'c'), ('b', 'd'), ('c', 'd')]
     """
     def linear_connect(self, items, pinned=True, init_position=-1, edge=None, **meta):
-
+        """Connect left to right - all entities within the given list.
+        Return a tuple of (pairs, postions). Pairs of A->B sibling and all
+        positions for each branch pair.
+        """
         pairs = ()
         items = tuple(items)
 
         id_first, id_last = self.get_ids(items[0], items[-1])
+
+
         if pinned:
             self.start_pins[id_first] += 1
             self.end_pins[id_last] += 1
@@ -443,7 +487,9 @@ class Reset(object):
 
 
 class Pins(object):
-
+    """The `Pins` mixin provides thin functions for the start
+    and end pins of a graph, used by linear connection.
+    """
     def get_start_node(self):
         return ExitNode(self, START)
 
@@ -504,7 +550,13 @@ class Graph(UserDict, IDMethod, GetNextMixin, Positions, Connect, Reset, Pins, R
     def bind_pair(self, a, b, edge=None, meta_append=None):
         id_a, id_b = self.get_ids(a,b)
         # record data attributes to flat _self_ dict
-        r = {x:x for x in (id_a, id_b) if x not in self} # {id_a:a,id_b:b}
+        r = {}
+        for x,_id in zip((a,b),(id_a, id_b)):
+            v = x
+            if hasattr(x, 'get_value') and (not isinstance(x, NodeBase)):
+                v = x.get_value()
+            r[_id]=v
+        # r = {x:x for x in (id_a, id_b) if x not in self} # {id_a:a,id_b:b}
         self.store_items(r)
         # Build an a to b connection through e
         branch_position = self.bridge(id_a, id_b, edge=edge, meta_append=meta_append)
@@ -518,3 +570,6 @@ class Graph(UserDict, IDMethod, GetNextMixin, Positions, Connect, Reset, Pins, R
         # print('store', d)
         self.update(d)
 
+    def get_bar_walker(self, start_node=None):
+        start_node = start_node or self.get_start_node()
+        return walker.bar_walk(start_node)

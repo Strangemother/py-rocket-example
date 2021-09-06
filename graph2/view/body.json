@@ -1,0 +1,482 @@
+{
+    "edges": [
+        {
+            "from": "_start__0",
+            "to": "head"
+        },
+        {
+            "from": "_start__1",
+            "to": "face"
+        },
+        {
+            "from": "_start__2",
+            "to": "nose"
+        },
+        {
+            "from": "_start__3",
+            "to": "torso"
+        },
+        {
+            "from": "_start__4",
+            "to": "hands"
+        },
+        {
+            "from": "toes",
+            "to": "_end__0"
+        },
+        {
+            "from": "eyes",
+            "to": "_end__1"
+        },
+        {
+            "from": "ears",
+            "to": "_end__2"
+        },
+        {
+            "from": "hair",
+            "to": "_end__3"
+        },
+        {
+            "from": "nose",
+            "to": "_end__4"
+        },
+        {
+            "from": "holes",
+            "to": "_end__5"
+        },
+        {
+            "from": "lips",
+            "to": "_end__6"
+        },
+        {
+            "from": "fingernails",
+            "to": "_end__7"
+        },
+        {
+            "from": "thumbnails",
+            "to": "_end__8"
+        },
+        {
+            "from": "head",
+            "to": "neck",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 0,
+            "x": 0,
+            "y": 0
+        },
+        {
+            "from": "head",
+            "to": "face",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 1,
+            "x": 0,
+            "y": 1
+        },
+        {
+            "from": "head",
+            "to": "ears",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 2,
+            "x": 0,
+            "y": 2
+        },
+        {
+            "from": "head",
+            "to": "hair",
+            "meta": {},
+            "title": {},
+            "node_index": 0,
+            "edge_index": 3,
+            "x": 0,
+            "y": 3
+        },
+        {
+            "from": "neck",
+            "to": "shoulders",
+            "meta": {},
+            "title": {},
+            "node_index": 1,
+            "edge_index": 0,
+            "x": 1,
+            "y": 0
+        },
+        {
+            "from": "shoulders",
+            "to": "torso",
+            "meta": {},
+            "title": {},
+            "node_index": 2,
+            "edge_index": 0,
+            "x": 2,
+            "y": 0
+        },
+        {
+            "from": "torso",
+            "to": "legs",
+            "meta": {},
+            "title": {},
+            "node_index": 3,
+            "edge_index": 0,
+            "x": 3,
+            "y": 0
+        },
+        {
+            "from": "torso",
+            "to": "arms",
+            "meta": {},
+            "title": {},
+            "node_index": 3,
+            "edge_index": 1,
+            "x": 3,
+            "y": 1
+        },
+        {
+            "from": "legs",
+            "to": "feet",
+            "meta": {},
+            "title": {},
+            "node_index": 4,
+            "edge_index": 0,
+            "x": 4,
+            "y": 0
+        },
+        {
+            "from": "feet",
+            "to": "toes",
+            "meta": {},
+            "title": {},
+            "node_index": 5,
+            "edge_index": 0,
+            "x": 5,
+            "y": 0
+        },
+        {
+            "from": "face",
+            "to": "eyes",
+            "meta": {},
+            "title": {},
+            "node_index": 6,
+            "edge_index": 0,
+            "x": 6,
+            "y": 0
+        },
+        {
+            "from": "face",
+            "to": "nose",
+            "meta": {},
+            "title": {},
+            "node_index": 6,
+            "edge_index": 1,
+            "x": 6,
+            "y": 1
+        },
+        {
+            "from": "face",
+            "to": "mouth",
+            "meta": {},
+            "title": {},
+            "node_index": 6,
+            "edge_index": 2,
+            "x": 6,
+            "y": 2
+        },
+        {
+            "from": "nose",
+            "to": "nostrils",
+            "meta": {},
+            "title": {},
+            "node_index": 7,
+            "edge_index": 0,
+            "x": 7,
+            "y": 0
+        },
+        {
+            "from": "nostrils",
+            "to": "holes",
+            "meta": {},
+            "title": {},
+            "node_index": 8,
+            "edge_index": 0,
+            "x": 8,
+            "y": 0
+        },
+        {
+            "from": "mouth",
+            "to": "lips",
+            "meta": {},
+            "title": {},
+            "node_index": 9,
+            "edge_index": 0,
+            "x": 9,
+            "y": 0
+        },
+        {
+            "from": "arms",
+            "to": "hands",
+            "meta": {},
+            "title": {},
+            "node_index": 10,
+            "edge_index": 0,
+            "x": 10,
+            "y": 0
+        },
+        {
+            "from": "hands",
+            "to": "fingers",
+            "meta": {},
+            "title": {},
+            "node_index": 11,
+            "edge_index": 0,
+            "x": 11,
+            "y": 0
+        },
+        {
+            "from": "hands",
+            "to": "thumbs",
+            "meta": {},
+            "title": {},
+            "node_index": 11,
+            "edge_index": 1,
+            "x": 11,
+            "y": 1
+        },
+        {
+            "from": "fingers",
+            "to": "fingernails",
+            "meta": {},
+            "title": {},
+            "node_index": 12,
+            "edge_index": 0,
+            "x": 12,
+            "y": 0
+        },
+        {
+            "from": "thumbs",
+            "to": "thumbnails",
+            "meta": {},
+            "title": {},
+            "node_index": 13,
+            "edge_index": 0,
+            "x": 13,
+            "y": 0
+        }
+    ],
+    "nodes": [
+        {
+            "label": "_start_",
+            "id": "_start__0",
+            "color": {
+                "background": "#d9ed53",
+                "border": "#d9ed53",
+                "highlight": {
+                    "background": "#444"
+                }
+            }
+        },
+        {
+            "label": "_start_",
+            "id": "_start__1",
+            "color": {
+                "background": "#d9ed53",
+                "border": "#d9ed53",
+                "highlight": {
+                    "background": "#444"
+                }
+            }
+        },
+        {
+            "label": "_start_",
+            "id": "_start__2",
+            "color": {
+                "background": "#d9ed53",
+                "border": "#d9ed53",
+                "highlight": {
+                    "background": "#444"
+                }
+            }
+        },
+        {
+            "label": "_start_",
+            "id": "_start__3",
+            "color": {
+                "background": "#d9ed53",
+                "border": "#d9ed53",
+                "highlight": {
+                    "background": "#444"
+                }
+            }
+        },
+        {
+            "label": "_start_",
+            "id": "_start__4",
+            "color": {
+                "background": "#d9ed53",
+                "border": "#d9ed53",
+                "highlight": {
+                    "background": "#444"
+                }
+            }
+        },
+        {
+            "label": "_end_",
+            "id": "_end__0",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__1",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__2",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__3",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__4",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__5",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__6",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__7",
+            "color": "#e36d6d"
+        },
+        {
+            "label": "_end_",
+            "id": "_end__8",
+            "color": "#e36d6d"
+        },
+        {
+            "id": "head",
+            "label": "head",
+            "group_index": 0
+        },
+        {
+            "id": "neck",
+            "label": "neck",
+            "group_index": 1
+        },
+        {
+            "id": "shoulders",
+            "label": "shoulders",
+            "group_index": 2
+        },
+        {
+            "id": "torso",
+            "label": "torso",
+            "group_index": 3
+        },
+        {
+            "id": "legs",
+            "label": "legs",
+            "group_index": 4
+        },
+        {
+            "id": "feet",
+            "label": "feet",
+            "group_index": 5
+        },
+        {
+            "id": "toes",
+            "label": "toes",
+            "group_index": 6
+        },
+        {
+            "id": "face",
+            "label": "face",
+            "group_index": 7
+        },
+        {
+            "id": "eyes",
+            "label": "eyes",
+            "group_index": 8
+        },
+        {
+            "id": "ears",
+            "label": "ears",
+            "group_index": 9
+        },
+        {
+            "id": "hair",
+            "label": "hair",
+            "group_index": 10
+        },
+        {
+            "id": "nose",
+            "label": "nose",
+            "group_index": 11
+        },
+        {
+            "id": "nostrils",
+            "label": "nostrils",
+            "group_index": 12
+        },
+        {
+            "id": "holes",
+            "label": "holes",
+            "group_index": 13
+        },
+        {
+            "id": "mouth",
+            "label": "mouth",
+            "group_index": 14
+        },
+        {
+            "id": "lips",
+            "label": "lips",
+            "group_index": 15
+        },
+        {
+            "id": "arms",
+            "label": "arms",
+            "group_index": 16
+        },
+        {
+            "id": "hands",
+            "label": "hands",
+            "group_index": 17
+        },
+        {
+            "id": "fingers",
+            "label": "fingers",
+            "group_index": 18
+        },
+        {
+            "id": "fingernails",
+            "label": "fingernails",
+            "group_index": 19
+        },
+        {
+            "id": "thumbs",
+            "label": "thumbs",
+            "group_index": 20
+        },
+        {
+            "id": "thumbnails",
+            "label": "thumbnails",
+            "group_index": 21
+        }
+    ]
+}

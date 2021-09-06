@@ -1,18 +1,35 @@
+import errors
+
 START = '_start_'
 END = '_end_'
 
+class NodeBase(object):
+    # graph = None
+    name = None
 
 
-class Node(object):
+    def get_id(self):
+        return self.name
 
-    def __init__(self, graph, name=None):
+    def get_value(self):
 
-        self.graph = graph
-        if isinstance(graph, self.__class__):
-            self.__dict__.update(graph.__dict__)
+        gid = self.get_id()
+        g = self.get_graph()
 
-        if name is not None:
-            self.name = name
+        try:
+            return g.data[gid]
+        except KeyError as e:
+            if self.name in [START, END]:
+                return ExitNode(g, self.name).get_value()
+            print(f'Unknown node {gid}')
+        except AttributeError as attr_error:
+            raise errors.NoGraph(self) from attr_error
+
+    def get_graph(self):
+        try:
+            return self.graph
+        except AttributeError as e:
+            raise errors.NoGraph(self) from e
 
     def __lt__(self, other):
         return self.get_value() < other.get_value()
@@ -26,19 +43,17 @@ class Node(object):
     def __repr__(self):
         return f'<{self.__class__.__name__} "{self.name}">'
 
-    def get_value(self):
 
-        gid = self.get_id()
-        try:
-            return self.graph.data[gid]
-        except KeyError as e:
-            if self.name in [START, END]:
-                return ExitNode(self.graph, self.name).get_value()
-            print(f'Unknown node {gid}')
-            raise e
+class Node(NodeBase):
 
-    def get_id(self):
-        return self.name
+    def __init__(self, graph, name=None):
+
+        self.graph = graph
+        if isinstance(graph, self.__class__):
+            self.__dict__.update(graph.__dict__)
+
+        if name is not None:
+            self.name = name
 
     def get_meta(self, b=None, direction='forward'):
         """
@@ -286,6 +301,7 @@ class NodeList(object):
         for nl in self.get_next():
             r += tuple(nl.nodes())
         return r
+
 
 import itertools
 

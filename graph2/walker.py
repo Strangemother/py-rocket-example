@@ -69,6 +69,7 @@ def bar_walk(node_or_nodelist, event=None, depth=0):
                 new_res[next_node.name] = next_node
         res = new_res
 
+    # raise StopIteration
 
 
 def walk(node, event=None, depth=0):
