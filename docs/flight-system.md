@@ -37,22 +37,22 @@ As an analogy of any TV program with a ship; Futurama, Star Trek, or Red Dwarf -
 
 ![galatic nagivational reference syste](images/galatic-nagivational-reference-syste.png)
 
-![impulse engine system](images/impulse engine system.png)
+![impulse engine system](images/impulse-engine-system.png)
 
-![Intraship communications](images/Intraship communications.png)
+![Intraship communications](images/Intraship-communications.png)
 
-![Major utilities trunks](images/Major utilities trunks.png)
+![Major utilities trunks](images/Major-utilities-trunks.png)
 
-![nagivational reference aids](images/nagivational reference aids.png)
+![nagivational reference aids](images/nagivational-reference-aids.png)
 
-![navigational reference aids](images/navigational reference aids.png)
+![navigational reference aids](images/navigational-reference-aids.png)
 
-![optical data network interconnects](images/optical data network interconnects.png)
+![optical data network interconnects](images/optical-data-network-interconnects.png)
 
 ![Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various](images/Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various.png)
 
-![Personal communicator schematic](images/Personal communicator schematic.png)
+![Personal communicator schematic](images/Personal-communicator-schematic.png)
 
-![Saucer separation latching and umbilical systems](images/Saucer separation latching and umbilical systems.png)
+![Saucer separation latching and umbilical systems](images/Saucer-separation-latching-and-umbilical-systems.png)
 
-![Sensor tie-ins to bridge science stations](images/Sensor tie-ins to bridge science stations.png)
+![Sensor tie-ins to bridge science stations](images/Sensor-tie-ins-to-bridge-science-stations.png)
