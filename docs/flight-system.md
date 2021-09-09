@@ -13,7 +13,7 @@ The software level consists of a mass graph of "wire to component" connections. 
 
 As an analogy of any TV program with a ship; Futurama, Star Trek, or Red Dwarf - and imagine the ability to _run around_ the ship and futz with everything. It's my ship I can do what I want.
 
-![cockpit 4](images/cockpit 4.jpg)
+![cockpit 4](images/cockpit-4.jpg)
 
 
 
