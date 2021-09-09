@@ -17,42 +17,42 @@ As an analogy of any TV program with a ship; Futurama, Star Trek, or Red Dwarf -
 
 
 
-![Ship-to-ship communications](images/Ship-to-ship communications.PNG)
+![Ship-to-ship communications](images/Ship-to-ship communications.png)
 
 ![SL-12-global-avionics-architecture](images/SL-12-global-avionics-architecture.png)
 
-![Universal Translator](images/Universal Translator.PNG)
+![Universal Translator](images/Universal Translator.png)
 
-![warp drive system](images/warp drive system.PNG)
+![warp drive system](images/warp drive system.png)
 
-![Atmospheric system](images/Atmospheric system.PNG)
+![Atmospheric system](images/Atmospheric system.png)
 
-![Battle Bridge control stations](images/Battle Bridge control stations.PNG)
+![Battle Bridge control stations](images/Battle Bridge control stations.png)
 
-![Command intelligence links to major systems](images/Command intelligence links to major systems.PNG)
+![Command intelligence links to major systems](images/Command intelligence links to major systems.png)
 
-![Food replication system](images/Food replication system.PNG)
+![Food replication system](images/Food replication system.png)
 
-![galactic navigational reference system](images/galactic navigational reference system.PNG)
+![galactic navigational reference system](images/galactic navigational reference system.png)
 
-![galatic nagivational reference syste](images/galatic nagivational reference syste.PNG)
+![galatic nagivational reference syste](images/galatic nagivational reference syste.png)
 
-![impulse engine system](images/impulse engine system.PNG)
+![impulse engine system](images/impulse engine system.png)
 
-![Intraship communications](images/Intraship communications.PNG)
+![Intraship communications](images/Intraship communications.png)
 
-![Major utilities trunks](images/Major utilities trunks.PNG)
+![Major utilities trunks](images/Major utilities trunks.png)
 
-![nagivational reference aids](images/nagivational reference aids.PNG)
+![nagivational reference aids](images/nagivational reference aids.png)
 
-![navigational reference aids](images/navigational reference aids.PNG)
+![navigational reference aids](images/navigational reference aids.png)
 
-![optical data network interconnects](images/optical data network interconnects.PNG)
+![optical data network interconnects](images/optical data network interconnects.png)
 
 ![Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various](images/Overview-of-Shuttle-software-development-In-the-figure-rectangles-represent-the-various.png)
 
-![Personal communicator schematic](images/Personal communicator schematic.PNG)
+![Personal communicator schematic](images/Personal communicator schematic.png)
 
-![Saucer separation latching and umbilical systems](images/Saucer separation latching and umbilical systems.PNG)
+![Saucer separation latching and umbilical systems](images/Saucer separation latching and umbilical systems.png)
 
-![Sensor tie-ins to bridge science stations](images/Sensor tie-ins to bridge science stations.PNG)
+![Sensor tie-ins to bridge science stations](images/Sensor tie-ins to bridge science stations.png)

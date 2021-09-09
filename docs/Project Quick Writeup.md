@@ -9,7 +9,7 @@ Fundamentally a user could start with a raw base of a battery and two wires, to 
 
 ---
 
-More accurately we're struggling with modelling a 'power system', to share _some sort_ of energy across a graph of nodes. It would be great for the system to act like an electronic breadboard - however an _in game_ simulated alternative is also a great opion.
+More accurately we're struggling with modelling a 'power system', to share _some sort_ of energy across a graph of nodes. It would be great for the system to act like an electronic breadboard - however an _in game_ simulated alternative is also a great option.
 
 
 ## The Micro Example
@@ -28,7 +28,7 @@ In game the user will enable the switch, causing a simulated power event to ligh
 ## The Macro Goal
 
 Once this works, we'll wire up **eveything** in the system; and give it to the user, as both a software coding environment; and in-game.
-Within [flight-systen.md](flight system), you'll see examples of the _systems_ we will implement. Notably the 'node graph' system we're using works very well (see `py8/` and `graph2/` source). Our current issue mostly resides within sharing some sort of _power_ across connected nodes.
+Within [flight-system.md](flight system), you'll see examples of the _systems_ we will implement. Notably the 'node graph' system we're using works very well (see `py8/` and `graph2/` source). Our current issue mostly resides within sharing some sort of _power_ across connected nodes.
 
 **What we can do**
 
