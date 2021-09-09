@@ -17,25 +17,25 @@ As an analogy of any TV program with a ship; Futurama, Star Trek, or Red Dwarf -
 
 
 
-![Ship-to-ship communications](images/Ship-to-ship communications.png)
+![Ship-to-ship communications](images/Ship-to-ship-communications.png)
 
 ![SL-12-global-avionics-architecture](images/SL-12-global-avionics-architecture.png)
 
-![Universal Translator](images/Universal Translator.png)
+![Universal Translator](images/Universal-Translator.png)
 
-![warp drive system](images/warp drive system.png)
+![warp drive system](images/warp-drive-system.png)
 
-![Atmospheric system](images/Atmospheric system.png)
+![Atmospheric system](images/Atmospheric-system.png)
 
-![Battle Bridge control stations](images/Battle Bridge control stations.png)
+![Battle Bridge control stations](images/Battle-Bridge-control-stations.png)
 
-![Command intelligence links to major systems](images/Command intelligence links to major systems.png)
+![Command intelligence links to major systems](images/Command-intelligence-links-to-major-systems.png)
 
-![Food replication system](images/Food replication system.png)
+![Food replication system](images/Food-replication-system.png)
 
-![galactic navigational reference system](images/galactic navigational reference system.png)
+![galactic navigational reference system](images/galactic-navigational-reference-system.png)
 
-![galatic nagivational reference syste](images/galatic nagivational reference syste.png)
+![galatic nagivational reference syste](images/galatic-nagivational-reference-syste.png)
 
 ![impulse engine system](images/impulse engine system.png)
 
