@@ -73,6 +73,8 @@ Fundamentally _how_ it works is unimportant; only the _energy power_ for each co
 
 But we haven't truly adopted a method. However In `graph3/` we've built an excellent graph node connection routine of which we'll use as the "data graphing" for connected control items. [Paths.md](v3\Paths.md) 
 
+> All the source within this repo is research through these events. Please steal and abuse - but we're aware it's mostly scrap.
+
 #### Failure points.
 
 We're not electronics engineers and have struggled with replicating a standard _electronics board_ of which would allow us to build any platform. But we feel this complexity is not required, and rather find someone who can model a power chain system. 
@@ -91,10 +93,32 @@ We would like some proof of concept to power this switchboard of controls and in
 1. The ability to 50+ bind up _things_ units
 2. Compete with Switches, energy producers (batteries) and energy sinks (anything accepting power)
 
+However it doesn't need to be a "circuit solution". For example; a developer once supplied us with a (limited) scipy table solution.
+
 With this solution our progression will be:
 
 + The ability to change units within this connective solution (users will upgrade parts)
 + Creating "Flight Systems" for structures like: [Community Vehicles.md](Community Vehicles.md) and  [ships.md](ships.md) 
++ Ran at 100fps
+
+## Final Requirements
+
++ We'll pay for your idea, solution, and any best practice you think will work
+
+  + We don't care if you find an off-the-shelf (such as a finished numpy solution!)
+  + Or if you a completely different idea to model this
+
++ We're not paying for lines of code.
+
+  + We'd **prefer** a less code. (Readability is key)
+
+    if you found a 10 line solution - we'd accept it!
+
++ It'll be open-source, and the we'd like you to name the "power solution" if you wish :)
+
+  
+
+  
 
 ## Noted Requests
 
@@ -119,4 +143,33 @@ Some elements to consider for the output solution. These caveats help us integra
 + And energy overpower?
 
   Every device has a built-in power limit, and will emit an "explode" event - mapped to an ingame visual. These entities are flagged "broken" until fixed or replaced
+  
++ What is a "device"?
+
+  Any entity/component/unit on this swtichboard of connected items. these manifest as switches, buttons, dials, plugs, .. any general "device" you'd apply to a control panel (to drive a fantasy vehicle)
+
++ Wires and other _components_?
+
+  All items should be connected by a set of pseudo _wires_, allowing the user to manipulate the wiring; or in game actions to change the wire state. We've had success with a literal AB (bi-directional) graph.
+
++ Do we need _real_ power?
+
+  Nope. We've found it difficult to model effective `amps/volts` and the simulated electronic system. So no - anything that is useful enough to simulate time delta'd power. We've considered fantasy hydrogen fuel:  [ingame-fuel.md](ingame-fuel.md) 
+  
++ Why 100 FPS?
+
+  The _flight system_ and all its control panel components will run at a steady clock on a separate thread. This will be an event loop locked at 100 cycles per second. This ensures we have a simple clock rate for in-game event calculations for console, 3D and VR system integration.
+
+  The FPS is also known as the _system hertz_ - if possible this will run faster (200fps or more) given the solution can run at that speed.
+  In-game actions may affect this to temporarily alter vehicle handling, e.g. an electronic storm.
+
+
+
+## Who Are We?
+
+Strangemother we previously web hosting and solutions. We've moved into backend solutions and don't have a public face. We're developing this game for fun and research. In the future we hope to release a game with the facility to open-source code the flight systems. In the team we have a range of part time staff - others are freelance.
+
++ 1 3D Designer
++ 1 writer
++ 2 developers
 
