@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 12.181, 1, 4.66108 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.84225, 0.340814, 2.07766 )
+
+[sub_resource type="CubeMesh" id=5]
+
+[node name="RigidBody" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.0151, 0 )
+
+[node name="Top" type="RigidBody" parent="."]
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 3.10068, 4.19525, 0 )
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.1
+
+[node name="Pinpoint" type="MeshInstance" parent="Top"]
+transform = Transform( 0.2, 0, 3.55271e-15, 0, 0.2, 0, -3.55271e-15, 0, 0.2, 0, 3.07399, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="HingeJoint2" type="Generic6DOFJoint" parent="Top"]
+transform = Transform( 1, 0, 0, 0, 1, 0, -5.68434e-14, 0, 1, 0.000976066, -3.4891, -0.122353 )
+nodes/node_a = NodePath("../../Foot")
+nodes/node_b = NodePath("..")
+collision/exclude_nodes = false
+linear_motor_x/target_velocity = 20.0
+angular_limit_x/enabled = false
+angular_motor_x/target_velocity = 2.0
+angular_spring_x/stiffness = 100.0
+angular_spring_x/damping = 3.0
+angular_spring_x/equilibrium_point = 0.1
+linear_motor_y/target_velocity = 50.0
+linear_motor_y/force_limit = 30.0
+angular_limit_y/enabled = false
+angular_motor_y/target_velocity = 3.0
+angular_limit_z/enabled = false
+angular_motor_z/target_velocity = 2.0
+
+[node name="Leg" type="MeshInstance" parent="Top"]
+transform = Transform( 1.25199, 9.22349e-14, -2.84217e-14, -5.15285e-14, 3, -5.60575e-22, 7.10543e-14, 1.73422e-20, 0.484248, 0, 0, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Top"]
+transform = Transform( 0.1, 0, -1.77636e-15, -1.59872e-15, 3, 3.72529e-09, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 3 )
+
+[node name="Foot" type="RigidBody" parent="."]
+transform = Transform( -1.46329e-07, 0.439673, -0.898158, 7.16319e-08, 0.898158, 0.439673, 1, 0, -1.62921e-07, 5.52812, -0.515764, -0.162552 )
+can_sleep = false
+linear_damp = 0.1
+angular_damp = 0.2
+
+[node name="CollisionShape" type="CollisionShape" parent="Foot"]
+transform = Transform( 1, 0, 0, -7.6233e-21, 1, 2.17054e-21, 0, 0, 1, 4.95464e-07, 0, 0 )
+shape = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Foot"]
+transform = Transform( 1, 4.49656e-09, -1.69391e-07, 4.49654e-09, 0.253449, -0.0275998, -1.69391e-07, -0.0275996, 2.03971, 4.95464e-07, 0, 0 )
+mesh = SubResource( 5 )
+material/0 = null

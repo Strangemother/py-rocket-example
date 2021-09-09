@@ -1,0 +1,7 @@
+# Import cache
+.import/
+research/
+# Binaries
+bin/
+build/
+lib/

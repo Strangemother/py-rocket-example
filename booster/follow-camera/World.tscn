@@ -1,0 +1,146 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Follow_first.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="CapsuleMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 1, 0.0823529, 0.0823529, 1 )
+
+[sub_resource type="CylinderMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.47451, 0.486275, 0.494118, 1 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+albedo_color = Color( 0.219608, 0.152941, 0.152941, 0.607843 )
+
+[sub_resource type="Animation" id=7]
+length = 12.0
+loop = true
+tracks/0/type = "transform"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:translation:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -6.97955, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 9.60103, -0.25, 0, 0.25, 0, -7.42319, -0.25, 0, 0.25, 0, 9.60103, -0.25, 0, 0.25, 0, -0.0450287, -0.25, 0, 0.25, 0, -10.4439, -0.25, 0, 0.25, 0, -10.4439, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2, 4, 5.5, 6, 8, 10, 11.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:translation:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 7.33548, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2, 4, 5.5, 6, 8, 10, 11.5 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath(".:translation:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 8.28942, -0.25, 0, 0.25, 0, -10.1298, -0.25, 0, 0.25, 0, -10.1298, -0.25, 0, 0.25, 0, -6.9982, -0.25, 0, 0.25, 0, -0.133749, -0.25, 0, 0.25, 0, -0.133749, -0.25, 0, 0.25, 0, 12.6719, -0.25, 0, 0.25, 0, 0.802603, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2, 4, 5.5, 6, 8, 10, 11.5 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath(".:rotation_degrees:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1.19423e-12, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1.63212e-12, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5, 2, 3.5, 4, 5.5, 5.6, 5.7, 6, 7.5, 7.7, 7.8, 7.9, 8 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath(".:rotation_degrees:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -90, -0.25, 0, 0.25, 0, -90, -0.25, 0, 0.25, 0, -180, -0.25, 0, 0.25, 0, -180, -0.25, 0, 0.25, 0, -130.328, -0.19, -26.9568, 0.22, 16.5888, -89, -0.25, 0, 0.25, 0, -89, -0.25, 0, 0.25, 0, -127.899, -0.25, 0, 0.25, 0, -134.85, -0.25, 0, 0.25, 0, 24.0238, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5, 2, 3.5, 4, 5.5, 5.6, 6, 7.5, 7.7, 7.8, 7.9, 8 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath(".:rotation_degrees:z")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( -165, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -1.36604e-05, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 180, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1.5, 2, 3.5, 4, 5.5, 5.6, 5.7, 6, 7.5, 7.7, 7.8, 7.9, 8 )
+}
+
+[sub_resource type="CapsuleMesh" id=8]
+
+[node name="World" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.988933, 0.0786813, -0.12578, 0, 0.847789, 0.530333, 0.148362, -0.524464, 0.838407, -0.478884, 11.2346, 16.149 )
+current = true
+
+[node name="Follow" type="Spatial" parent="."]
+transform = Transform( 0.999945, -0.00250117, 0.0101506, 0.00256829, 0.999975, -0.00660749, -0.0101338, 0.00663319, 0.999927, 0.00360775, 0.031374, 5.29306 )
+script = ExtResource( 1 )
+target = NodePath("../Thing")
+pet = NodePath("../Spatial")
+
+[node name="Follow2" type="Spatial" parent="."]
+transform = Transform( 0.999945, -0.00250117, 0.0101506, 0.00256829, 0.999975, -0.00660749, -0.0101338, 0.00663319, 0.999927, -0.0204296, 9.72748e-05, 5.29366 )
+script = ExtResource( 1 )
+target = NodePath("../Thing")
+pet = NodePath("../Pet")
+
+[node name="Pet" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.621, 3.7649 )
+
+[node name="one2" type="MeshInstance" parent="Pet"]
+transform = Transform( 0.379847, 0, 0, 0, 0.379847, 0, 0, 0, 0.379847, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="one3" type="MeshInstance" parent="Pet"]
+transform = Transform( 0.124348, 0, 0, 0, 0.124348, 0, 0, 0, 0.124348, 0, 0.381822, -0.434607 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="one4" type="MeshInstance" parent="Pet"]
+transform = Transform( 0.0154682, 0, 0, 0, -6.76137e-10, -0.0154682, 0, 0.434086, -1.89745e-08, 0.0124187, 0.052321, 0.530722 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 5 )
+
+[node name="Thing" type="Spatial" parent="."]
+transform = Transform( 1, -8.74228e-08, 8.74228e-08, -8.74228e-08, -1, -2.84859e-14, 8.74228e-08, 2.08431e-14, -1, 9.60103, 7.33548, -10.1298 )
+
+[node name="one" type="MeshInstance" parent="Thing"]
+transform = Transform( 0.535807, 7.10543e-15, 0.00838905, 4.187e-15, 1, 6.73425e-17, -0.0304312, 3.38813e-21, 1.94363, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Thing"]
+anims/f = SubResource( 7 )
+
+[node name="Spatial" type="Spatial" parent="."]
+
+[node name="MeshInstance" type="MeshInstance" parent="Spatial"]
+transform = Transform( 0.225826, 0, 0, 0, 0.225826, 0, 0, 0, 0.225826, 0, 0, 0 )
+mesh = SubResource( 8 )
+material/0 = null
