@@ -9,19 +9,6 @@ Platforms and mini environments - floating in the sky - will exist in the form o
 
 All platforms exist far enough for the user to use their ship. The lower level may be another environment entirely, however the first iteration will likely manifest as a "fog of death".
 
-## In-game Adverts (Tonality)
-
-The in-game _tone_ would focus on fun interactions with a tongue in cheek overture. As a whole the NPC's act neutral unless scripted; such as the "junkyard owner". The in-game world has _advertisements_ for upgrades and world scenes. Automatic adverts popup on a ships "externals coms panel" as audio, video, (or hologram?) auto-play whilst flying past.
-
-It would be fun to apply a _distopian feel_ where the advert is almost nialist in a post apocalyptic manner, with a conversely happy tone,
-
-+ "Buy Buy BUY Ship Insurance for your Ships Insurance; Garmented to Pay Pay Pay Twice!"
-+ "The One Corp. We own it all - so you don't have to..."
-+ "Need Lungs but don't have Respiratory Insurance Insurance? Swap your Respiratory Insurance for one other limb and get Lungs for free! ^This does not include replacement respiratory insurance or validate a new respiratory insurance insurance."
-+ "Do you enjoy overindulging on One Corp One Delmot Once a Day but don't have victims? Offer available within a [states some crazy math] -RaR 1/2 Pi over 1,30 Asimuth! Or pin OCODOD on your One Device!"
-+ "Bored of working 5 hours a day 4 days a week?! Become a Human Interaction Drone for less!" [Graphic of a (oddly) happy human pressing a single button for 4 hours in a 5 second timelapse]
-+ "Robot Pet Surprise, for when you need an exact replacement for your depleted previous pet. ^Consciousness safely stored in the pet paradise for 6 months then kindly recycled. All proceeds are collected by the one corp."
-
 
 ## cpu upgrade
 

@@ -30,9 +30,7 @@ And so on, A design layout for each new company, in-keeping with the standard ca
 
 ---
 
-In game I like the idea of _small_ personal ships, allowing the player 2/3 decks of internal space. The idea is to mimic real water yacht, with a bridge, captains area, crew quarters etc.
-
-To apply this to an ingame fantasy, The _passenger ferries_ could huge airships with the ability to walk into the "balloon" (In this case it would be a huge hidden ion engine.)
+In game _small_ personal ships, allowing the player 2/3 decks of internal space. The idea is to mimic real water yacht, with a bridge, captains area, crew quarters etc.To apply this to an ingame fantasy, The _passenger ferries_ could huge airships with the ability to walk into the "balloon" (In this case it would be a huge hidden ion engine.)
 
 ---
 
@@ -67,13 +65,13 @@ With these features, it's extremely easy to hammer together _ship shapes_ to fly
 
 ![Class II Gallactic Cruiser](images/Class II Gallactic Cruiser.jpg)
 
-![cockpit 1](images/cockpit 1.jpg)
+![cockpit 1](images/cockpit-1.jpg)
 
-![cockpit 2](images/cockpit 2.jpg)
+![cockpit 2](images/cockpit-2.jpg)
 
-![cockpit 3](images/cockpit 3.jpg)
+![cockpit 3](images/cockpit-3.jpg)
 
-![cockpit 4](images/cockpit 4.jpg)
+![cockpit 4](images/cockpit-4.jpg)
 
 ![corvette](images/corvette.jpg)
 
