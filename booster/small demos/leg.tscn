@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 12.181, 1, 4.66108 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.84225, 0.340814, 2.07766 )
+
+[sub_resource type="CubeMesh" id=4]
+
+[node name="RigidBody" type="RigidBody"]
+transform = Transform( -1.62901e-07, -0.0154455, 0.999881, -2.5164e-09, 0.999881, 0.0154455, -1, 0, -1.62921e-07, 2.01697, 9.54837, -0.0115831 )
+
+[node name="Leg" type="MeshInstance" parent="."]
+transform = Transform( 1.25199, 9.22349e-14, -2.84217e-14, -5.15285e-14, 3, -5.60575e-22, 7.10543e-14, 1.73422e-20, 0.484248, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.1, 0, -1.77636e-15, -1.59872e-15, 3, 3.72529e-09, 0, 0, 0.1, 0, 0, 0 )
+shape = SubResource( 2 )
+
+[node name="HingeJoint" type="HingeJoint" parent="."]
+transform = Transform( -4.37109e-08, -0.0154455, 0.999881, 0.0154455, 0.999761, 0.0154437, -0.99988, 0.0154437, 0.00023852, -1.23866e-07, -3.33506, 0.706865 )
+
+[node name="Foot" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, -7.6233e-21, 1, 2.17054e-21, 0, 0, 1, -1.02445e-06, -0.0972776, 6.29734 )
+can_sleep = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Foot"]
+transform = Transform( 1, 0, 0, -7.6233e-21, 1, 2.17054e-21, 0, 0, 1, 4.95464e-07, -3.82738, -3.01698 )
+shape = SubResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Foot/CollisionShape"]
+transform = Transform( 1, 4.49656e-09, -1.69391e-07, 4.49655e-09, 0.253449, -0.0275996, -1.69391e-07, -0.0275996, 2.03971, 0, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = null

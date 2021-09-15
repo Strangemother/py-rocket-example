@@ -86,7 +86,7 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.40657, 0 )
 
 [node name="Foot" type="RigidBody" parent="RigidBody"]
-transform = Transform( -1.62921e-07, -2.98023e-08, -1, 0, 1, -2.98023e-08, 1, 0, -1.62921e-07, 5.82858, -9.53674e-07, 0 )
+transform = Transform( -1.62921e-07, -2.98023e-08, -1, 0, 1, -2.98023e-08, 1, 0, -1.62921e-07, 3.32651, -9.53674e-07, 0 )
 can_sleep = false
 
 [node name="CollisionShape" type="CollisionShape" parent="RigidBody/Foot"]
@@ -99,25 +99,12 @@ mesh = SubResource( 9 )
 material/0 = null
 
 [node name="Engine" parent="RigidBody/Foot" instance=ExtResource( 2 )]
-transform = Transform( -1.6292e-07, -4.85542e-15, 1, -2.98022e-08, 1, -4.85542e-15, -0.999998, -2.98023e-08, -1.62921e-07, -0.151423, -0.949509, -2.45872 )
+transform = Transform( -1.62921e-07, -1, -4.37114e-08, -2.98016e-08, -4.37114e-08, 1, -0.999998, 1.62921e-07, -2.98023e-08, -0.151423, -0.949508, -2.45872 )
 thruster_strength_multipler = 30
 rocket_node = NodePath("..")
 
-[node name="Foot2" type="RigidBody" parent="RigidBody"]
-transform = Transform( 7.54982e-08, 2.98023e-08, 1, 0, 1, -2.98023e-08, -1, -2.6054e-15, 7.54982e-08, 0.397727, -9.53674e-07, 0 )
-can_sleep = false
-
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody/Foot2"]
-transform = Transform( 1, 0, 0, -7.6233e-21, 1, 2.17054e-21, 0, 0, 1, 4.95464e-07, 0, 0 )
-shape = SubResource( 8 )
-
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody/Foot2"]
-transform = Transform( 1, 4.49656e-09, -1.69391e-07, 4.49654e-09, 0.253449, -0.0275998, -1.69391e-07, -0.0275996, 2.03971, 4.95464e-07, 0, 0 )
-mesh = SubResource( 9 )
-material/0 = null
-
-[node name="Engine" parent="RigidBody/Foot2" instance=ExtResource( 2 )]
-transform = Transform( -1.6292e-07, -4.85542e-15, 1, -2.98022e-08, 1, -4.85542e-15, -0.999998, -2.98023e-08, -1.62921e-07, -0.151423, -0.949509, -2.45872 )
+[node name="Engine2" parent="RigidBody/Foot" instance=ExtResource( 2 )]
+transform = Transform( -1.62921e-07, -1, -4.37114e-08, -2.98016e-08, -4.37114e-08, 1, -0.999998, 1.62921e-07, -2.98023e-08, -0.151423, -0.949508, 2.19143 )
 key_thrust = "Trigger_Left"
 thruster_strength_multipler = 30
 rocket_node = NodePath("..")
@@ -135,34 +122,12 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, -5.68434e-14, 0, 1, 0.000976066, -3.4891, -0.121509 )
 nodes/node_a = NodePath("../../Foot")
 nodes/node_b = NodePath("..")
-collision/exclude_nodes = false
 linear_motor_x/target_velocity = 20.0
 angular_limit_x/enabled = false
-angular_spring_x/enabled = true
-angular_spring_x/stiffness = 100.0
-angular_spring_x/damping = 3.0
-angular_spring_x/equilibrium_point = 0.1
 linear_motor_y/target_velocity = 50.0
 linear_motor_y/force_limit = 30.0
 angular_motor_y/target_velocity = 3.0
-angular_motor_z/target_velocity = 2.0
-
-[node name="HingeJoint2" type="Generic6DOFJoint" parent="RigidBody/Top"]
-transform = Transform( 1, 0, 0, 0, 1, 0, -5.68434e-14, 0, 1, 0.000976066, -3.4891, -0.122353 )
-nodes/node_a = NodePath("../../Foot2")
-nodes/node_b = NodePath("..")
-collision/exclude_nodes = false
-linear_motor_x/target_velocity = 20.0
-angular_spring_x/enabled = true
-angular_spring_x/stiffness = 100.0
-angular_spring_x/damping = 3.0
-angular_spring_x/equilibrium_point = 0.1
-linear_limit_y/upper_distance = 2.0
-linear_limit_y/lower_distance = -5.0
-linear_motor_y/target_velocity = 50.0
-linear_motor_y/force_limit = 30.0
-angular_motor_y/target_velocity = 3.0
-angular_motor_z/target_velocity = 2.0
+angular_motor_z/target_velocity = 20.0
 
 [node name="Leg" type="MeshInstance" parent="RigidBody/Top"]
 transform = Transform( 1.25199, 9.22349e-14, -2.84217e-14, -5.15285e-14, 3, -5.60575e-22, 7.10543e-14, 1.73422e-20, 0.484248, 0, 0, 0 )

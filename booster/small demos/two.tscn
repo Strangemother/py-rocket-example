@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/zylann.hterrain_demo/terrain_data/data.hterrain" type="Resource" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
+
+[sub_resource type="PanoramaSky" id=1]
+
+[sub_resource type="Environment" id=2]
+background_mode = 1
+background_sky = SubResource( 1 )
+fog_color = Color( 0.690196, 0.690196, 0.690196, 1 )
+fog_sun_amount = 0.76
+fog_depth_begin = 25.0
+fog_depth_end = 100.9
+tonemap_mode = 3
+tonemap_exposure = 0.47
+tonemap_white = 0.44
+auto_exposure_scale = 0.37
+auto_exposure_min_luma = 0.87
+auto_exposure_max_luma = 9.47
+auto_exposure_speed = 11.77
+ssao_radius = 3.2
+ssao_intensity = 3.2
+ssao_radius2 = 0.8
+ssao_bias = 0.043
+ssao_light_affect = 0.06
+adjustment_saturation = 1.2
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 513, 513 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+albedo_color = Color( 0.301961, 0.407843, 0.45098, 0.752941 )
+metallic = 0.14
+roughness = 0.24
+
+[sub_resource type="GIProbeData" id=5]
+bounds = AABB( -284.596, -135.951, -247.126, 569.192, 271.901, 494.251 )
+cell_size = 1.1117
+to_cell_xform = Transform( 0.899521, 0, 0, 0, 0.899521, 0, 0, 0, 0.899521, 256, 122.291, 222.295 )
+dynamic_data = PoolIntArray( 0, 10, 512, 256, 512, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, 0, 0, 8355711, 0 )
+dynamic_range = 4
+bias = 1.5
+normal_bias = 0.0
+propagation = 0.7
+
+[node name="TerrainDemo" type="Node"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 2 )
+_terrain_data = ExtResource( 1 )
+chunk_size = 32
+shader_type = "Classic4"
+custom_shader = null
+shader_params/u_ground_uv_scale_per_texture = Plane( 20, 20, 20, 20 )
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_globalmap_blend_start = null
+shader_params/u_globalmap_blend_distance = null
+shader_params/u_colormap_opacity_per_texture = Plane( 1, 1, 1, 1 )
+ground/albedo_bump_0 = null
+ground/normal_roughness_0 = null
+ground/albedo_bump_1 = null
+ground/normal_roughness_1 = null
+ground/albedo_bump_2 = null
+ground/normal_roughness_2 = null
+ground/albedo_bump_3 = null
+ground/normal_roughness_3 = null
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.664735, 0.361564, -0.653757, 0, 0.875085, 0.48397, 0.747079, -0.321712, 0.581699, 206.183, 93.9321, 313.133 )
+light_bake_mode = 2
+shadow_color = Color( 0.733333, 0.2, 0.2, 1 )
+shadow_bias = -2.65
+shadow_contact = 2.56
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="Sea" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 270.209, 1.17381, 255.469 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Avatar" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 112.159, 32.5639, 101.236 )
+
+[node name="Camera" type="Camera" parent="Avatar"]
+far = 500.0
+
+[node name="Inventory" type="Node" parent="Avatar"]
+
+[node name="GIProbe" type="GIProbe" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 239.795, 27.6588, 220.626 )
+subdiv = 3
+extents = Vector3( 284.596, 135.951, 247.126 )
+data = SubResource( 5 )

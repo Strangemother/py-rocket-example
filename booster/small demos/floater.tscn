@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/Rocket.gd" type="Script" id=2]
+[ext_resource path="res://assets/engine.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.8396, 1.11277, 11.0785 )
+
+[sub_resource type="PrismMesh" id=3]
+
+[node name="Rocket" type="RigidBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+collision_layer = 2
+mass = 10.0
+gravity_scale = 2.0
+continuous_cd = true
+linear_damp = 0.1
+angular_damp = 0.0
+script = ExtResource( 2 )
+node = NodePath(".")
+
+[node name="Mesh_Rocket_Body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 3.20398, -6.65557e-09 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 2 )
+
+[node name="Engines" type="Spatial" parent="."]
+
+[node name="FrontLeft" parent="Engines" instance=ExtResource( 3 )]
+transform = Transform( 0.866022, -0.5, 0, 0.499998, 0.866025, 0, 0, 0, 1, 2, 0, 8 )
+key_thrust = "Trigger_Left"
+
+[node name="BackRight" parent="Engines" instance=ExtResource( 3 )]
+transform = Transform( 0.866022, 0.5, 0, -0.499998, 0.866025, 0, 0, 0, 1, -2, 0, -8 )
+
+[node name="BackLeft" parent="Engines" instance=ExtResource( 3 )]
+transform = Transform( 0.866022, -0.5, 0, 0.499998, 0.866025, 0, 0, 0, 1, 2, 0, -8 )
+key_thrust = "Trigger_Left"
+
+[node name="FrontRight" parent="Engines" instance=ExtResource( 3 )]
+transform = Transform( 0.866022, 0.5, 0, -0.499998, 0.866025, 0, 0, 0, 1, -2, 0, 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -6.32426e-08, 0, -1.44682, -1, -4.37114e-08, 4.37114e-08, -1.54204e-07, 3.52777, 6.74047e-15, 0, 0.632901, 3.83439 )
+mesh = SubResource( 3 )
+material/0 = null
