@@ -5,6 +5,7 @@
 
 Extra Notes:
 
++ Game aesthetic: [styles.md](styles.md) 
 + ~50 Words, ~20 seconds
 + Spoken text is the indented stuff
 + "Telomore" and "Planitia" is pronounced however you prefer
