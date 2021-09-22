@@ -14,8 +14,8 @@ A Units connects to a circuit through its Terminals
 
 ## Power Event flow
 
-?How do you enable a persistent event flow?
-?Path of least resistence?
++ How do you enable a persistent event flow?
++ Path of least resistence?
 
 The user should instigate a 'circuit' connection of a unit. By connecting a battery to a Light through the interface, a circuit maps the two units. The circuit manages the IO of each unit, emiting signals given the event power cycle.
 
@@ -56,10 +56,6 @@ class USB:
 ---
 
 This ensures the engine can initially map the power distribution before usage.
-
-
-
-A
 
 
 # Examples

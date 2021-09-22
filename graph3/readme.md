@@ -37,3 +37,7 @@ result = e.data(result, e.b.data)
 assert result == 4.5
 print(result)
 ```
+
+## How it Works
+
+The internal process is exceptionally simple - roughly 20 lines of code could replicate the core functionality. Upon `connect` each given unit (such as an int or dict) is stored in a flat dictionary. A unique ID assigns a "A" -> "B" connection to each unit - called an "edge".

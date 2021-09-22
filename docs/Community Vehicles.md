@@ -2,8 +2,6 @@
 
 Other machinery from movies as inspiration to the type of structures the game engine can produce. All vehicles have a general shape, a count of engines and their configuration (articulation/power etc.)
 
-+
-
 Blade Runner Hover bike:
 
 + 2 engines pointing down

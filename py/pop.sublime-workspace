@@ -4,12 +4,416 @@
 		"selected_items":
 		[
 			[
-				"kw",
-				"kwargs\tabc"
+				"ma",
+				"major\tabc"
+			],
+			[
+				"chl",
+				"charge_slice\tabc"
+			],
+			[
+				"minot",
+				"minor_delta\tabc"
+			],
+			[
+				"resist",
+				"resistance\tabc"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"mino",
+				"minor_delta\tabc"
+			],
+			[
+				"modl",
+				"modulo\tabc"
+			],
+			[
+				"a",
+				"amps\tabc"
+			],
+			[
+				"power_ch",
+				"power_chain_check\tabc"
+			],
+			[
+				"forwa",
+				"forward_voltage\tabc"
+			],
+			[
+				"name",
+				"name_index\tabc"
+			],
+			[
+				"defa",
+				"defaultdict\t(circuit.py)"
+			],
+			[
+				"Resis",
+				"Resistor\tabc"
+			],
+			[
+				"__",
+				"__repr__\t(c7.py)"
+			],
+			[
+				"resis",
+				"resistance\t(c7.py)"
+			],
+			[
+				"unit",
+				"units\tabc"
+			],
+			[
+				"Chain",
+				"ChainManager\tabc"
+			],
+			[
+				"loop",
+				"looptest_id\tabc"
+			],
+			[
+				"loopi",
+				"looptest_id\tabc"
+			],
+			[
+				"orign",
+				"origin"
+			],
+			[
+				"default",
+				"defaultdict"
+			],
+			[
+				"en",
+				"entity"
+			],
+			[
+				"otherc",
+				"other_circuit"
+			],
+			[
+				"othertr",
+				"other_terminal_uuid\tabc"
+			],
+			[
+				"other",
+				"other_circuit"
+			],
+			[
+				"other_",
+				"other_terminal"
+			],
+			[
+				"other_ter",
+				"other_circuit_terminals\tabc"
+			],
+			[
+				"ignore",
+				"ignore_label\tabc"
+			],
+			[
+				"cui",
+				"circuit_label\tabc"
+			],
+			[
+				"Circui",
+				"CircuitManager\tabc"
+			],
+			[
+				"circ",
+				"circuit_manager\tabc"
+			],
+			[
+				"Cui",
+				"Circuits\tabc"
+			],
+			[
+				"cir",
+				"circuit\tabc"
+			],
+			[
+				"t_",
+				"t_out\tabc"
+			],
+			[
+				"termin",
+				"terminal\tabc"
+			],
+			[
+				"terma",
+				"terminal_attached\tabc"
+			],
+			[
+				"to",
+				"t_out\tabc"
+			],
+			[
+				"terminala",
+				"terminal_attached\tabc"
+			],
+			[
+				"termina",
+				"terminal\tabc"
+			],
+			[
+				"end",
+				"end_terminal\tabc"
+			],
+			[
+				"inp",
+				"input_terminals\tabc"
+			],
+			[
+				"_n",
+				"_next_terms\tabc"
+			],
+			[
+				"new_",
+				"new_terminals\tabc"
+			],
+			[
+				"terina",
+				"terminals\tabc"
+			],
+			[
+				"term",
+				"terminal\tabc"
+			],
+			[
+				"curren",
+				"current_terminal\tabc"
+			],
+			[
+				"terin",
+				"terminals\tabc"
+			],
+			[
+				"lae",
+				"label"
+			],
+			[
+				"termi",
+				"terminals\tabc"
+			],
+			[
+				"def",
+				"defaultdict\tabc"
+			],
+			[
+				"sta",
+				"start\t(Circuit.md)"
+			],
+			[
+				"Pass",
+				"passthrough"
+			],
+			[
+				"teri",
+				"terminal_in\tabc"
+			],
+			[
+				"termia",
+				"terminals\tabc"
+			],
+			[
+				"loopt",
+				"looptest_event\tabc"
+			],
+			[
+				"ref",
+				"terminals_parent_ref"
+			],
+			[
+				"get_",
+				"get_uuid\tabc"
+			],
+			[
+				"step_",
+				"step_to_next\tabc"
+			],
+			[
+				"ter",
+				"term_id\tabc"
+			],
+			[
+				"curre",
+				"current_terminal\tabc"
+			],
+			[
+				"curr",
+				"current_terminal\tabc"
+			],
+			[
+				"Powe",
+				"PowerLoop\tabc"
+			],
+			[
+				"recev",
+				"receive"
+			],
+			[
+				"c",
+				"circuit\tabc"
+			],
+			[
+				"p",
+				"parent\tabc"
+			],
+			[
+				"ci",
+				"circuit\tabc"
+			],
+			[
+				"cuis",
+				"circuits"
+			],
+			[
+				"deivc",
+				"devices\tabc"
+			],
+			[
+				"Stand",
+				"StandardKnuckle\tabc"
+			],
+			[
+				"de",
+				"device\tabc"
+			],
+			[
+				"devic",
+				"devices\tabc"
+			],
+			[
+				"Self",
+				"self"
+			],
+			[
+				"stat",
+				"static_id\tabc"
+			],
+			[
+				"conne",
+				"connections\tabc"
+			],
+			[
+				"volts",
+				"volts=12\t(push pull notes.md)"
+			],
+			[
+				"pos",
+				"positive\tabc"
+			],
+			[
+				"s",
+				"self\tabc"
+			],
+			[
+				"find",
+				"find_closest\tabc"
+			],
+			[
+				"navt",
+				"navigate_to_kitchen\tabc"
+			],
+			[
+				"requir",
+				"requirement\tabc"
+			],
+			[
+				"fill",
+				"fillStyle\t(b-2.js)"
+			],
+			[
+				"stro",
+				"strokeStyle\t(one.html)"
+			],
+			[
+				"wid",
+				"width\tAttr"
+			],
+			[
+				"st",
+				"stroke\tabc"
+			],
+			[
+				"ne",
+				"neighbours\t(spot.js)"
+			],
+			[
+				"Line",
+				"lineTo"
+			],
+			[
+				"onfs",
+				"oneOffset\tabc"
+			],
+			[
+				"proto",
+				"prototype\t(g.js)"
+			],
+			[
+				"render",
+				"render_update\t(b.js)"
+			],
+			[
+				"preven",
+				"preventDefault\tabc"
+			],
+			[
+				"te",
+				"tendrils\tabc"
+			],
+			[
+				"lasm",
+				"lastMouseY\tabc"
+			],
+			[
+				"speed",
+				"speedY\tabc"
+			],
+			[
+				"Nones",
+				"nones"
+			],
+			[
+				"sl",
+				"slurp_plot\tabc"
+			],
+			[
+				"all_",
+				"all_connections\tabc"
+			],
+			[
+				"wi",
+				"width\tabc"
 			],
 			[
 				"point",
-				"pointers\tabc"
+				"pointer\tabc"
+			],
+			[
+				"pp",
+				"pprint\tabc"
+			],
+			[
+				"ev",
+				"event\tabc"
+			],
+			[
+				"getpo",
+				"get_pointer_by_name\tabc"
+			],
+			[
+				"met",
+				"method\t(flatmap.py)"
+			],
+			[
+				"kw",
+				"kwargs\tabc"
 			],
 			[
 				"unqu",
@@ -42,10 +446,6 @@
 			[
 				"e",
 				"event\tabc"
-			],
-			[
-				"def",
-				"default\tabc"
 			],
 			[
 				"enti",
@@ -92,10 +492,6 @@
 				"int_pos_b_set"
 			],
 			[
-				"inp",
-				"int_pos_bs\tabc"
-			],
-			[
 				"inpss",
 				"int_pos_bs"
 			],
@@ -118,459 +514,11 @@
 			[
 				"rev",
 				"reverse\tabc"
-			],
-			[
-				"chil",
-				"children\tabc"
-			],
-			[
-				"_com",
-				"_complete\tabc"
-			],
-			[
-				"all",
-				"allow_partial\tabc"
-			],
-			[
-				"drop_",
-				"drop_match\tabc"
-			],
-			[
-				"fl",
-				"flatgraph\tabc"
-			],
-			[
-				"chi",
-				"children\tabc"
-			],
-			[
-				"allo",
-				"allow_top_partial\tabc"
-			],
-			[
-				"re",
-				"reverse\tabc"
-			],
-			[
-				"_cm",
-				"_complete\tabc"
-			],
-			[
-				"apply",
-				"apply_partial_paths\tabc"
-			],
-			[
-				"is",
-				"isinstance\tabc"
-			],
-			[
-				"stat",
-				"start_entity\tabc"
-			],
-			[
-				"print",
-				"print_chain\tabc"
-			],
-			[
-				"kv",
-				"reverse_kv"
-			],
-			[
-				"recv",
-				"receive_text\tabc"
-			],
-			[
-				"conne",
-				"connect\tabc"
-			],
-			[
-				"res",
-				"response\tabc"
-			],
-			[
-				"mou",
-				"mounted\t(logger.js)"
-			],
-			[
-				"ta",
-				"target\t(condition.py)"
-			],
-			[
-				"getho",
-				"get_hostname\t(zero.py)"
-			],
-			[
-				"Zeroc",
-				"Zeroconf\tabc"
-			],
-			[
-				"pa",
-				"parent\tabc"
-			],
-			[
-				"zero_",
-				"zero_discover\tabc"
-			],
-			[
-				"zer",
-				"zero_start\t(znew.py)"
-			],
-			[
-				"extra",
-				"extra_props\tabc"
-			],
-			[
-				"pre",
-				"prequest\tabc"
-			],
-			[
-				"get_",
-				"get_hostname"
-			],
-			[
-				"str",
-				"strangemother\tabc"
-			],
-			[
-				"if",
-				"ifmain\tif __name__ == '__main__'"
-			],
-			[
-				"server",
-				"server_name\tabc"
-			],
-			[
-				"delat",
-				"deltaY\t(trackpad.js)"
-			],
-			[
-				"win",
-				"win32api\tabc"
-			],
-			[
-				"as",
-				"async\tabc"
-			],
-			[
-				"toucb",
-				"touchMouseButtonDown"
-			],
-			[
-				"conv",
-				"convert"
-			],
-			[
-				"butt",
-				"buttons\tabc"
-			],
-			[
-				"doc",
-				"documentMousedownHandler\tabc"
-			],
-			[
-				"prev",
-				"preventDefault\t(touch-manager.js)"
-			],
-			[
-				"page",
-				"pageX\tabc"
-			],
-			[
-				"ges",
-				"gestures\tabc"
-			],
-			[
-				"ge",
-				"gesture\tabc"
-			],
-			[
-				"muti",
-				"multi-tap\tabc"
-			],
-			[
-				"mult",
-				"multiTap\tabc"
-			],
-			[
-				"timeou",
-				"timeout\tabc"
-			],
-			[
-				"Start",
-				"startTapTimer"
-			],
-			[
-				"acc",
-				"accurateClick\tabc"
-			],
-			[
-				"norm",
-				"normalClick\tabc"
-			],
-			[
-				"gs",
-				"gesture\tabc"
-			],
-			[
-				"gest",
-				"gestures\tabc"
-			],
-			[
-				"pus",
-				"push\t(touch-manager-orig.js)"
-			],
-			[
-				"le",
-				"length\tabc"
-			],
-			[
-				"clear",
-				"clearTouchlistHistory\tabc"
-			],
-			[
-				"start",
-				"startTouches\t(touch-manager.js)"
-			],
-			[
-				"touch",
-				"touchpad\tabc"
-			],
-			[
-				"Dev",
-				"DeviceMotionEvent\tabc"
-			],
-			[
-				"De",
-				"DeviceMotionEvent\tabc"
-			],
-			[
-				"motion",
-				"motionListen\tabc"
-			],
-			[
-				"device",
-				"devicemotion\tabc"
-			],
-			[
-				"disp",
-				"dispatchTouches\tabc"
-			],
-			[
-				"mon",
-				"mount_unit\tabc"
-			],
-			[
-				"Ke",
-				"Keyboard\t(devices.py)"
-			],
-			[
-				"allow",
-				"allow_continue\tabc"
-			],
-			[
-				"in",
-				"instance\tabc"
-			],
-			[
-				"Con",
-				"Condition"
-			],
-			[
-				"ConP",
-				"ConditionProps\tabc"
-			],
-			[
-				"ConditionPro",
-				"ConditionProps\t(condition.py)"
-			],
-			[
-				"boun",
-				"bound_to\tabc"
-			],
-			[
-				"cond",
-				"condition\tabc"
-			],
-			[
-				"lives",
-				"live_safe_set\tabc"
-			],
-			[
-				"condition",
-				"Condition"
-			],
-			[
-				"val",
-				"value\tabc"
-			],
-			[
-				"prp",
-				"property\tabc"
-			],
-			[
-				"form",
-				"from"
-			],
-			[
-				"_own",
-				"_owner_id\tabc"
-			],
-			[
-				"br",
-				"brightness\tabc"
-			],
-			[
-				"Ma",
-				"MaxEnergyExplode\tabc"
-			],
-			[
-				"or",
-				"origin\tabc"
-			],
-			[
-				"Bri",
-				"brightness"
-			],
-			[
-				"fin",
-				"final_event\tabc"
-			],
-			[
-				"pass",
-				"passthrough\tabc"
-			],
-			[
-				"False",
-				"False"
-			],
-			[
-				"conn",
-				"connections\tabc"
-			],
-			[
-				"max",
-				"max_power\tabc"
-			],
-			[
-				"wire",
-				"wire_power\tabc"
-			],
-			[
-				"ma",
-				"match\tabc"
-			],
-			[
-				"currne",
-				"currently_match\tabc"
-			],
-			[
-				"va",
-				"valid\tabc"
-			],
-			[
-				"tests",
-				"test_state\tabc"
-			],
-			[
-				"bou",
-				"bound_wires\tabc"
-			],
-			[
-				"Plug",
-				"PlugUK\t(connection.py)"
-			],
-			[
-				"tas",
-				"target_fps\tabc"
-			],
-			[
-				"nea",
-				"neutral\t(sockets.py)"
-			],
-			[
-				"feeds",
-				"_feeds"
-			],
-			[
-				"Self",
-				"self"
-			],
-			[
-				"socke",
-				"socket_class\t(sockets.py)"
-			],
-			[
-				"Sock",
-				"SocketMixin\tabc"
-			],
-			[
-				"Conne",
-				"Connectable\tabc"
-			],
-			[
-				"HOS",
-				"HostSingleton\tabc"
-			],
-			[
-				"own",
-				"owner_id\tabc"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "/F/godot/python-rocket-software/graph/example2.py",
-			"settings":
-			{
-				"buffer_size": 1171,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/F/godot/python-rocket-software/py6/flatmap_example7.py",
-			"settings":
-			{
-				"buffer_size": 1193,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/F/godot/python-rocket-software/graph/events.py",
-			"settings":
-			{
-				"buffer_size": 8776,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/F/godot/python-rocket-software/graph/main.py",
-			"settings":
-			{
-				"buffer_size": 3035,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/F/godot/python-rocket-software/graph/graph.py",
-			"settings":
-			{
-				"buffer_size": 8253,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/F/godot/python-rocket-software/py6/condition.py",
-			"settings":
-			{
-				"buffer_size": 9602,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -584,11 +532,43 @@
 		"selected_items":
 		[
 			[
-				"quick",
-				"Git: Quick Commit (current file)"
+				"rename",
+				"File: Rename"
+			],
+			[
+				"ren",
+				"File: Rename"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"markdown",
+				"Set Syntax: Markdown"
+			],
+			[
+				"git push",
+				"Git: Push Current Branch"
 			],
 			[
 				"qui",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"lo",
+				"Convert Case: Lower Case"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"text",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"quick",
 				"Git: Quick Commit (current file)"
 			],
 			[
@@ -602,14 +582,6 @@
 			[
 				"commit",
 				"Git: Commit"
-			],
-			[
-				"rename",
-				"File: Rename"
-			],
-			[
-				"lowe",
-				"Convert Case: Lower Case"
 			],
 			[
 				"mo",
@@ -626,14 +598,6 @@
 			[
 				"git qui",
 				"Git: Quick Commit (current file)"
-			],
-			[
-				"ren",
-				"File: Rename"
-			],
-			[
-				"lo",
-				"Convert Case: Lower Case"
 			],
 			[
 				"upper",
@@ -734,10 +698,6 @@
 			[
 				"godot",
 				"Set Syntax: GDScript (Godot Engine)"
-			],
-			[
-				"java",
-				"Set Syntax: JavaScript Next"
 			],
 			[
 				"LOWE",
@@ -871,6 +831,8 @@
 		"height": 194.0,
 		"history":
 		[
+			"exit",
+			"cancel",
 			"view.run_command('under_caret')",
 			"view.run_command",
 			"view",
@@ -897,18 +859,88 @@
 	},
 	"expanded_folders":
 	[
-		"/F/godot/python-rocket-software",
-		"/F/godot/python-rocket-software/condition.py"
+		"/C/Users/jay/AppData/Local/Temp/fz3-16100444333810"
 	],
 	"file_history":
 	[
-		"/F/godot/python-rocket-software/graph/main.py",
+		"/F/godot/python-rocket-software/py7/power notes.md",
+		"/F/godot/python-rocket-software/py7/chain.py",
+		"/F/godot/python-rocket-software/py7/chain3.py",
+		"/F/godot/python-rocket-software/py7/chain6.py",
+		"/F/godot/python-rocket-software/py7/power chain.md",
+		"/C/Users/jay/Documents/projects/ast/example hello world.md",
+		"/C/Users/jay/Documents/projects/ast/src/example/bl3_magic.py",
+		"/C/Users/jay/Documents/projects/ast/src/example os arm pi/source/systemTimer.s",
+		"/C/Users/jay/Documents/projects/ast/src/rpi_vectors.s",
+		"/C/Users/jay/Documents/projects/ast/asm.md",
+		"/C/Users/jay/Documents/projects/ast/add.md",
+		"/F/godot/python-rocket-software/py7/circuit.py",
+		"/F/godot/python-rocket-software/py7/Power Events.md",
+		"/F/godot/python-rocket-software/py7/heat chain.md",
+		"/F/godot/python-rocket-software/py7/c7.py",
+		"/F/godot/python-rocket-software/py7/chain2.py",
+		"/C/Users/jay/Documents/projects/ast/bootloader4.asm",
+		"/C/Users/jay/Documents/projects/ast/.gitignore",
+		"/F/godot/python-rocket-software/py7/Terminal.md",
+		"/F/godot/python-rocket-software/py7/c3.py",
+		"/F/godot/python-rocket-software/notes/mechanic and shipyard.md",
+		"/F/clients/strangemother/cubes/index2.html",
+		"/F/godot/python-rocket-software/py7/power-chain.py",
+		"/F/godot/python-rocket-software/py7/c2.py",
+		"/F/godot/python-rocket-software/py7/Circuit Logical Power Event.md",
+		"/F/godot/python-rocket-software/py7/Circuit.md",
+		"/F/godot/python-rocket-software/py7/push pull notes.md",
+		"/F/godot/python-rocket-software/py7/readme.md",
+		"/C/Users/jay/Documents/projects/godot/godot-master/godot-master/methods.py",
+		"/C/Users/jay/Documents/projects/godot/godot-master/godot-master/core/math/geometry_3d.cpp",
+		"/F/godot/python-rocket-software/multiman/readme.md",
+		"/F/godot/python-rocket-software/multiman/Tasks and Actions.md",
+		"/F/godot/python-rocket-software/multiman/task.py",
+		"/C/Users/jay/Documents/projects/godot/room_3/README.md",
+		"/C/Users/jay/Documents/projects/trails/one_2/spot.js",
+		"/C/Users/jay/AppData/Local/Temp/Rar$DIa0.677/readme.txt",
 		"/C/Users/jay/Documents/projects/socket_server/host.py",
+		"/H/Crack-Windows/install.txt",
+		"/F/godot/python-rocket-software/supergrid/readme.md",
+		"/C/Users/jay/Documents/projects/trails/one_2/b-2.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/js/data.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/js/main.js",
+		"/C/Users/jay/Documents/projects/trails/one_2/eyes.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/js/d2.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/index.html",
+		"/C/Users/jay/Documents/projects/trails/one_2/b.js",
+		"/C/Users/jay/Documents/projects/trails/one_2/eyes2.js",
+		"/C/Users/jay/Documents/projects/trails/one_2/onehard.html",
+		"/C/Users/jay/Documents/projects/trails/one_2/g.js",
+		"/F/godot/python-rocket-software/supergrid/main.py",
+		"/C/Users/jay/Documents/projects/trails/spot.js",
+		"/C/Users/jay/Documents/projects/trails/b.js",
+		"/C/Users/jay/Documents/projects/trails/oscillator.js",
+		"/C/Users/jay/Documents/projects/trails/b-2.js",
+		"/C/Users/jay/Documents/projects/trails/b.html",
+		"/F/godot/python-rocket-software/supergrid/info2.md",
+		"/C/Users/jay/Documents/projects/js-gravity/graph_ui/main.py",
+		"/C/Users/jay/Documents/projects/js-gravity/graph_ui/static/js/main.js",
+		"/C/Users/jay/Documents/projects/trails/trail.js",
+		"/F/godot/python-rocket-software/supergrid/docs/plotting.md",
+		"/F/godot/python-rocket-software/supergrid/docs/usage.md",
+		"/C/Users/jay/Documents/projects/economy/game/index.html",
+		"/C/Users/jay/Documents/projects/trails/line.html",
+		"/C/Users/jay/Documents/trails/index.html",
+		"/F/godot/python-rocket-software/graph/ograph.py",
+		"/F/godot/python-rocket-software/graph/find.py",
 		"/F/godot/python-rocket-software/py6/flatmap.py",
+		"/F/godot/python-rocket-software/graph/node.py",
 		"/F/godot/python-rocket-software/graph/events.py",
 		"/F/godot/python-rocket-software/graph/graph.py",
+		"/F/godot/python-rocket-software/graph/tree.py",
+		"/F/godot/python-rocket-software/graph/base.py",
+		"/F/godot/python-rocket-software/graph/pointer.py",
+		"/F/godot/python-rocket-software/graph/main.py",
+		"/F/godot/python-rocket-software/graph/example4.py",
+		"/F/godot/python-rocket-software/graph/example2.py",
+		"/F/godot/python-rocket-software/graph/power/readme.md",
 		"/F/godot/python-rocket-software/graph/notes.py",
-		"/F/godot/python-rocket-software/graph/ograph.py",
 		"/C/Users/jay/Downloads/wave-function-collapse.ipynb",
 		"/F/godot/python-rocket-software/py6/flatmap_examples.py",
 		"/C/Users/jay/Documents/projects/socket_server/manager.py",
@@ -958,82 +990,11 @@
 		"/C/Users/jay/Documents/projects/bonjour/client/static/js/socket.js",
 		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/readme.md",
 		"/C/Users/jay/Documents/projects/bonjour/client/static/js/trackpad.js",
-		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/zeroconf.py",
-		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/znew.py",
-		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/__init__.py",
-		"/C/Users/jay/Documents/projects/bonjour/.gitignore",
-		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/browse.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/devices.py",
-		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/pyzeroconf-README.rst",
-		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/zunittest.py",
-		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/zwebtest.py",
-		"/C/Users/jay/Documents/projects/bonjour/client/static/js/touch-manager.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/trackpad.js",
-		"/C/Users/jay/Downloads/native-script.ps1",
-		"/C/Users/jay/Documents/projects/bonjour/client/readme.md",
-		"/C/Users/jay/Documents/projects/bonjour/server/templates/index.html",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/touch-manager.js",
-		"/C/Users/jay/Documents/projects/bonjour/env/Lib/site-packages/pydirectinput/__init__.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/block.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/block-pyhook.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/readme.md",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/socket.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/limit.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/index.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/touch-manager-orig.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/canvas-thin.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/logger.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/canvas.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/templates/motion.html",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/acc.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/server.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/templates/pos.html",
-		"/C/Users/jay/Documents/projects/bonjour/scratch/toast.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/toast.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/mov.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/tov.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/pov.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/css/main.css",
-		"/F/godot/python-rocket-software/py6/example4.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/static/js/canvas-orig.js",
-		"/C/Users/jay/Documents/projects/bonjour/server/templates/static/main.css",
-		"/C/Users/jay/Documents/projects/bonjour/server/home.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/templates/static/js/index.js",
-		"/C/Users/jay/Documents/projects/bonjour/readme.md",
-		"/C/Users/jay/Documents/projects/bonjour/server/__init__.py",
-		"/C/Users/jay/Documents/projects/bonjour/server/main.py",
-		"/C/Users/jay/Documents/projects/bonjour/bonjour_test.py",
-		"/C/Users/jay/Documents/projects/bonjour/host.py",
-		"/F/godot/python-rocket-software/py6/things.py",
-		"/F/godot/python-rocket-software/py6/vmod.py",
-		"/F/godot/python-rocket-software/py6/example2.py",
-		"/F/godot/python-rocket-software/py6/example.py",
-		"/F/godot/python-rocket-software/py6/exceptions.py",
-		"/F/godot/python-rocket-software/py6/sim pipes.md",
-		"/F/godot/python-rocket-software/py5/example.py",
-		"/F/godot/python-rocket-software/py5/afeed.py",
-		"/F/godot/python-rocket-software/py5/example_verbose.py",
-		"/F/godot/python-rocket-software/py5/things.py",
-		"/F/godot/python-rocket-software/py5/parts.py",
-		"/F/godot/python-rocket-software/py4/notes.md",
-		"/F/godot/.gitignore",
-		"/F/godot/python-rocket-software/py4/base.py",
-		"/F/godot/python-rocket-software/py4/core.py",
-		"/F/godot/python-rocket-software/py4/state.py",
-		"/F/godot/python-rocket-software/py4/parts.py",
-		"/F/godot/python-rocket-software/py5/feed.md",
-		"/F/godot/python-rocket-software/py5/broken_feed.py",
-		"/F/godot/python-rocket-software/py5/Tap.md",
-		"/F/godot/python-rocket-software/py4/sockets.py",
-		"/F/godot/python-rocket-software/py5/condition.py",
-		"/F/godot/python-rocket-software/py5/async_feed.py",
-		"/F/godot/python-rocket-software/py4/signal.py",
-		"/F/godot/python-rocket-software/py4/main.py",
-		"/F/godot/python-rocket-software/py5/l2.py"
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/zeroconf.py"
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 23.0
 	},
 	"find_in_files":
 	{
@@ -1050,134 +1011,134 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"view_func_names",
-			"    #fun",
-			"    ",
-			"_a",
+			"amps",
+			"charge_slice",
+			"power",
+			"recieve_power",
+			"volts",
+			"pt",
+			"name",
+			"compute",
+			"resistence",
+			"phase",
+			"v",
+			"length",
+			"2",
+			"1",
+			"amps",
+			"cuombles",
+			" c3",
+			"get_looptests",
+			"linear_looptest",
+			"unit_count",
+			"looptest",
+			"looptest_event",
+			"2",
+			"unit",
+			"_count",
+			"p.",
+			"step_count",
+			"print",
+			"other_terminal",
+			"n",
+			"add_terminal_connection",
 			"a",
-			"d.",
-			"d",
-			"positions",
-			">>> ",
-			">>>",
-			"evs",
-			"Action",
-			"Event",
-			"events",
-			"', '",
-			"dv",
-			"_init_id",
-			"on_each",
-			"self..",
+			"c.",
+			" - ",
+			"origin_id",
+			"unique_id",
+			"entity",
+			"term",
+			"entity",
+			"self",
+			"print",
+			"next_terminals",
+			"self",
+			"start",
 			"event",
-			"execute_on_end",
-			"Event",
-			"history_hits",
-			"history",
-			".history",
-			"end_event",
-			"process_event_junction",
-			"get_names",
-			"GraphPo",
-			"entrophy_lost_event",
-			"Event",
-			"move_stepper",
-			"pump",
-			"move_stepper",
-			"Event(",
-			"stash_postion",
-			"set_target",
-			"name_indices",
-			"add",
-			"event, graph):",
-			"junction",
-			"end",
-			"fork",
-			"default_event_action",
-			"process_event_junction",
-			"GraphPointer",
-			"move_stepper",
-			"execute_step",
-			"Event",
-			"start_id",
-			"self.stack.",
-			"\">, ",
-			"graph",
-			"g.",
-			"bind_nodes",
-			"children",
-			"_next",
-			")\n",
-			"child_pos",
-			"self",
+			"push_looptest",
+			"start_terminal",
+			"ev",
+			"path",
+			"step_ids",
+			"step_id",
+			"new_terminals",
+			"_next_terms",
+			"step",
 			"self.",
-			" child",
-			"child",
-			"append",
-			"self.append(",
-			"append(",
-			"self.append(",
-			"append(",
-			"append",
-			".connect(",
-			"connect(",
-			"connect",
+			"looptest_in",
+			"step_next",
+			"Unit",
+			"label",
+			"passthrough",
+			"step_to",
+			"step_to(",
+			"terminal",
+			"passthrough",
+			"ta",
+			"event",
+			"ids[0]",
+			"Power",
+			"position",
+			"destination_unit",
+			"target",
+			"ta",
 			"self",
-			".add",
-			"connect",
-			"add",
-			"reset_position",
-			"pos",
-			"self.get_add_name",
-			"g.",
-			"add",
-			"h",
-			"tuple_key",
-			"children",
-			"select_children",
-			"', ",
-			"')\n",
-			"import",
-			"read_chain",
-			"rev=",
-			"until",
-			"index",
-			"else",
-			"rev",
-			"origin",
-			"complete",
-			"g.",
-			"safe_merge",
-			"nextnode",
-			"rs[k]",
-			"f",
-			"print('---')",
-			"print_pr",
-			"    print_pr(pr)",
-			"    pp(pr)",
-			"    print_internals(g)",
-			"print(g.names)\n    print(g.kv)\n    print(g.reverse_kv)",
-			"print(g.reverse_kv)",
-			"main_",
-			"values",
-			"'0-1",
-			"0-0'",
-			"read_chain",
-			"reverse",
-			"junction",
-			"si",
-			"_f",
-			"_complete",
-			"g.append(",
-			" ('",
-			"')",
-			"vi",
-			"listable",
-			"[]",
-			"('",
-			"print_chain",
-			"get_entry",
-			"defaultdict"
+			"amps",
+			"max_amps",
+			"volts",
+			"terminal_a",
+			"max",
+			"on_power_event",
+			"positive",
+			"terminal",
+			", ",
+			"let",
+			"100",
+			"context",
+			"cy",
+			"cx",
+			"size/2",
+			"x",
+			"300",
+			"Math",
+			"offsetX = 0\n        e.options.offset",
+			"b.",
+			"a.",
+			"green",
+			"circle",
+			"this",
+			"[0][1]\n    if(a.deleted) { return ",
+			"drawLines",
+			"drawLines ",
+			"b.",
+			"neighbours",
+			"drawLines",
+			"spot.",
+			" spot.",
+			"a.",
+			"n.",
+			"spot",
+			"count",
+			"drawLine",
+			"pot",
+			"a[1]",
+			"this",
+			"b",
+			"0",
+			"spot.neighbours",
+			"this",
+			"computeOffset",
+			"spot",
+			"[0]",
+			"drawLine",
+			"neighbours",
+			"neighbour",
+			"this.",
+			"drawLine",
+			"drawSpot",
+			"circle",
+			"tendril"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1212,214 +1173,21 @@
 		},
 		{
 			"path": "C:\\Users\\jay\\Documents\\projects\\socket_server"
+		},
+		{
+			"path": "C:\\Users\\jay\\Documents\\projects\\wfc"
 		}
 	],
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/F/godot/python-rocket-software/graph/example2.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1171,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								593,
-								593
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/F/godot/python-rocket-software/py6/flatmap_example7.py",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1193,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 2,
-					"file": "/F/godot/python-rocket-software/graph/events.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8776,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								450,
-								450
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/F/godot/python-rocket-software/graph/main.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3035,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2309,
-								2309
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 551.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/F/godot/python-rocket-software/graph/graph.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8253,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2964,
-								2964
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 462.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/F/godot/python-rocket-software/py6/condition.py",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 9602,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 84.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1451,7 +1219,7 @@
 		"cols":
 		[
 			0.0,
-			0.468339307049,
+			0.509354865367,
 			1.0
 		],
 		"rows":
@@ -1847,7 +1615,7 @@
 		],
 		"width": 590.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
@@ -1855,7 +1623,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 246.0,
+	"side_bar_width": 146.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
