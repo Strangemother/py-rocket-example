@@ -1,0 +1,10 @@
+In parts
+
+
+When the user records their name, it actually records static snow.
+
+PLY: "Hello my name is [static snow]"
+NPC: "Well hello there Kevin.."
+PLY: "... That's not my name..."
+NPC: "Sure but I'm only programmed with one name..."
+NPC: "Come-on Placeholder, I'll show you around..."
