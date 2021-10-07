@@ -33,3 +33,41 @@ An initial flight into the main game (city?) should play a welcome message.
 
 > Welcome to The Peoples United Freedom Republic of Gecko Planitia - where peace floats with harmony. Please consider stopping at a One Corp biological upgrade center for your free mandated telomere test.
 > And remember! Always enjoy the everlasting homage to the great Gecko Habit of the One Corp Council Cluster.
+
+
+---
+
+Has your alpha droid gone rouge? Not to worry. Introducing the new dialasense therapy chip from Robo fomo slomo co. Whether it's a robot who's creator has abandoned them as a prototype
+
+    [graphic of a lonely sad robot]
+
+or one whose motherboard was distant,
+
+[.. an animation scene of two robots being parted, with a smaller robot waving its arms at a larger robot yelling
+        in disinctly adult robotic male voice:]
+
+    "PAPA... NOOO!..."
+
+[The very large robot also held back by humans waves and yells back in a younger sounding voice]
+
+    "QUEBEC! NOOOO...."
+
+[large robot responds]
+
+    "ROMERO! NOOOO...."
+
+[again, the small robot reponds]
+
+    "SIERRA! NOOOO...."
+
+[The sound and animation fades out of the two robots, as they progress through the alphabet].
+
+     Robofomoslomoco has got you covered. For the reasonable price of all of your assets we'll send you the chip and install it with the joy joy extra cost of one extra. The Robofomoslomoco dialasense therapy chip - for those fortunate enough to afford stability.
+
+---
+
+Is your glass atmosphere container getting robot oil splurged all over it? You've got 2 options. 1, stop robots having unsolicited back alley relations. But we all know that's not an option. (remember the riots of 2522) Or 2, use basic Joe's gunk and junk removal service. Basic Joe's - it's us or stay dirty.
+
+
+Has your transparent Aluminium oxynitride ceramic Oxyglobe gained more than 2 point 4 degrees of fresnel diffraction - because your Robot Honey was unsolicitly drilled in a skyway back alley? Well cease breaking those pesky 428 933 standard optic laws and slide on to basic Joe's gunk and junk removal service. Polarize your coefficients and align those cubic spinels with a spray of Alu-oxy-frez-not today.
+Basic Joe's - it's us or stay dirty.

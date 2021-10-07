@@ -41,7 +41,7 @@ def run_all(delay, c_fps, avg_fps):
 
     data['count'] += v
     d = [x for x in range(data['count'])]
-    print(f"FPS: {c_fps:<3}, {avg_fps:<3} - count: {data['count']}")
+    print(f"FPS: {c_fps:<3}, {avg_fps:<3} - count: {data['count']:,}")
 
     # time.sleep(delay)
 

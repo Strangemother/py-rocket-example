@@ -83,4 +83,4 @@ https://youtu.be/KPy6EhKg2vw?t=97
 
 To press the probing of space, the national aeronautics and Space administration, and the atomic energy commission name Vector Jet Corporation prime contractor for the first space power-plant activated through the injection of palladium infused flux in cold fission.
 
-Discovering a new synthetic superelement eka-[somename] solved for the macro production of [othername], now seated between helium and hydrogen as a new, safe form of propulsion in the atomic age.
+Discovering a new synthetic super-element eka-belmanning solved for the macro production of heavy helium, now seated between helium and hydrogen as a new, safe form of propulsion in the atomic age.

@@ -7,9 +7,10 @@ At the moment the game has no name, fully playable interface, or any solid struc
 3. The ship is 'configurable' to the very core; from ship layout to wire configurations.
 4. Components have cross compatibility; such as a 'metal floor plate' as junkyard wiring.
 
+
 ## Some core concepts
 
-Fundamentally this game is a flight-sim, but for custom buildouts. Much like "Kerbal Space Program" style buildouts - but with a fantasy twist to include "hovering engines"  of a futuristic utopia world in a timeline where _ion engines_ (and other anti gravity tech) is as ubiquitous as the wheel.
+Fundamentally this game is a flight-sim, but for custom buildouts. Much like "Kerbal Space Program" style buildouts - but with a fantasy twist to include "hovering engines"  of a futuristic utopia world in a timeline where _ion engines_ (and other anti gravity tech) is as ubiquitous as the wheel, and the flight dynamics and operating system of a ship.n
 
 <img src="images/car.jpg" alt="car" style="zoom:50%;" />
 

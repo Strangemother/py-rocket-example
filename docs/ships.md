@@ -85,10 +85,10 @@ With these features, it's extremely easy to hammer together _ship shapes_ to fly
 
 ![landcruiser](images/landcruiser.jpg)
 
-![nearly futurama 2](images/nearly futurama 2.jpg)
+![nearly futurama 2](images/nearly_futurama_2.jpg)
 
-![nearly futurama](images/nearly futurama.jpg)
+![nearly futurama](images/nearly_futurama.jpg)
 
 ![Sci Fi Corridor](images/Sci Fi Corridor.jpg)
 
-![ship clean 1](images/ship clean 1.jpg)
+![ship clean 1](images/ship_clean_1.jpg)

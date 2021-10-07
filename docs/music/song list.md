@@ -1,69 +1,3 @@
-TL:DR;
-
-I hope this enough the correct stuff to steer you. Personally I'd say the first track "A1 overture", is the answer to our question, and the other songs are soft arrows towards our likes.
-
-Fundamentally we want:
-
-+ souring in the sky trippy
-+ Hopefully something to please metal fans
-+ Atompunk reference - synths/funky tones/a throwback to some 50's thing.
-+ It's set in a Utopia future-like https://github.com/Strangemother/py-rocket-example/blob/main/docs/styles.md
-
-You're in charge.
-
-
-# Premise
-
-We're building a game focusing on vehicle mechanics and user customisation of their 'ship' for complex flight games (think of a flight-sim, but for imaginary machines) Set within a parallel world where _anti-gravity_ was invented in the \~1940/50s, the style will mimic the atom-punk and solar-punk design with in-game lore stylised around an era progressive of the tone.
-
-
-Although the game lore originates in a past era, we're adapting the sound track for a modern game, notably 'atom punk with a metal twist' for the game overture. Whilst players fly-about, they will listen to some licensed content; likely chillout, electronic sweepy stuff.
-
----
-
-Your track will be the main track, and will be utilised as the _box art_ sound and one-of the "premier" action events within the game, such as a new player and city into.
-
-We would like a metal track evocative of the atomic age style. That's pretty much the job - we're not music engineers (mostly metal heads), so we don't know how to structure this.
-
-From previous conversation we have:
-
-+ About 2 minutes
-+ A guitar solo
-+ Metal.
-
-
-I sincerely do not have the lexicon to succinctly convey myself, so please forgive me ahead of time for anything that sounds contradictory.
-
----
-
-A consensus has these highlights:
-
-+ Groove, Melodic Death Metal
-+ Sweepy space age sound
-+ Synths, electronic tones (beeps and stuff) is all good
-
-We're all metal fans, so we love complex riffs and ripping solos.
-
-I'm hoping thats a wide enough scope for you to produce whatever you want. Stay within or step away from atompunk sounds - is complete up to you. The only result we want is:
-
-> A general milieu or atmosphere should be sweeping freedom - space age exploration - or something to evoke a utopia feel.
-
-^ through a metal cab :D
-
----
-
-A fun idea was to plug in the "jetsons 4 notes" somewhere - or part of the track just as iconic. https://www.youtube.com/watch?v=swNz4_gVPb8
-
-As that's where the game idea essentially originated. But that's not a forced point.
-
----
-
-to define what we _don't_ like should help.
-
-+ This "Space metal": is just a bit flat: https://open.spotify.com/album/5FJ4iBssG6V530ms8YvGIa?autoplay=true
-
-  I think it a bit too _piss-take_ and although of the same idea, doesn't convey our preferences.
-
 
 ---
 
@@ -176,8 +110,6 @@ Alcest - Oiseaux de proie
 
     https://open.spotify.com/track/2LqniAScDuwvOSWEHbsJAI?si=69a32f63a1db4435
 
-<iframe src="https://open.spotify.com/embed/track/01goDEgLNLAVOmRQ8Ip7js" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
 
 BucketHead - Big Sur Moon
 
@@ -219,15 +151,3 @@ In other more gentle areas of the game, we have license to use Burnwater music: 
 
 
 And that's it! :P
-
-I hope that's enough to steer you. Personally I'd say the first track "A1 overture", is the answer to our question, and the other songs are soft arrows towards our likes.
-
-Fundamentally we want:
-
-+ souring in the sky trippy
-+ Hopefully something to please metal fans
-+ It's set in a Utopia future-like https://github.com/Strangemother/py-rocket-example/blob/main/docs/styles.md
-
----
-
-Thank you in advance.

@@ -1,5 +1,4 @@
-
-## The junkyard
+# The junkyard
 
 A fun advantage of a plug-in base flight system will be the salvage site for ship components and other discoveries. A player can visit a junk yard (or a certified mechanic) to source ship components. A player should pay for the items through in-game earnings.
 
@@ -7,7 +6,16 @@ A fun advantage of a plug-in base flight system will be the salvage site for shi
 
 You can consider the junkyard as a scrappy hodge-podge of (galaxy?) ship bits. Imagine the junkyards of Rick and morty.
 
-<img src="images/rick-and-morty-at-the-junkyard.jpg" alt="rick-and-morty-at-the-junkyard" style="zoom:50%;" />
+<img src="../../images/rick-and-morty-at-the-junkyard.jpg" alt="rick-and-morty-at-the-junkyard" style="zoom:50%;" />
+
+
+
+## Junkyard owner
+
+The Junkyard owner should be a crappy robot, such as a Metal Stick with stuck-on paper eyes, and a companion dustpan looking item.
+
+They should look like a broken but vocal broom stick and dustpan. But this isn't the case - they are in fact sa reprogrammed metal stick, and a crappy bucket looking item (or a piece of traffic light).
+
 
 ## Electrical System:
 

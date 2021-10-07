@@ -163,13 +163,3 @@ Some elements to consider for the output solution. These caveats help us integra
   The FPS is also known as the _system hertz_ - if possible this will run faster (200fps or more) given the solution can run at that speed.
   In-game actions may affect this to temporarily alter vehicle handling, e.g. an electronic storm.
 
-
-
-## Who Are We?
-
-Strangemother we previously web hosting and solutions. We've moved into backend solutions and don't have a public face. We're developing this game for fun and research. In the future we hope to release a game with the facility to open-source code the flight systems. In the team we have a range of part time staff - others are freelance.
-
-+ 1 3D Designer
-+ 1 writer
-+ 2 developers
-
