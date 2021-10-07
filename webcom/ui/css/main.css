@@ -1,0 +1,34 @@
+#mynetwork {
+    border: solid;
+    /*height: 100%;*/
+    display: flex;
+    min-height: 32em;
+    /* height: 32em; */
+    flex-grow: 1;
+}
+
+.vis-network {
+    height: 32em;
+    height: 40em;
+}
+
+.content {
+    display: flex;
+    /* width: 100%; */
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+
+body {
+    display: flex;
+    flex-grow: 1;
+    height: 100%;
+}
+
+html {
+    min-height: 100vh;
+    display: flex;
+    /* border: solid; */
+    flex-direction: column;
+}

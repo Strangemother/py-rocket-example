@@ -1,0 +1,1631 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ma",
+				"major\tabc"
+			],
+			[
+				"chl",
+				"charge_slice\tabc"
+			],
+			[
+				"minot",
+				"minor_delta\tabc"
+			],
+			[
+				"resist",
+				"resistance\tabc"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"mino",
+				"minor_delta\tabc"
+			],
+			[
+				"modl",
+				"modulo\tabc"
+			],
+			[
+				"a",
+				"amps\tabc"
+			],
+			[
+				"power_ch",
+				"power_chain_check\tabc"
+			],
+			[
+				"forwa",
+				"forward_voltage\tabc"
+			],
+			[
+				"name",
+				"name_index\tabc"
+			],
+			[
+				"defa",
+				"defaultdict\t(circuit.py)"
+			],
+			[
+				"Resis",
+				"Resistor\tabc"
+			],
+			[
+				"__",
+				"__repr__\t(c7.py)"
+			],
+			[
+				"resis",
+				"resistance\t(c7.py)"
+			],
+			[
+				"unit",
+				"units\tabc"
+			],
+			[
+				"Chain",
+				"ChainManager\tabc"
+			],
+			[
+				"loop",
+				"looptest_id\tabc"
+			],
+			[
+				"loopi",
+				"looptest_id\tabc"
+			],
+			[
+				"orign",
+				"origin"
+			],
+			[
+				"default",
+				"defaultdict"
+			],
+			[
+				"en",
+				"entity"
+			],
+			[
+				"otherc",
+				"other_circuit"
+			],
+			[
+				"othertr",
+				"other_terminal_uuid\tabc"
+			],
+			[
+				"other",
+				"other_circuit"
+			],
+			[
+				"other_",
+				"other_terminal"
+			],
+			[
+				"other_ter",
+				"other_circuit_terminals\tabc"
+			],
+			[
+				"ignore",
+				"ignore_label\tabc"
+			],
+			[
+				"cui",
+				"circuit_label\tabc"
+			],
+			[
+				"Circui",
+				"CircuitManager\tabc"
+			],
+			[
+				"circ",
+				"circuit_manager\tabc"
+			],
+			[
+				"Cui",
+				"Circuits\tabc"
+			],
+			[
+				"cir",
+				"circuit\tabc"
+			],
+			[
+				"t_",
+				"t_out\tabc"
+			],
+			[
+				"termin",
+				"terminal\tabc"
+			],
+			[
+				"terma",
+				"terminal_attached\tabc"
+			],
+			[
+				"to",
+				"t_out\tabc"
+			],
+			[
+				"terminala",
+				"terminal_attached\tabc"
+			],
+			[
+				"termina",
+				"terminal\tabc"
+			],
+			[
+				"end",
+				"end_terminal\tabc"
+			],
+			[
+				"inp",
+				"input_terminals\tabc"
+			],
+			[
+				"_n",
+				"_next_terms\tabc"
+			],
+			[
+				"new_",
+				"new_terminals\tabc"
+			],
+			[
+				"terina",
+				"terminals\tabc"
+			],
+			[
+				"term",
+				"terminal\tabc"
+			],
+			[
+				"curren",
+				"current_terminal\tabc"
+			],
+			[
+				"terin",
+				"terminals\tabc"
+			],
+			[
+				"lae",
+				"label"
+			],
+			[
+				"termi",
+				"terminals\tabc"
+			],
+			[
+				"def",
+				"defaultdict\tabc"
+			],
+			[
+				"sta",
+				"start\t(Circuit.md)"
+			],
+			[
+				"Pass",
+				"passthrough"
+			],
+			[
+				"teri",
+				"terminal_in\tabc"
+			],
+			[
+				"termia",
+				"terminals\tabc"
+			],
+			[
+				"loopt",
+				"looptest_event\tabc"
+			],
+			[
+				"ref",
+				"terminals_parent_ref"
+			],
+			[
+				"get_",
+				"get_uuid\tabc"
+			],
+			[
+				"step_",
+				"step_to_next\tabc"
+			],
+			[
+				"ter",
+				"term_id\tabc"
+			],
+			[
+				"curre",
+				"current_terminal\tabc"
+			],
+			[
+				"curr",
+				"current_terminal\tabc"
+			],
+			[
+				"Powe",
+				"PowerLoop\tabc"
+			],
+			[
+				"recev",
+				"receive"
+			],
+			[
+				"c",
+				"circuit\tabc"
+			],
+			[
+				"p",
+				"parent\tabc"
+			],
+			[
+				"ci",
+				"circuit\tabc"
+			],
+			[
+				"cuis",
+				"circuits"
+			],
+			[
+				"deivc",
+				"devices\tabc"
+			],
+			[
+				"Stand",
+				"StandardKnuckle\tabc"
+			],
+			[
+				"de",
+				"device\tabc"
+			],
+			[
+				"devic",
+				"devices\tabc"
+			],
+			[
+				"Self",
+				"self"
+			],
+			[
+				"stat",
+				"static_id\tabc"
+			],
+			[
+				"conne",
+				"connections\tabc"
+			],
+			[
+				"volts",
+				"volts=12\t(push pull notes.md)"
+			],
+			[
+				"pos",
+				"positive\tabc"
+			],
+			[
+				"s",
+				"self\tabc"
+			],
+			[
+				"find",
+				"find_closest\tabc"
+			],
+			[
+				"navt",
+				"navigate_to_kitchen\tabc"
+			],
+			[
+				"requir",
+				"requirement\tabc"
+			],
+			[
+				"fill",
+				"fillStyle\t(b-2.js)"
+			],
+			[
+				"stro",
+				"strokeStyle\t(one.html)"
+			],
+			[
+				"wid",
+				"width\tAttr"
+			],
+			[
+				"st",
+				"stroke\tabc"
+			],
+			[
+				"ne",
+				"neighbours\t(spot.js)"
+			],
+			[
+				"Line",
+				"lineTo"
+			],
+			[
+				"onfs",
+				"oneOffset\tabc"
+			],
+			[
+				"proto",
+				"prototype\t(g.js)"
+			],
+			[
+				"render",
+				"render_update\t(b.js)"
+			],
+			[
+				"preven",
+				"preventDefault\tabc"
+			],
+			[
+				"te",
+				"tendrils\tabc"
+			],
+			[
+				"lasm",
+				"lastMouseY\tabc"
+			],
+			[
+				"speed",
+				"speedY\tabc"
+			],
+			[
+				"Nones",
+				"nones"
+			],
+			[
+				"sl",
+				"slurp_plot\tabc"
+			],
+			[
+				"all_",
+				"all_connections\tabc"
+			],
+			[
+				"wi",
+				"width\tabc"
+			],
+			[
+				"point",
+				"pointer\tabc"
+			],
+			[
+				"pp",
+				"pprint\tabc"
+			],
+			[
+				"ev",
+				"event\tabc"
+			],
+			[
+				"getpo",
+				"get_pointer_by_name\tabc"
+			],
+			[
+				"met",
+				"method\t(flatmap.py)"
+			],
+			[
+				"kw",
+				"kwargs\tabc"
+			],
+			[
+				"unqu",
+				"unique_history"
+			],
+			[
+				"one",
+				"on_each\tabc"
+			],
+			[
+				"posis",
+				"position_history\tabc"
+			],
+			[
+				"execute_",
+				"execute_on_end\tabc"
+			],
+			[
+				"poin",
+				"pointers\tabc"
+			],
+			[
+				"end_en",
+				"end_event\tabc"
+			],
+			[
+				"postiion",
+				"position_history\tabc"
+			],
+			[
+				"e",
+				"event\tabc"
+			],
+			[
+				"enti",
+				"entity\tabc"
+			],
+			[
+				"Gra",
+				"GraphPointer\tabc"
+			],
+			[
+				"colle",
+				"collections\t(flatmap.py)"
+			],
+			[
+				"__ini",
+				"__init__\tabc"
+			],
+			[
+				"ent",
+				"entity\tabc"
+			],
+			[
+				"no",
+				"nodes\tabc"
+			],
+			[
+				"_next",
+				"_next_children\tabc"
+			],
+			[
+				"as_na",
+				"as_names\tabc"
+			],
+			[
+				"inpo",
+				"int_pos_b\tabc"
+			],
+			[
+				"connecti",
+				"connections\tabc"
+			],
+			[
+				"inbp",
+				"int_pos_b_set"
+			],
+			[
+				"inpss",
+				"int_pos_bs"
+			],
+			[
+				"tuple",
+				"tuple_key\tabc"
+			],
+			[
+				"pr",
+				"print\tabc"
+			],
+			[
+				"list",
+				"listable\tabc"
+			],
+			[
+				"child",
+				"children\tabc"
+			],
+			[
+				"rev",
+				"reverse\tabc"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"rename",
+				"File: Rename"
+			],
+			[
+				"ren",
+				"File: Rename"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"markdown",
+				"Set Syntax: Markdown"
+			],
+			[
+				"git push",
+				"Git: Push Current Branch"
+			],
+			[
+				"qui",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"lo",
+				"Convert Case: Lower Case"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"text",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"quick",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"rena",
+				"File: Rename"
+			],
+			[
+				"rever",
+				"File: Revert"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"mo",
+				"File: Move"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"git qui",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"git ",
+				"Git: Gui"
+			],
+			[
+				"re",
+				"File: Rename"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"mov",
+				"File: Move"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"auto",
+				"AutoPEP8: Preview Changes"
+			],
+			[
+				"move",
+				"File: Move"
+			],
+			[
+				"reanm",
+				"Rename File"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"uppeer",
+				"Convert Case: Upper Case"
+			],
+			[
+				"pep",
+				"AutoPEP8: Format Code"
+			],
+			[
+				"renam",
+				"File: Rename"
+			],
+			[
+				"mar",
+				"Set Syntax: Markdown"
+			],
+			[
+				"Rename",
+				"File: Rename"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"fold",
+				"Code Folding: Fold Tag Attributes"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"code folding",
+				"Code Folding: Fold Tag Attributes"
+			],
+			[
+				"code ",
+				"Code Folding: Fold Tag Attributes"
+			],
+			[
+				"m",
+				"File: Move"
+			],
+			[
+				"godot",
+				"Set Syntax: GDScript (Godot Engine)"
+			],
+			[
+				"LOWE",
+				"Convert Case: Lower Case"
+			],
+			[
+				"upl",
+				"SFTP: Upload File"
+			],
+			[
+				"CAN",
+				"SFTP: Cancel Upload"
+			],
+			[
+				"brow",
+				"SFTP: Browse Remote…"
+			],
+			[
+				"canc",
+				"SFTP: Cancel Upload"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"com",
+				"Toggle Comment"
+			],
+			[
+				"comm",
+				"Toggle Comment"
+			],
+			[
+				"commen",
+				"Toggle Comment"
+			],
+			[
+				"loer",
+				"Convert Case: Lower Case"
+			],
+			[
+				"can",
+				"SFTP: Cancel Upload"
+			],
+			[
+				"jina",
+				"Set Syntax: HTML (Jinja2)"
+			],
+			[
+				"jinja",
+				"Set Syntax: HTML (Jinja2)"
+			],
+			[
+				"jav",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"javascript",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"babel",
+				"Set Syntax: JavaScript (Babel)"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pytho",
+				"Set Syntax: Python"
+			],
+			[
+				"DELE",
+				"File: Delete"
+			],
+			[
+				"cop n",
+				"File: Copy Name"
+			],
+			[
+				"removep",
+				"Package Control: Remove Package"
+			],
+			[
+				"flake",
+				"User: Jump to next Flake8 Lint error"
+			],
+			[
+				"flak",
+				"User: Python Flake8 Lint"
+			],
+			[
+				"lint",
+				"User: Python Flake8 Lint"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"mult",
+				"Set Syntax: MultiMarkdown"
+			],
+			[
+				"instl",
+				"Package Control: Install Package"
+			],
+			[
+				"spac",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python"
+			]
+		],
+		"width": 448.0
+	},
+	"console":
+	{
+		"height": 194.0,
+		"history":
+		[
+			"exit",
+			"cancel",
+			"view.run_command('under_caret')",
+			"view.run_command",
+			"view",
+			"os.system('cls')",
+			"os.system('clear')",
+			"import os",
+			"os.system('clear')",
+			"cls",
+			"clear",
+			"cl",
+			"clear",
+			"cls",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/jay/AppData/Local/Temp/fz3-16100444333810"
+	],
+	"file_history":
+	[
+		"/F/godot/python-rocket-software/py7/power notes.md",
+		"/F/godot/python-rocket-software/py7/chain.py",
+		"/F/godot/python-rocket-software/py7/chain3.py",
+		"/F/godot/python-rocket-software/py7/chain6.py",
+		"/F/godot/python-rocket-software/py7/power chain.md",
+		"/C/Users/jay/Documents/projects/ast/example hello world.md",
+		"/C/Users/jay/Documents/projects/ast/src/example/bl3_magic.py",
+		"/C/Users/jay/Documents/projects/ast/src/example os arm pi/source/systemTimer.s",
+		"/C/Users/jay/Documents/projects/ast/src/rpi_vectors.s",
+		"/C/Users/jay/Documents/projects/ast/asm.md",
+		"/C/Users/jay/Documents/projects/ast/add.md",
+		"/F/godot/python-rocket-software/py7/circuit.py",
+		"/F/godot/python-rocket-software/py7/Power Events.md",
+		"/F/godot/python-rocket-software/py7/heat chain.md",
+		"/F/godot/python-rocket-software/py7/c7.py",
+		"/F/godot/python-rocket-software/py7/chain2.py",
+		"/C/Users/jay/Documents/projects/ast/bootloader4.asm",
+		"/C/Users/jay/Documents/projects/ast/.gitignore",
+		"/F/godot/python-rocket-software/py7/Terminal.md",
+		"/F/godot/python-rocket-software/py7/c3.py",
+		"/F/godot/python-rocket-software/notes/mechanic and shipyard.md",
+		"/F/clients/strangemother/cubes/index2.html",
+		"/F/godot/python-rocket-software/py7/power-chain.py",
+		"/F/godot/python-rocket-software/py7/c2.py",
+		"/F/godot/python-rocket-software/py7/Circuit Logical Power Event.md",
+		"/F/godot/python-rocket-software/py7/Circuit.md",
+		"/F/godot/python-rocket-software/py7/push pull notes.md",
+		"/F/godot/python-rocket-software/py7/readme.md",
+		"/C/Users/jay/Documents/projects/godot/godot-master/godot-master/methods.py",
+		"/C/Users/jay/Documents/projects/godot/godot-master/godot-master/core/math/geometry_3d.cpp",
+		"/F/godot/python-rocket-software/multiman/readme.md",
+		"/F/godot/python-rocket-software/multiman/Tasks and Actions.md",
+		"/F/godot/python-rocket-software/multiman/task.py",
+		"/C/Users/jay/Documents/projects/godot/room_3/README.md",
+		"/C/Users/jay/Documents/projects/trails/one_2/spot.js",
+		"/C/Users/jay/AppData/Local/Temp/Rar$DIa0.677/readme.txt",
+		"/C/Users/jay/Documents/projects/socket_server/host.py",
+		"/H/Crack-Windows/install.txt",
+		"/F/godot/python-rocket-software/supergrid/readme.md",
+		"/C/Users/jay/Documents/projects/trails/one_2/b-2.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/js/data.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/js/main.js",
+		"/C/Users/jay/Documents/projects/trails/one_2/eyes.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/js/d2.js",
+		"/C/Users/jay/Documents/projects/perceptron-master/index.html",
+		"/C/Users/jay/Documents/projects/trails/one_2/b.js",
+		"/C/Users/jay/Documents/projects/trails/one_2/eyes2.js",
+		"/C/Users/jay/Documents/projects/trails/one_2/onehard.html",
+		"/C/Users/jay/Documents/projects/trails/one_2/g.js",
+		"/F/godot/python-rocket-software/supergrid/main.py",
+		"/C/Users/jay/Documents/projects/trails/spot.js",
+		"/C/Users/jay/Documents/projects/trails/b.js",
+		"/C/Users/jay/Documents/projects/trails/oscillator.js",
+		"/C/Users/jay/Documents/projects/trails/b-2.js",
+		"/C/Users/jay/Documents/projects/trails/b.html",
+		"/F/godot/python-rocket-software/supergrid/info2.md",
+		"/C/Users/jay/Documents/projects/js-gravity/graph_ui/main.py",
+		"/C/Users/jay/Documents/projects/js-gravity/graph_ui/static/js/main.js",
+		"/C/Users/jay/Documents/projects/trails/trail.js",
+		"/F/godot/python-rocket-software/supergrid/docs/plotting.md",
+		"/F/godot/python-rocket-software/supergrid/docs/usage.md",
+		"/C/Users/jay/Documents/projects/economy/game/index.html",
+		"/C/Users/jay/Documents/projects/trails/line.html",
+		"/C/Users/jay/Documents/trails/index.html",
+		"/F/godot/python-rocket-software/graph/ograph.py",
+		"/F/godot/python-rocket-software/graph/find.py",
+		"/F/godot/python-rocket-software/py6/flatmap.py",
+		"/F/godot/python-rocket-software/graph/node.py",
+		"/F/godot/python-rocket-software/graph/events.py",
+		"/F/godot/python-rocket-software/graph/graph.py",
+		"/F/godot/python-rocket-software/graph/tree.py",
+		"/F/godot/python-rocket-software/graph/base.py",
+		"/F/godot/python-rocket-software/graph/pointer.py",
+		"/F/godot/python-rocket-software/graph/main.py",
+		"/F/godot/python-rocket-software/graph/example4.py",
+		"/F/godot/python-rocket-software/graph/example2.py",
+		"/F/godot/python-rocket-software/graph/power/readme.md",
+		"/F/godot/python-rocket-software/graph/notes.py",
+		"/C/Users/jay/Downloads/wave-function-collapse.ipynb",
+		"/F/godot/python-rocket-software/py6/flatmap_examples.py",
+		"/C/Users/jay/Documents/projects/socket_server/manager.py",
+		"/F/godot/python-rocket-software/py6/flatmap_example7.py",
+		"/C/Users/jay/Documents/projects/socket_server/home.py",
+		"/C/Users/jay/Documents/projects/socket_server/run.bat",
+		"/C/Users/jay/Documents/projects/socket_server/server/home.py",
+		"/C/Users/jay/Documents/projects/socket_server/server/devices.py",
+		"/C/Users/jay/Documents/projects/socket_server/server/host.py",
+		"/C/Users/jay/Documents/projects/bonjour/server/host.py",
+		"/C/Users/jay/Documents/projects/bonjour/server/manager.py",
+		"/C/Users/jay/Documents/projects/bonjour/env/Lib/site-packages/upnpy/ssdp/SSDPRequest.py",
+		"/C/Users/jay/Documents/projects/bonjour/client/static/js/connect.js",
+		"/C/Users/jay/Documents/projects/bonjour/client/templates/index.html",
+		"/C/Users/jay/Documents/projects/bonjour/client/templates/connect.html",
+		"/C/Users/jay/Documents/projects/bonjour/client/server.py",
+		"/F/godot/python-rocket-software/py6/feed.py",
+		"/F/godot/python-rocket-software/py6/parts.py",
+		"/F/godot/python-rocket-software/py6/condition.py",
+		"/F/godot/python-rocket-software/py6/tap.py",
+		"/F/godot/python-rocket-software/py6/memory.py",
+		"/F/godot/python-rocket-software/py6/example3.py",
+		"/F/godot/python-rocket-software/py6/out.log",
+		"/C/Users/jay/Documents/projects/browser/pywin32.py",
+		"/F/godot/python-rocket-software/py6/base.py",
+		"/C/Users/jay/Documents/projects/bonjour/env/Lib/site-packages/upnpy/upnp/UPnP.py",
+		"/C/Users/jay/Documents/projects/deluge/deluge-2.0.3/deluge-2.0.3/deluge/httpdownloader.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/port-forward-master/attempt1.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/miranda-master/miranda-master/miranda/__init__.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/zero.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/readme.md",
+		"/C/Users/jay/Documents/projects/deluge/deluge-2.0.3/deluge-2.0.3/deluge/core/preferencesmanager.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/zeroconf.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/port-forward-master/wireshark",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/browse.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/port-forward-master/port-forward.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/port-forward-master/at3.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/port-forward-master/at2.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/port-forward-master/cu.py",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/up/README",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/up/libminiupnpc.a",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/up/miniupnpc.def",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf/up/miniupnpc.lib",
+		"/C/Program Files (x86)/stunnel/config/stunnel.conf",
+		"/C/Program Files (x86)/Privoxy/config.txt",
+		"/C/Users/jay/Documents/projects/bonjour/client/static/css/main.css",
+		"/C/Users/jay/Documents/projects/bonjour/client/static/js/socket.js",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/readme.md",
+		"/C/Users/jay/Documents/projects/bonjour/client/static/js/trackpad.js",
+		"/C/Users/jay/Documents/projects/bonjour/pyzeroconf-master/zeroconf.py"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 188.0,
+		"where_history":
+		[
+			"C:\\Users\\jay\\Documents\\projects\\deluge\\deluge-2.0.3\\deluge-2.0.3\\deluge",
+			"F:\\godot\\python-rocket-software\\py4\\,*.py",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"amps",
+			"charge_slice",
+			"power",
+			"recieve_power",
+			"volts",
+			"pt",
+			"name",
+			"compute",
+			"resistence",
+			"phase",
+			"v",
+			"length",
+			"2",
+			"1",
+			"amps",
+			"cuombles",
+			" c3",
+			"get_looptests",
+			"linear_looptest",
+			"unit_count",
+			"looptest",
+			"looptest_event",
+			"2",
+			"unit",
+			"_count",
+			"p.",
+			"step_count",
+			"print",
+			"other_terminal",
+			"n",
+			"add_terminal_connection",
+			"a",
+			"c.",
+			" - ",
+			"origin_id",
+			"unique_id",
+			"entity",
+			"term",
+			"entity",
+			"self",
+			"print",
+			"next_terminals",
+			"self",
+			"start",
+			"event",
+			"push_looptest",
+			"start_terminal",
+			"ev",
+			"path",
+			"step_ids",
+			"step_id",
+			"new_terminals",
+			"_next_terms",
+			"step",
+			"self.",
+			"looptest_in",
+			"step_next",
+			"Unit",
+			"label",
+			"passthrough",
+			"step_to",
+			"step_to(",
+			"terminal",
+			"passthrough",
+			"ta",
+			"event",
+			"ids[0]",
+			"Power",
+			"position",
+			"destination_unit",
+			"target",
+			"ta",
+			"self",
+			"amps",
+			"max_amps",
+			"volts",
+			"terminal_a",
+			"max",
+			"on_power_event",
+			"positive",
+			"terminal",
+			", ",
+			"let",
+			"100",
+			"context",
+			"cy",
+			"cx",
+			"size/2",
+			"x",
+			"300",
+			"Math",
+			"offsetX = 0\n        e.options.offset",
+			"b.",
+			"a.",
+			"green",
+			"circle",
+			"this",
+			"[0][1]\n    if(a.deleted) { return ",
+			"drawLines",
+			"drawLines ",
+			"b.",
+			"neighbours",
+			"drawLines",
+			"spot.",
+			" spot.",
+			"a.",
+			"n.",
+			"spot",
+			"count",
+			"drawLine",
+			"pot",
+			"a[1]",
+			"this",
+			"b",
+			"0",
+			"spot.neighbours",
+			"this",
+			"computeOffset",
+			"spot",
+			"[0]",
+			"drawLine",
+			"neighbours",
+			"neighbour",
+			"this.",
+			"drawLine",
+			"drawSpot",
+			"circle",
+			"tendril"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "F:\\godot\\python-rocket-software"
+		},
+		{
+			"path": "C:\\Users\\jay\\Documents\\projects\\bonjour"
+		},
+		{
+			"path": "C:\\Users\\jay\\AppData\\Local\\Temp\\fz3-16100444333810"
+		},
+		{
+			"path": "C:\\Users\\jay\\Documents\\projects\\deluge\\deluge-2.0.3\\deluge-2.0.3\\deluge"
+		},
+		{
+			"path": "C:\\Users\\jay\\Documents\\projects"
+		},
+		{
+			"path": "C:\\Users\\jay\\Documents\\projects\\socket_server"
+		},
+		{
+			"path": "C:\\Users\\jay\\Documents\\projects\\wfc"
+		}
+	],
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 68.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.509354865367,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SFTP":
+	{
+		"height": 0.0
+	},
+	"output.autopep8":
+	{
+		"height": 114.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 102.0
+	},
+	"output.sftp":
+	{
+		"height": 114.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 249.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"jquer",
+				"strangemother-site\\qr\\qrcodejs-master\\qrcodejs-master\\jquery.min.js"
+			],
+			[
+				"kamp.",
+				"hosting\\bootstrap\\structure\\kamp.py"
+			],
+			[
+				"form.",
+				"hosting\\heavymetal\\templates\\heavymetal\\form.html"
+			],
+			[
+				"settngbase.py",
+				"hosting\\hosting\\settings\\base.py"
+			],
+			[
+				"vultr",
+				"env3\\Lib\\site-packages\\vultr\\vultr.py"
+			],
+			[
+				"wordpress instance",
+				"hosting\\autodocs\\uapi\\WordPressInstanceManager\\WordPressInstanceManager-get_instances.json"
+			],
+			[
+				"remove_in_progress_exim_config_edit",
+				"hosting\\autodocs\\uapi\\Server Administration\\remove_in_progress_exim_config_edit.json"
+			],
+			[
+				"colors.js",
+				"babylon\\garden\\js\\display\\colors.js"
+			],
+			[
+				"it.",
+				"babylon\\garden\\js\\vendors\\it.js"
+			],
+			[
+				"virtualJoystick",
+				"babylon\\garden\\js\\vendors\\converted\\virtualJoystick.js"
+			],
+			[
+				"garden",
+				"babylon\\alpha\\js-v3\\lib\\garden.js"
+			],
+			[
+				"target",
+				"babylon\\alpha\\js-v3\\lib\\core\\targetAssignment.js"
+			],
+			[
+				"File",
+				"babylon\\garden\\js\\files.js"
+			],
+			[
+				"file",
+				"babylon\\garden\\js\\files.js"
+			],
+			[
+				"Garden",
+				"babylon\\garden\\js\\app\\Garden.js"
+			],
+			[
+				"garde",
+				"js-v3\\lib\\garden.js"
+			],
+			[
+				"displa",
+				"js-v3\\lib\\core\\display.js"
+			],
+			[
+				"utils.js",
+				"js-v3\\lib\\core\\utils.js"
+			],
+			[
+				"axis",
+				"js-v3\\apps\\axis.js"
+			],
+			[
+				"dev",
+				"js-v3\\lib\\extras\\dev.js"
+			],
+			[
+				"colors",
+				"js-v3\\lib\\babylon\\colors.js"
+			],
+			[
+				"core.",
+				"js-v3\\lib\\2d\\core.js"
+			],
+			[
+				"camera",
+				"js-v3\\lib\\babylon\\cameras.js"
+			],
+			[
+				"interface.js",
+				"js-v3\\lib\\core\\interface.js"
+			],
+			[
+				"axis.",
+				"js\\lib\\axis.js"
+			],
+			[
+				"files",
+				"js-v3\\files.js"
+			],
+			[
+				"lights.",
+				"js-v3\\lib\\babylon\\lights.js"
+			],
+			[
+				"files.j",
+				"js-v3\\files.js"
+			],
+			[
+				"livepr",
+				"js-v3\\lib\\core\\liveProperties.js"
+			],
+			[
+				"shapes.",
+				"js-v3\\lib\\babylon\\shapes.js"
+			],
+			[
+				"light",
+				"js-v2\\lib\\Light.js"
+			],
+			[
+				"app.",
+				"js-v3\\app.js"
+			],
+			[
+				"main",
+				"css\\main.css"
+			],
+			[
+				"liveprop",
+				"js-v3\\lib\\core\\liveProperties.js"
+			],
+			[
+				"view.",
+				"js-v3\\view.js"
+			],
+			[
+				"utils",
+				"js-v3\\lib\\core\\utils.js"
+			],
+			[
+				"children",
+				"js-v3\\lib\\core\\children.js"
+			],
+			[
+				"apps",
+				"js-v3\\app.js"
+			],
+			[
+				"colors.",
+				"js-v3\\lib\\babylon\\colors.js"
+			],
+			[
+				"particle",
+				"js-v3\\apps\\particles.js"
+			],
+			[
+				"",
+				"js-v3\\app_animateboxes.js"
+			],
+			[
+				"main.",
+				"css\\main.css"
+			],
+			[
+				"utils.",
+				"js-v3\\lib\\core\\utils.js"
+			],
+			[
+				"config",
+				"js-v3\\config.js"
+			],
+			[
+				"main.c",
+				"css\\main.css"
+			],
+			[
+				"displ",
+				"js-v3\\lib\\core\\display.js"
+			],
+			[
+				"in",
+				"js-v3\\lib\\core\\interface.js"
+			],
+			[
+				"adapter",
+				"js-v3\\lib\\core\\adapter.js"
+			],
+			[
+				"interf",
+				"js-v3\\lib\\core\\interface.js"
+			],
+			[
+				"form",
+				"pages\\server\\pages\\forms.html"
+			],
+			[
+				"virtualjoy",
+				"babylon\\js\\babylon\\src\\Tools\\babylon.virtualJoystick.js"
+			],
+			[
+				"gamepad",
+				"babylon\\js\\babylon\\src\\Cameras\\babylon.gamepadCamera.js"
+			],
+			[
+				"bablyon/.html",
+				"babylon\\index.html"
+			],
+			[
+				"assets.json",
+				"pages\\server\\js\\uplink\\assets.json"
+			],
+			[
+				"vendor",
+				"pages\\server\\js\\vendors.json"
+			],
+			[
+				"router.",
+				"pages\\server\\pages\\router.html"
+			],
+			[
+				"delegt",
+				"pages\\javascript\\base\\Delegate.js"
+			],
+			[
+				"events.",
+				"pages\\javascript\\Events.js"
+			],
+			[
+				"editor",
+				"pages\\server\\pages\\editor.html"
+			],
+			[
+				"router.css",
+				"pages\\server\\css\\pages\\router.css"
+			],
+			[
+				"router.html",
+				"pages\\server\\pages\\router.html"
+			],
+			[
+				"video",
+				"pages\\server\\pages\\video.html"
+			],
+			[
+				"template",
+				"pages\\javascript\\view\\TemplateList.js"
+			],
+			[
+				"remote",
+				"pages\\javascript\\data\\Remote.js"
+			],
+			[
+				"action.",
+				"pages\\javascript\\view\\Action.js"
+			],
+			[
+				"editor.css",
+				"pages\\server\\css\\editor.css"
+			],
+			[
+				"editor.html",
+				"pages\\server\\pages\\editor.html"
+			],
+			[
+				"keyboard.j",
+				"pages\\javascript\\Keyboard.js"
+			],
+			[
+				"templ",
+				"pages\\javascript\\view\\Template.js"
+			],
+			[
+				"action",
+				"pages\\javascript\\view\\Action.js"
+			],
+			[
+				"templat",
+				"pages\\javascript\\view\\Template.js"
+			],
+			[
+				"mock.",
+				"pages\\server\\pages\\mock.html"
+			],
+			[
+				"files.css",
+				"pages\\server\\css\\pages\\files.css"
+			],
+			[
+				"coreclass",
+				"babylon\\js\\lib\\CoreClass.js"
+			],
+			[
+				"it.js",
+				"CottonDuck\\src\\cotton\\vendor\\it.js"
+			],
+			[
+				"storage",
+				"files\\env\\Lib\\site-packages\\CodernityDB\\storage.py"
+			],
+			[
+				"scandir",
+				"files\\env\\Lib\\site-packages\\scandir.py"
+			],
+			[
+				"vrep.",
+				"flight-vision\\vrep.py"
+			],
+			[
+				"coffee.css",
+				"coffee\\static\\css\\coffee.css"
+			],
+			[
+				"index.js",
+				"coffee\\reserved\\static\\reserved\\js\\index.js"
+			],
+			[
+				"coffee",
+				"coffee\\static\\css\\coffee.css"
+			],
+			[
+				"index.css",
+				"coffee\\static\\css\\index.css"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 590.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 146.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
