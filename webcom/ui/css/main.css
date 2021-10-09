@@ -59,19 +59,38 @@ div#tabbed_ui {
     border: solid;
 }
 
-.panels {display: flex;flex-direction: column;flex-grow: 1;border: solid;}
+.panels {display: flex;flex-direction: column;flex-grow: 1;border: solid;min-height: 50vh;}
 
 .tab.panel {
     border: solid 1px green;
     flex-grow: 1;
     display: flex;
+    display: none;
+    /* min-height: 50vh; */
 }
 
-.tab.panel.live {
+.tab.title.live {
     background: #81e781;
 }
 
-.tab.panel.active {
+.tab.title.active {
     font-weight: bold;
     background: #dfc547;
+}
+
+
+.tab.title.active.live {
+    background: #399bc7;
+    color: white;
+}
+
+.tabs a.title {
+    padding: .5em 1em;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.tab.panel.active {
+    display: flex;
 }

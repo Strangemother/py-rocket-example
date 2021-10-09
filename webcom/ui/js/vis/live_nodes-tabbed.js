@@ -56,6 +56,14 @@ var dirtyLog = function(message) {
 }
 
 
+var callerDirtyLog = function(message) {
+    let v =  `<li>
+        <a href='javascript:;' onclick='replayMe(event)'>${message}</a>
+    </li>`
+    document.getElementById('log_items').innerHTML += v
+}
+
+
 let websocketMessageHandler = function(ev){
     let messageEvent = ev.detail;
     let message = messageEvent.data
@@ -97,7 +105,19 @@ let funcOrUnknown = function(f){
 
 let discoverParent = function(data){
     /* Given a 'node' type, discover the target graph and return its data structure. */
-    debugger;
+
+    /*
+
+    data:
+        action: "add"
+        id: 20500
+        type: "node"
+        value: {id: 0, label: '0'}
+
+    1. If the data has no graph target, select the uppermost, or "active"
+     */
+
+
 }
 
 let nodeFromSocket = function(v, d, items) {
@@ -172,7 +192,9 @@ let digestContent = function(content) {
         The value content is specific to the called function
 
      */
-    console.log('content', content)
+    console.log('digestContent', content)
+    emitEvent('digestContent', content)
+
     let func = {
         [undefined]: unknown
         , node: nodeFromSocket
