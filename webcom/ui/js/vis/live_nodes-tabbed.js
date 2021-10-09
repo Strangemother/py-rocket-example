@@ -95,6 +95,11 @@ let funcOrUnknown = function(f){
 }
 
 
+let discoverParent = function(data){
+    /* Given a 'node' type, discover the target graph and return its data structure. */
+    debugger;
+}
+
 let nodeFromSocket = function(v, d, items) {
     /*
         Given a message from the a socket pump, digest the node
@@ -124,8 +129,14 @@ let nodeFromSocket = function(v, d, items) {
 
 
      */
+    /*
+        v2 in the mutli view, the DN should access the live graph for this node.
+     */
     let action = d.action
-    items = items == undefined? dn.data.nodes: items;
+
+    if(items == undefined) {
+        items = discoverParent(d)
+    }
 
     let func = {
           add: (v) => items.add(v)

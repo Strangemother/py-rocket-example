@@ -2,8 +2,17 @@
 
 This app manages the interface of tabbed graphs.
  */
+
+const cut = function(selector){
+    let n = document.querySelector(selector)
+    n.remove()
+    return n.outerHTML
+}
+
+
 const Tabs = {
-    data() {
+    template: cut('.templates .tabs')
+    , data() {
       return {
             tabs: {
                 1: {
@@ -17,7 +26,6 @@ const Tabs = {
             }
         }
     }
-
     , mounted(){
         console.log('Tabs mounted')
         onEvent('client-wake', this.onClientWake.bind(this))
@@ -99,7 +107,6 @@ const Tabs = {
             }
         }
 
-
         , generateTab(clientId) {
             let id = clientId
             let v = this.tabCounts[id];
@@ -123,6 +130,7 @@ const Tabs = {
     }
 }
 
-let app = Vue.createApp(Tabs)
+let app = Vue.createApp({})
 
+app.component('tabs', Tabs)
 let mounted = app.mount('#tabbed_ui')
