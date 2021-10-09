@@ -136,6 +136,14 @@ def add_tab(_id=None):
         value=dict(),
     )
 
+def show_tab(index=None):
+    send_json(
+        type='client',
+        action='show',
+        value=index,
+    )
+
+
 def remove_node(_id=None):
 
     send_json(
