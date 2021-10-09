@@ -15,62 +15,61 @@
 
 <body>
 
-    <div class="side-by-side">
-        <div class="alt">
+    <div class="content">
 
-            <div id="tabbed_ui">
-                <div class="titles">
-
-                    <div :class="['tab title', {active: tab.active, live: tab.live}]"
-                        v-for='tab of tabs'>
-                        <a href='javascript:;'
-                            class="title"
-                            @click='tabClick($event, tab)'>{{ tab.title }}</a>
-                    </div>
-                </div>
-
-                <div class="panels">
-
-                    <div
-                        v-for='tab of tabs'
-                        :class="['tab panel', {active: tab.active, live: tab.live}]"
-                        >
-                        <div class="network-view">
-                            panel {{ tab.title }}, {{ tab.initIndex }}
-
-                        </div>
-                    </div>
+        <div class="side-by-side">
+            <div class="alt">
+                <div id="tabbed_ui">
+                    <tabs></tabs>
                 </div>
             </div>
-
         </div>
 
+        <!-- <div id="mynetwork"></div> -->
 
-  <div class="content">
+        <div class="logs">
+            <ul id="log_items">
+                <li>log.</li>
+            </ul>
+        </div>
 
-      <div class="filename">
-        <label>
-          <input type="text" name="filename" id="filename" value='shuffled_letter.json'>
-        </label>
-        <button onclick='javascript:downloadAppendStore(filename.value)'>Load</button>
-      </div>
+    </div>
 
-      <!-- <div id="mynetwork"></div> -->
 
-  </div>
-  <div class="logs">
-    <ul id="log_items">
-      <li>log.</li>
-    </ul>
-  </div>
-  </div>
 
-  <!-- <script type="text/javascript" src="js/vis/simple_json.js"></script> -->
-  <!-- <script type="text/javascript" src="js/vis/live_nodes.js"></script> -->
-  <script type="text/javascript" src="js/vis/tabbed-head.js"></script>
-  <script type="text/javascript" src="js/vis/live_nodes-tabbed.js"></script>
-  <script type="text/javascript" src="js/vis/socket_connect.js"></script>
-  <script type="text/javascript" src="js/vis/socket.vue.js"></script>
+<div class="templates">
+
+    <div class="tabs">
+        <div class="titles">
+            <div :class="['tab title', {active: tab.active, live: tab.live}]"
+                v-for='tab of tabs'>
+                <a href='javascript:;'
+                    class="title"
+                    @click='tabClick($event, tab)'>{{ tab.title }}</a>
+            </div>
+        </div>
+
+        <div class="panels">
+
+            <div v-for='tab of tabs'
+                :class="['tab panel', {active: tab.active, live: tab.live}]"
+                >
+                <div class="network-view">
+                    panel {{ tab.title }}, {{ tab.initIndex }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- <script type="text/javascript" src="js/vis/simple_json.js"></script> -->
+<!-- <script type="text/javascript" src="js/vis/live_nodes.js"></script> -->
+<script type="text/javascript" src="js/vis/tabbed-head.js"></script>
+<script type="text/javascript" src="js/vis/live_nodes-tabbed.js"></script>
+<script type="text/javascript" src="js/vis/socket_connect.js"></script>
+<script type="text/javascript" src="js/vis/socket.vue.js"></script>
 
 </body>
 </html>
