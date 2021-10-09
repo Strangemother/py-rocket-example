@@ -1,11 +1,15 @@
 from websocket import create_connection;
 import threading
 import json
+import os
+
+import atexit
 
 stopped = threading.Event()
 
 
 def main():
+
     global client
     client = connect()
     start_ticker()
@@ -51,7 +55,6 @@ class Client(object):
 
     def __init__(self, client_id):
         self.client_id = client_id
-
         self.url = f"ws://{self.uri}:{self.port}/ws/{client_id}"
 
     def ensure_connect(self):
@@ -60,9 +63,26 @@ class Client(object):
 
         self.ws = create_connection(self.url)
         self.connected = True
+        self.announce()
+        atexit.register(self.exiting)
+
+    def exiting(self):
+        self.send_json(action='exit')
+
+    def announce(self):
+        # present the client to the net.
+        return self.send_json(action='wake', type='client')
 
     def send(self, message:str):
         return self.ws.send(message)
+
+
+    def send_json(self, **kw):
+        kw.setdefault('id',self.client_id)
+        kw.setdefault('type','client')
+
+        m = json.dumps(kw)
+        return self.send(m)
 
     def drain(self):
         v = self.ws.recv()
@@ -70,7 +90,7 @@ class Client(object):
 
 
 def connect():
-    c = Client(123)
+    c = Client(os.getpid())
     c.ensure_connect()
     return c
 
@@ -80,8 +100,8 @@ def send(m):
 
 
 def send_json(**kw):
-    m = json.dumps(kw)
-    return send(m)
+    # m = json.dumps(kw)
+    return client.send_json(**kw)
 
 
 ncache = {
@@ -89,6 +109,7 @@ ncache = {
     'ecounter': 0,
 
 }
+
 
 def add_node(_id=None, label=None):
     ncv = ncache['ncounter']
@@ -105,6 +126,15 @@ def add_node(_id=None, label=None):
         )
     return _id
 
+
+def add_tab(_id=None):
+    """Generatea new tab on the interface for this existing client
+    """
+    send_json(
+        type='client',
+        action='spawn',
+        value=dict(),
+    )
 
 def remove_node(_id=None):
 
