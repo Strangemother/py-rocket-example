@@ -32,3 +32,46 @@ html {
     /* border: solid; */
     flex-direction: column;
 }
+
+
+div#tabbed_ui {
+    border: solid;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.alt {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.side-by-side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.titles {
+    display: flex;
+    /* flex-grow: 1; */
+    border: solid;
+}
+
+.panels {display: flex;flex-direction: column;flex-grow: 1;border: solid;}
+
+.tab.panel {
+    border: solid 1px green;
+    flex-grow: 1;
+    display: flex;
+}
+
+.tab.panel.live {
+    background: #81e781;
+}
+
+.tab.panel.active {
+    font-weight: bold;
+    background: #dfc547;
+}

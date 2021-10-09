@@ -67,24 +67,26 @@ let createGraph = function(data){
 
   // create a network
   var container = document.getElementById("mynetwork");
+
   var data = {
     nodes: nodes,
     edges: edges
   };
 
   var options = {
-    layout: {
-        // improvedLayout: false
-        // hoverWidth:2
-    }
-    , edges: {
-        hoverWidth: function (width) {return width+2;}
-        ,selectionWidth: function (width) {return width*2;}
+      layout: {
+          // improvedLayout: false
+          // hoverWidth:2
+      }
+      , edges: {
+          hoverWidth: function (width) {return width+2;}
+          ,selectionWidth: function (width) {return width*2;}
 
-    }
+      }
   };
 
   var network = new vis.Network(container, data, options);
+
   network.once('afterDrawing', () => {
       container.style.height = '100vh'
   })

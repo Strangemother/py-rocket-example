@@ -6,16 +6,18 @@ A simple "Live" nodes and edges graph implementation through websockets.
 2. parse and digest `digestContent`
 
  */
-const emitEvent = function(name, detail) {
-    let v = new CustomEvent(name, {detail})
-    window.dispatchEvent(v)
-    return v
-}
 
 
-const onEvent = function(name, handler) {
-    return window.addEventListener(name, handler)
-}
+// const emitEvent = function(name, detail) {
+//     let v = new CustomEvent(name, {detail})
+//     window.dispatchEvent(v)
+//     return v
+// }
+
+
+// const onEvent = function(name, handler) {
+//     return window.addEventListener(name, handler)
+// }
 
 
 var nodes = new vis.DataSet([{id:1}]);
@@ -27,9 +29,9 @@ let liveNodesWebsocketListenerInit = function(){
 }
 
 
-window.dn = createGraph({
-    nodes, edges
-})
+// window.dn = createGraph({
+//     nodes, edges
+// })
 
 var newNode = function(id, label, extra){
     let d = extra || {}
@@ -67,20 +69,31 @@ let websocketMessageHandler = function(ev){
     digestContent(content)
 }
 
+
 let clientFromSocket = function(v, d, items) {
     /*
     A message regard the `type` client.
      */
 
+    console.log('clientFromSocket', v,d)
     let action = d.action
 
     let func = {
-          wake: (data) => emitEvent('client-wake', data)
+          //wake: (data) => emitEvent('client-wake', data)
+          // , spawn: (data) => emitEvent('client-spawn', data)
         // , remove: (v) => items.remove(v)
     }[action]
 
-   return func(d)
+    emitEvent(`client-${action}`, d)
+
+    return funcOrUnknown(func)(d)
 }
+
+
+let funcOrUnknown = function(f){
+    return f == undefined ? unknown: f;
+}
+
 
 let nodeFromSocket = function(v, d, items) {
     /*
@@ -119,7 +132,8 @@ let nodeFromSocket = function(v, d, items) {
         , remove: (v) => items.remove(v)
     }[action]
 
-    return func(v, d)
+    return funcOrUnknown(func)(v, d)
+    // return func(v, d)
 }
 
 let edgeFromSocket = function(v, d) {
@@ -127,9 +141,11 @@ let edgeFromSocket = function(v, d) {
     // return dn.data.edges.add(v)
 }
 
+
 let unknown = function(v, d){
-    console.warn('Unknown', d)
+    console.warn('!! Unknown', d)
 }
+
 
 let digestContent = function(content) {
     /*
@@ -154,10 +170,9 @@ let digestContent = function(content) {
 
     }[content.type];
 
-    func = func == undefined ? unknown: func;
-
-    return func(content.value, content)
+    return funcOrUnknown(func)(content.value, content)
 
 }
+
 
 ;liveNodesWebsocketListenerInit();

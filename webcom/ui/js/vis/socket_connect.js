@@ -18,3 +18,4 @@ function sendMessage(event) {
     input.value = ''
     event.preventDefault()
 }
+

@@ -21,8 +21,11 @@
             <div id="tabbed_ui">
                 <div class="titles">
 
-                    <div class="tab title" v-for='tab of tabs'>
-                        <a class="title">{{ tab.title }}</a>
+                    <div :class="['tab title', {active: tab.active, live: tab.live}]"
+                        v-for='tab of tabs'>
+                        <a href='javascript:;'
+                            class="title"
+                            @click='tabClick($event, tab)'>{{ tab.title }}</a>
                     </div>
                 </div>
 
@@ -30,7 +33,7 @@
 
                     <div
                         v-for='tab of tabs'
-                        :class="['tab panel', {active: tab.active}]"
+                        :class="['tab panel', {active: tab.active, live: tab.live}]"
                         >
                         <div class="network-view">
                             panel {{ tab.title }}, {{ tab.initIndex }}
@@ -52,7 +55,7 @@
         <button onclick='javascript:downloadAppendStore(filename.value)'>Load</button>
       </div>
 
-      <div id="mynetwork"></div>
+      <!-- <div id="mynetwork"></div> -->
 
   </div>
   <div class="logs">
@@ -62,8 +65,10 @@
   </div>
   </div>
 
-  <script type="text/javascript" src="js/vis/simple_json.js"></script>
-  <script type="text/javascript" src="js/vis/live_nodes.js"></script>
+  <!-- <script type="text/javascript" src="js/vis/simple_json.js"></script> -->
+  <!-- <script type="text/javascript" src="js/vis/live_nodes.js"></script> -->
+  <script type="text/javascript" src="js/vis/tabbed-head.js"></script>
+  <script type="text/javascript" src="js/vis/live_nodes-tabbed.js"></script>
   <script type="text/javascript" src="js/vis/socket_connect.js"></script>
   <script type="text/javascript" src="js/vis/socket.vue.js"></script>
 
