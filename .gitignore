@@ -5,3 +5,7 @@ env/
 docs/private
 .import
 *.import
+
+pdfs/
+audio/
+booster/
