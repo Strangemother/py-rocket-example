@@ -2,9 +2,9 @@ The player enters the game dramically - perhaps falling from the sky, with the f
 
 The user should take control of the ship - else be reset back to the fall start. Once controlled, the player must fly to the city.
 
-The voiceover will be chattering in spanish, maybe chines and others until setting on one language, greeting the player by first name.
+The voiceover will be chattering in spanish, maybe chinese and others until setting on one language, greeting the player by first name.
 
-    Ooh hey there george...
+    My bad George, I'll stick to Inglés from now on...
 
 + Through an entry sky port
 + Greeted by security
