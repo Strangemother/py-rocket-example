@@ -160,17 +160,19 @@ let nodeFromSocket = function(v, d, items) {
 
     emitEvent('node-event', d)
 
-    let func = {
-          add: (v) => items.add(v)
-        , remove: (v) => items.remove(v)
-    }[action]
+    // let func = {
+    //       add: (v) => items.add(v)
+    //     , remove: (v) => items.remove(v)
+    // }[action]
 
     // return funcOrUnknown(func)(v, d)
     // return func(v, d)
 }
 
 let edgeFromSocket = function(v, d) {
-    return nodeFromSocket(v, d, dn.data.edges)
+    emitEvent('edge-event', d)
+
+    //return nodeFromSocket(v, d, dn.data.edges)
     // return dn.data.edges.add(v)
 }
 
