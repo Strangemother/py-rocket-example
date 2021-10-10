@@ -52,8 +52,20 @@ const Pipesview = {
 
             let outbound = this.getTargets(d)
             let tabId = outbound[0]
+            let action = d.action
 
-            this.$nextTick(() => graphUnits[tabId].app.newNodeObject(d.value))
+            //this.$nextTick(() => graphUnits[tabId].app.newNodeObject(d.value))
+            this.$nextTick(function() {
+                let app = graphUnits[tabId].app;
+
+                let funcs = {
+                    add: app.newNodeObject
+                    , update: app.updateNodeObject
+                }
+                let func = funcs[action]
+
+                func(d.value)
+            })
         }
 
         , routeEdgeMessage(e){
@@ -65,8 +77,21 @@ const Pipesview = {
 
             let outbound = this.getTargets(d)
             let tabId = outbound[0]
+            let action = d.action
 
-            this.$nextTick(() => graphUnits[tabId].app.newEdgeObject(d.value))
+            // return func(v, d)
+            // this.$nextTick(() => graphUnits[tabId].app.newEdgeObject(d.value))
+            this.$nextTick(function() {
+                let func = {
+                      add: () => graphUnits[tabId].app.newEdgeObject
+                    , update: () => graphUnits[tabId].app.updateEdgeObject
+                }[action]
+
+                let objFunc = funcOrUnknown(func)()
+
+                objFunc(d.value)
+                // graphUnits[tabId].app.newEdgeObject(d.value)
+            })
         }
 
         , tabsUnit(e) {
@@ -191,6 +216,11 @@ const GraphView = {
             return this.pushNode(d);
         }
 
+        , updateNodeObject(node) {
+            let data = graphUnits[this.tabkey]
+            data.nodes.update([node])
+        }
+
         , pushNode(node) {
             let data = graphUnits[this.tabkey]
             data.nodes.add(node)
@@ -201,6 +231,11 @@ const GraphView = {
             let d = node
             d.label = String(d.label || d.id)
             return this.pushEdge(d);
+        }
+
+        , updateEdgeObject(edge) {
+            let data = graphUnits[this.tabkey]
+            data.edges.update([edge])
         }
 
         , newEdge(fromId, toId, extra) {

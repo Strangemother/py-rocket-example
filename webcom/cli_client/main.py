@@ -9,7 +9,9 @@ stopped = threading.Event()
 
 
 def main():
+    background_connect()
 
+def background_connect():
     global client
     client = connect()
     start_ticker()
@@ -127,6 +129,14 @@ def add_node(_id=None, label=None):
     return _id
 
 
+def update_node(_id, **kw):
+    send_json(
+        type='node',
+        action='update',
+        value={**kw, 'id': _id,},
+        )
+
+
 def add_tab(_id=None):
     """Generatea new tab on the interface for this existing client
     """
@@ -158,18 +168,35 @@ def remove_node(_id=None):
         )
 
 
-def add_edge(a, b, _id=None, label=None):
+def update_edge(_id, **kw):
+    send_json(
+        type='edge',
+        action='update',
+        value={**kw, 'id': _id,},
+        )
+
+
+def add_edge(a, b, _id=None, label=None,**kw):
+    """
+
+        add_edge(0, 1, label="", background={
+            "enabled": True,
+            "color": "rgba(111,111,111,0.5)",
+            "size": 10,
+            "dashes": [20, 10],
+        }
+    """
     ncv = ncache['ecounter']
 
     _id = _id or f"{a}-{b}"
-    label = label or str(_id)
+    label = str(_id) if label is None else label
 
     ncache['ecounter'] = ncv + 1
 
     send_json(
         type='edge',
         action='add',
-        value={"from": a, "to": b, 'id': _id, 'label': label},
+        value={**kw, "from": a, "to": b, 'id': _id, 'label': label},
         )
     return _id
 
@@ -190,3 +217,4 @@ def remove_edge(_id=None, b=None):
 
 if __name__ == '__main__':
     main()
+
