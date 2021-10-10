@@ -3,12 +3,6 @@
 This app manages the interface of tabbed graphs.
  */
 
-const cut = function(selector){
-    let n = document.querySelector(selector)
-    n.remove()
-    return n.outerHTML
-}
-
 
 const Tabs = {
     template: cut('.templates .tabs')
@@ -24,14 +18,18 @@ const Tabs = {
             , tabCounts: {
                 1:1
             }
+            , lastSelected: undefined
         }
     }
+
     , mounted(){
         console.log('Tabs mounted')
         onEvent('client-wake', this.onClientWake.bind(this))
         onEvent('client-spawn', this.onClientSpawn.bind(this))
         onEvent('client-exit', this.onClientExit.bind(this))
         onEvent('client-show', this.onClientShow.bind(this))
+        onEvent('client-hide', this.onClientHide.bind(this))
+        emitEvent('tabs-unit', { entity: this})
     }
 
     , methods: {
@@ -40,30 +38,16 @@ const Tabs = {
             /* Given a tab button click, switch 'active' to true for all
             items with the same [tab] id.
              */
-            console.log(pointerEvent, tab)
-            /*
-                switch tabs
-                If shift: append tab
-             */
             let id = tab.id
+            this.lastSelected = id
 
             if(pointerEvent.shiftKey) {
-                // only manipulate tabs with this ID,
-                // ignoring other tab states.
-                console.log('active without closing others')
-                // this.forEachTab(function(tab, n){
-                //     if (tab.id == id) {
-                //         tab.active = true
-                //     }
-                // })
                 this.forEachTabId(id, (t, n) => t.active = true)
                 return
             }
 
-            console.log('Switch to tab.')
             // Enable any tab with that ID alone.
             this.forEachTab((t, n) => t.active = t.id == id)
-
         }
 
         , switchToTab(tabId, append=false) {
@@ -81,8 +65,25 @@ const Tabs = {
             }
 
             this.forEachTab((tab, n) => tab.active = tab.id == tabId)
-
         }
+
+        , hideTab(tabId) {
+            return this.forEachTabId(tabId, (t, n) => t.active = false)
+        }
+
+        , onClientHide(event) {
+            let d = event.detail
+            let clientId = d.id
+            let tabIndex = d.value
+            let tabId = `${clientId}-${tabIndex}`
+            var hiddenTabs = this.hideTab(tabId)
+            if(hiddenTabs.length == 0) {
+                // maybe string
+                this.hideTab(tabIndex)
+
+            }
+        }
+
         , onClientShow(event) {
             /*
 
@@ -99,20 +100,25 @@ const Tabs = {
             let tabIndex = d.value
             let activeCount = this.activeCount()
             let appendTo = activeCount > 1
+            let tabId = `${clientId}-${tabIndex}`
 
             if(tabIndex != null) {
-                tabId = `${clientId}-${tabIndex}`
                 this.switchToTab(tabId, appendTo)
                 return
             }
 
             // unique tab does not exist, show all of client tabs
             // or the uppermost.
-            tabIndex = this.tabCounts[clientId] - 1
-            tabId = `${clientId}-${tabIndex}`
+            let tagId = this.topTab(clientId)
             this.switchToTab(tabId, appendTo)
+        }
 
-
+        , topTab(clientId) {
+            let tabIndex = this.tabCounts[clientId] - 1
+            if(isNaN(tabIndex)) {
+                return undefined
+            }
+            return `${clientId}-${tabIndex}`
         }
 
         , onClientWake(event){
@@ -129,6 +135,7 @@ const Tabs = {
             console.log(tabObject)
             this.clients.push(id)
             this.switchToTab(tabObject.id)
+            return tabObject
         }
 
         , onClientSpawn(event) {
@@ -145,13 +152,17 @@ const Tabs = {
              */
             let d = event.detail
             let clientId = d.id
-            console.log('Spawn Tab', event)
+            return this.newTab(clientId)
+        }
+
+        , newTab(clientId) {
             let tabObject = this.generateTab(clientId)
 
             console.log(tabObject)
 
             let appendTo = this.activeCount() > 1
             this.switchToTab(tabObject.id, appendTo)
+            return tabObject
         }
 
         , activeCount(){
@@ -163,14 +174,6 @@ const Tabs = {
 
         , onClientExit(event){
             let d = event.detail
-            // let clientId = d.id
-            console.log('Exit client', event)
-            // this.forEachTab(function(tab, n){
-            //     if(tab.clientId == clientId) {
-            //         tab.live = false
-            //     }
-            // })
-
             this.forEachClientId(d.id, function(tab, n){
                 tab.live = false
             })
@@ -205,7 +208,6 @@ const Tabs = {
             return res
         }
 
-
         , forEachTab(func) {
 
             for(let tabName in this.tabs) {
@@ -236,11 +238,3 @@ const Tabs = {
         }
     }
 }
-
-let app = Vue.createApp({})
-
-
-app.component('tabs', Tabs)
-let loggerApp = Vue.createApp(Logger).mount('#logger')
-let mounted = app.mount('#tabbed_ui')
-

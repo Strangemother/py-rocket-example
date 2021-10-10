@@ -94,7 +94,7 @@ let clientFromSocket = function(v, d, items) {
 
     emitEvent(`client-${action}`, d)
 
-    return funcOrUnknown(func)(d)
+    // return funcOrUnknown(func)(d)
 }
 
 
@@ -158,12 +158,14 @@ let nodeFromSocket = function(v, d, items) {
         items = discoverParent(d)
     }
 
+    emitEvent('node-event', d)
+
     let func = {
           add: (v) => items.add(v)
         , remove: (v) => items.remove(v)
     }[action]
 
-    return funcOrUnknown(func)(v, d)
+    // return funcOrUnknown(func)(v, d)
     // return func(v, d)
 }
 

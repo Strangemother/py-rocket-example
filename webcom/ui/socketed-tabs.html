@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script type="text/javascript" src="js/vue.global.js"></script>
-  <script type="text/javascript" src="js/vis-network.min.js"></script>
-  <!--
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="js/vue.global.js"></script>
+    <script type="text/javascript" src="js/vis-network.min.js"></script>
+    <!--
     Including other packages like Vis Timeline or Vis Graph3D here won't work.
     You need the peer build to do that.
-  -->
-  <link rel="stylesheet" href="css/main.css">
+    -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
@@ -20,7 +20,19 @@
         <div class="side-by-side">
             <div class="alt">
                 <div id="tabbed_ui">
-                    <tabs></tabs>
+                    <tabs>
+                        <template v-slot:default="tab">
+                            <div class="network-view">
+                                alt panel {{ tab.key }}: {{ tab.data }}
+                                <graph-view :tabkey='tab.key'></graph-view>
+                            </div>
+                        </template>
+                    </tabs>
+                </div>
+            </div>
+            <div class="extras">
+                <div id=piped_view class="piped-view">
+                    <h3>{{ messageCount }}</h3>
                 </div>
             </div>
         </div>
@@ -41,6 +53,13 @@
 
 <div class="templates">
 
+    <div class="graph-view">
+        {{ tabkey }}
+
+        <div :id="'graph-' + tabkey"></div>
+
+    </div>
+
     <div class="tabs">
         <div class="titles">
             <div :class="['tab title', {active: tab.active, live: tab.live}]"
@@ -53,12 +72,9 @@
 
         <div class="panels">
 
-            <div v-for='tab of tabs'
-                :class="['tab panel', {active: tab.active, live: tab.live}]"
-                >
-                <div class="network-view">
-                    panel {{ tab.title }}, {{ tab.initIndex }}
-                </div>
+            <div v-for='(tab, index) of tabs'
+                :class="['tab panel', {active: tab.active, live: tab.live}]">
+                <slot :key=index :data="tab">panel {{ tab.title }}, {{ tab.initIndex }}</slot>
             </div>
         </div>
     </div>
@@ -72,7 +88,9 @@
 <script type="text/javascript" src="js/vis/log-component.js"></script>
 <script type="text/javascript" src="js/vis/live_nodes-tabbed.js"></script>
 <script type="text/javascript" src="js/vis/socket_connect.js"></script>
+<script type="text/javascript" src="js/vis/socket-graph.js"></script>
 <script type="text/javascript" src="js/vis/socket-tabs-on-vue.js"></script>
+<script type="text/javascript" src="js/vis/socket-tabs-main.js"></script>
 
 </body>
 </html>

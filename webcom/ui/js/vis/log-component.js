@@ -28,6 +28,7 @@ const Logger = {
             }
 
         }
+
         , saveHistory() {
             localStorage['history'] = JSON.stringify(window.logHistory)
         }

@@ -8,3 +8,10 @@ const emitEvent = function(name, detail) {
 const onEvent = function(name, handler) {
     return window.addEventListener(name, handler)
 }
+
+
+const cut = function(selector){
+    let n = document.querySelector(selector)
+    n.remove()
+    return n.outerHTML
+}

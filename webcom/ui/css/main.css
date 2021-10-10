@@ -8,6 +8,7 @@
 }
 
 .vis-network {
+    outline: solid 1px red;
     height: 32em;
     height: 40em;
 }

@@ -137,15 +137,20 @@ def add_tab(_id=None):
     )
 
 def show_tab(index=None):
+    send_json(type='client',
+              action='show',
+              value=index, )
+
+
+def hide_tab(index=None):
     send_json(
         type='client',
-        action='show',
+        action='hide',
         value=index,
     )
 
 
 def remove_node(_id=None):
-
     send_json(
         type='node',
         action='remove',
