@@ -55,8 +55,8 @@ class Client(object):
     url = None
     ws = None
 
-    def __init__(self, client_id):
-        self.client_id = client_id
+    def __init__(self, client_id=None):
+        self.client_id = client_id or self.client_id
         self.url = f"ws://{self.uri}:{self.port}/ws/{client_id}"
 
     def ensure_connect(self):

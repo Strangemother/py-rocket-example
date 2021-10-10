@@ -10,7 +10,7 @@ This library aims to simlify graph nodes and edge connections, decoupling the in
 + Anything is connectable (appliable to the graph), such as `ints` to `dicts`
 
 ```py
-from main import Connections
+from g3 import Connections
 
 import operator as op
 
@@ -40,4 +40,6 @@ print(result)
 
 ## How it Works
 
-The internal process is exceptionally simple - roughly 20 lines of code could replicate the core functionality. Upon `connect` each given unit (such as an int or dict) is stored in a flat dictionary. A unique ID assigns a "A" -> "B" connection to each unit - called an "edge".
+The internal process is exceptionally simple - roughly 20 lines of code could replicate the core functionality. Upon `connect` each given unit (such as an `int` or `dict`) is stored in a flat dictionary. A unique ID assigns an "A" -> "B" connection to each unit - called an "edge".
+
+
