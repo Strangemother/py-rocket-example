@@ -62,7 +62,7 @@ let websocketMessageHandler = function(ev){
         content = JSON.parse(message)
     }
 
-    console.log('Message', messageEvent)
+    //console.log('Message', messageEvent)
 
     digestContent(content)
 }

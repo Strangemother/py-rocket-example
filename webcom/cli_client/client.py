@@ -24,7 +24,9 @@ def loop(): # executed in another thread
 
 def ping():
     print('.')
-    client.drain()
+    v = 1
+    while v:
+        v = client.drain()
 
 
 def start_ticker():
@@ -87,8 +89,13 @@ class Client(object):
         return self.send(m)
 
     def drain(self):
-        v = self.ws.recv()
-        print('drain', v)
+        try:
+            v = self.ws.recv()
+            print('drain', v)
+            return v
+        except Exception as e:
+            print('DRAIN ERROR', e)
+            return None
 
 
 def connect():
@@ -113,18 +120,20 @@ ncache = {
 }
 
 
-def add_node(_id=None, label=None):
+def add_node(_id=None, **kw):
     ncv = ncache['ncounter']
 
-    _id = _id or ncv
-    label = label or str(_id)
+    _id = _id or kw.get('id', ncv) or ncv
+    label = str(_id)
+    kw.setdefault('label', label)
+    kw['id'] = _id
 
     ncache['ncounter'] = ncv + 1
 
     send_json(
         type='node',
         action='add',
-        value=dict(id=_id, label=label,),
+        value=kw,
         )
     return _id
 
@@ -145,6 +154,7 @@ def add_tab(_id=None):
         action='spawn',
         value=dict(),
     )
+
 
 def show_tab(index=None):
     send_json(type='client',
@@ -176,7 +186,7 @@ def update_edge(_id, **kw):
         )
 
 
-def add_edge(a, b, _id=None, label=None,**kw):
+def add_edge(a, b, _id=None,**kw):
     """
 
         add_edge(0, 1, label="", background={
@@ -189,14 +199,18 @@ def add_edge(a, b, _id=None, label=None,**kw):
     ncv = ncache['ecounter']
 
     _id = _id or f"{a}-{b}"
-    label = str(_id) if label is None else label
+    label = kw.get('label')
+    if ('label' in kw) is False:
+        label = str(_id)
 
     ncache['ecounter'] = ncv + 1
-
+    d = {**kw, "from": a, "to": b, 'id': _id}
+    print('Send edge')
+    print(d)
     send_json(
         type='edge',
         action='add',
-        value={**kw, "from": a, "to": b, 'id': _id, 'label': label},
+        value=d,
         )
     return _id
 

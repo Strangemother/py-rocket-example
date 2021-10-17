@@ -1,0 +1,23 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <!--<script src="../../dist/3d-force-graph.js"></script>-->
+</head>
+
+<body>
+  <div id="3d-graph"></div>
+
+  <script src="//unpkg.com/d3"></script>
+  <script src="//unpkg.com/three"></script>
+  <script src="//unpkg.com/three-spritetext"></script>
+  <script src="//unpkg.com/3d-force-graph"></script>
+  <script type="module">
+      import { UnrealBloomPass } from '//cdn.skypack.dev/three/examples/jsm/postprocessing/UnrealBloomPass.js';
+      // window.UnrealBloomPass = UnrealBloomPass
+      window.dispatchEvent(new CustomEvent('bloompass', {detail: UnrealBloomPass}))
+  </script>
+  <script src='js/forced-graph/graph-tools.js'></script>
+  <script src='js/forced-graph/sockets.js'></script>
+<script type="text/javascript" src="js/vis/socket_connect.js"></script>
+  <script src='js/forced-graph/main.js'></script>
+</body>

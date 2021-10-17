@@ -5,7 +5,8 @@ value in the data.
 value in -> A(compute store) -> result -> B(compute store) ...
 
 """
-from main import Connections
+from g3 import Connections
+
 
 def f_a(my_val, val):
     return val + my_val
@@ -22,12 +23,14 @@ def f_d(my_val, val):
 def f_e(my_val, val):
     return val + my_val
 
+
 import operator as op
 
 c=Connections()
 c.connect(f_a, f_b, f_c)
 c.connect(f_c, f_d, )
 c.connect(f_d, f_a, )
+
 from collections import defaultdict
 mem = defaultdict(int)
 

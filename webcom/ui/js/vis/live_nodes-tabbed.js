@@ -72,7 +72,7 @@ let websocketMessageHandler = function(ev){
         content = JSON.parse(message)
     }
 
-    console.log('Message', messageEvent)
+    //console.log('Message', messageEvent)
 
     digestContent(content)
 }
@@ -196,7 +196,7 @@ let digestContent = function(content) {
         The value content is specific to the called function
 
      */
-    console.log('digestContent', content)
+    //console.log('digestContent', content)
     emitEvent('digestContent', content)
 
     let func = {

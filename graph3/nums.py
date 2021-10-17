@@ -8,7 +8,7 @@ expontential paths.
 This can be corrected by stashing a value into a dict, using the _current_
 edge or node as the key (not displayed here).
 """
-from main import Connections
+from g3 import Connections
 
 import operator as op
 

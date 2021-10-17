@@ -8,7 +8,7 @@ from pprint import pprint as pp
 import operator as op
 from collections import defaultdict
 
-from main import Connections
+from g3 import Connections
 
 
 class Unit(object):
@@ -23,7 +23,8 @@ class Unit(object):
 
     def give_event(self, event):
         print(self.name, 'has event', event)
-        return self.
+        return self
+
     def __repr__(self):
         name = self.__class__.__name__
         return f'<{name} {self.name}>'

@@ -101,3 +101,24 @@ VO directly to Tommy:
 + Awful thing happened to tommy.
 + We don't know if this caused the event
 + We never speak of it,
+
+
+# What is Tommy's toy
+
+Tommy believes his invention is perpetual motion. Albeit excellent, his invention isn't perpetual motion.
+
+
+VO:
+
+    So how does it work Tommy?
+
+Tommy [cheerful exclaim]:
+
+    Perpetual Motion!
+
+VO:
+    Now timmy, we both know that's probably bollocks.
+
+Tommy [shock face]
+
+    Fuck you ghost!

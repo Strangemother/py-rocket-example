@@ -25,6 +25,9 @@ body {
     display: flex;
     flex-grow: 1;
     height: 100%;
+    background: #0e1c36;
+    color: #6690dd;
+    font-family: 'Roboto', sans-serif;
 }
 
 html {
@@ -94,4 +97,9 @@ div#tabbed_ui {
 
 .tab.panel.active {
     display: flex;
+}
+
+
+a {
+    color: inherit;
 }

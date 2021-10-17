@@ -5,7 +5,7 @@ The 'node-inator' takes a special "device" node and a "wire" edge.
 Each device is an item with an IN/OUT terinal node attached (directionally)
 """
 
-from main import Connections
+from g3 import Connections
 
 def f_a(my_val, val):
     return val + my_val

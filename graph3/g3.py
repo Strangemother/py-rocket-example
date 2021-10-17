@@ -71,6 +71,35 @@ class TreeStore(object):
         self.datas = defaultdict(lambda: defaultdict(set))
 
     def store_edge(self, temp_edge, direction):
+        """Store the values within the given temp_edge unit as a single edge,
+        The given instance isn't stored, rather the content is extracted from
+        the methods.
+
+            unit_pair = ('a', 'b',)
+            ids = tuple(id(x) for x in unit_pair)
+            meta = { 'foo': 'bar' }
+            thin_edge = ThinEdge(self, ids, unit=unit_pair, meta=meta, edge=None)
+
+            store_edge(temp_edge, FORWARD)
+
+        A temp edge should contain:
+
+            temp_edge:
+                get_id()        return the edge id
+                get_node_ids()  return the node pair
+                unit            the node references (a pair) to store as data,
+                                using the node ids
+                get_store()     (meta data, edge) to store. The 'edge'
+                                may be an instance of a callable Edge type.
+
+        All stacked within the TempEdge for convenience.
+
+        1. Store edge_connections with `node_ids`
+        2. store nodes_references for each id and unit
+        3. Add tree references for the given `direction`
+        4. store any extra `edge_data`, `edge_units`
+
+        """
         # create IDS, optionally store key to node
         # Not storing should yield a standard key 2 key connection
         # Don't store for less memory refs.
@@ -124,13 +153,13 @@ class Edges(TreeStore):
         self.store_edge(temp_edge, direction)
         return temp_edge
 
-    def make_edge(self, unit, direction, data, edge=None):
+    def make_edge(self, unit_pair, direction, data, edge=None):
         #A transparent edge applies all values to a new key value dict
         #location in 'edge_data' without manifesting a real edge in
         _id = self.make_id
-        ids = tuple(_id(x) for x in unit)
+        ids = tuple(_id(x) for x in unit_pair)
 
-        return ThinEdge(self, ids, unit=unit, meta=data, edge=edge)#, _spawn_index=self._spawn_index)
+        return ThinEdge(self, ids, unit=unit_pair, meta=data, edge=edge)#, _spawn_index=self._spawn_index)
 
     def make_id(self, unit):
         return id(unit)# lambda x:x
@@ -460,6 +489,9 @@ class CustomEdge(object):
 
 
 def main():
+    example()
+
+def example():
     es = Connections()
     es.connect(*'ABCDE')
     es.connect(*'CAB')

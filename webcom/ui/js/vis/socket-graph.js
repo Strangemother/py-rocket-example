@@ -15,7 +15,7 @@ class NodeDispather {
 
     nodeEvent(e) {
         let d = e.detail
-        console.log(d)
+       // console.log(d)
         // Farm to the correct graphs.
 
     }
@@ -46,7 +46,7 @@ const Pipesview = {
         routeNodeMessage(e){
             /*given a message, send the message to the correct graph units. */
             let d = e.detail
-            console.log('routeNodeMessage', e, d)
+            //console.log('routeNodeMessage', e, d)
 
             this.messageCount += 1
 
@@ -61,6 +61,7 @@ const Pipesview = {
                 let funcs = {
                     add: app.newNodeObject
                     , update: app.updateNodeObject
+                    , remove: app.removeNodeObject
                 }
                 let func = funcs[action]
 
@@ -71,7 +72,7 @@ const Pipesview = {
         , routeEdgeMessage(e){
             /*given a message, send the message to the correct graph units. */
             let d = e.detail
-            console.log('routeEdgeMessage', e, d)
+            //console.log('routeEdgeMessage', e, d)
 
             this.messageCount += 1
 
@@ -85,6 +86,7 @@ const Pipesview = {
                 let func = {
                       add: () => graphUnits[tabId].app.newEdgeObject
                     , update: () => graphUnits[tabId].app.updateEdgeObject
+                    , remove: () => graphUnits[tabId].app.removeEdgeObject
                 }[action]
 
                 let objFunc = funcOrUnknown(func)()
@@ -221,6 +223,11 @@ const GraphView = {
             data.nodes.update([node])
         }
 
+        , removeNodeObject(node) {
+            let data = graphUnits[this.tabkey]
+            data.nodes.remove(node)
+        }
+
         , pushNode(node) {
             let data = graphUnits[this.tabkey]
             data.nodes.add(node)
@@ -229,13 +236,18 @@ const GraphView = {
 
         , newEdgeObject(node) {
             let d = node
-            d.label = String(d.label || d.id)
+            // d.label = String(d.label || d.id)
             return this.pushEdge(d);
         }
 
         , updateEdgeObject(edge) {
             let data = graphUnits[this.tabkey]
             data.edges.update([edge])
+        }
+
+        , removeEdgeObject(edge) {
+            let data = graphUnits[this.tabkey]
+            data.edges.remove([edge])
         }
 
         , newEdge(fromId, toId, extra) {

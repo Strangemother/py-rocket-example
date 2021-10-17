@@ -1,11 +1,11 @@
-import main
+import client
 
-main.background_connect()
+client.background_connect()
 
-add_node = main.add_node
-add_edge = main.add_edge
-update_edge = main.update_edge
-update_node = main.update_node
+add_node = client.add_node
+add_edge = client.add_edge
+update_edge = client.update_edge
+update_node = client.update_node
 
 add_node(0)
 add_node(1)
