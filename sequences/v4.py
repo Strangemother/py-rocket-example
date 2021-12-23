@@ -6,9 +6,9 @@ import sys
 from pprint import pprint as pp
 
 
-mapped = {}
+# mapped = {}
 
-g = defaultdict(set)
+# g = defaultdict(set)
 # hots = defaultdict(set)
 # table = {}
 UNUSED = -1
@@ -40,6 +40,12 @@ def main():
     ask_loop(sq)
     return sq
 
+
+def run_test():
+    v = 'apextrackstackcapechoappleswwindowwindyyescakedddddf'
+    s = Sequences(WORDS)
+    r = mass_frame(s, v)
+    return r
 
 def ask_loop(sequences):
     while 1:
@@ -159,8 +165,6 @@ def mass_frame(sequences, iterable):
     return trip
 
 
-
-
 def pr(*a):
     print(' '.join(a))
 
@@ -179,7 +183,7 @@ def show():
 
 class Sequences(object):
 
-    def __init__(self, words=None, data=None):
+    def __init__(self, words=None, data=None, id_func=None):
 
         if data is None:
             data = {
@@ -187,6 +191,7 @@ class Sequences(object):
                 'mapped': {},
                 'table': {},
                 'graph': defaultdict(set),
+                'id_func': id,
             }
 
         self.set_data(data)
@@ -201,6 +206,7 @@ class Sequences(object):
             'mapped': self.mapped,
             'table': self.table,
             'graph': self.graph,
+            'id_func': self.id_func,
         }
 
     def set_data(self, *data):
@@ -211,17 +217,10 @@ class Sequences(object):
             self.input_sequence(w)
 
     def table_insert_keys(self, chars):
-
-        ml = 4
-        lines = ()
-        spacer = None# ['',] * (len(header) + 1)
-        header = ('WORD', 'POS', 'NEXT', 'START', 'OPEN', 'MATCH', 'DROP', )
         res = None
         for k in chars:
-            lines += ( spacer, header, )
-            # _hots, matches, drops
-            res = self.insert_keys(k) # insert_keys
-            self.print_insert_table(k, *res)# _hots, matches, drops)
+            res = self.insert_keys(k) # _hots, matches, drops
+            self.print_insert_table(k, *res)
         return res
 
     def input_sequence(self, seq):
@@ -234,7 +233,7 @@ class Sequences(object):
             # of future siblings
             self.graph[item].add(next_item)
 
-        id_s = str(seq) # str(seq) #id(seq)
+        id_s = self.generate_id(seq) # str(seq) #id(seq)
         # positional keep sequence
         self.mapped[id_s] = seq
         # First var hot-start
@@ -242,20 +241,77 @@ class Sequences(object):
 
         self.table[id_s] = UNUSED
         # insert_seq(id_s)
+        #
+
+    def generate_id(self, item):
+        return self.id_func(item)
 
     def insert_keys(self, *chars):
 
-        new_hots = ()
-        matches = ()
-        drops = ()
+        new_hots = set()
+        matches = set()
+        drops = set()
 
         for c in chars:
             _hots, _matches, _drops = self.insert_key(c)
-            new_hots += _hots
-            matches += _matches
-            drops += _drops
+            new_hots.update(set(_hots))
+            matches.update(set(_matches))
+            drops.update(set(_drops))
 
-        return new_hots, matches, drops
+        return tuple(new_hots), tuple(matches), tuple(drops)
+
+    def x_insert_key(self, char, reset_on_fail=True):
+        """
+
+        `reset_on_fail` resets the index of a sequence positon, if the
+                        sequence fails the given step char.
+                        If False, the sequence position is not reset, allowing
+                        the contiuation of a key through misses.
+        """
+        matches = ()
+        _hots = ()
+        resets = ()
+        target = self.table
+
+        _hots += self.set_next_hots(char)
+
+        for id_s, pos in target.items():
+            if pos == -1: continue
+
+            seq = self.get_sequence(id_s)
+
+            try:
+                index_match = int(seq[pos] == char)
+            except IndexError:
+                # The position is past the edge of the given sequence
+                # This occurs when a key completes (has matched)
+                print('IndexError for', pos, 'on', id_s)
+                index_match = int(seq[0] == char)
+
+            if index_match:
+                # The given char does match the current sequence position,
+                # advance the index (usually by 1) and test for a completion
+                # match.
+                target[id_s] += int(index_match)
+                len_match = target[id_s] >= len(seq)
+                if len_match:
+                    # A sequence is complete, present a match,
+                    matches += (id_s,)
+                    # and reset the ID to 0 if the given char is not
+                    # sequence index[0], else 1 if the given char is the
+                    # first value.
+                    # differs:
+                    #   true:   windowindow
+                    #   false:  windowwindow
+                    target[id_s] = int(seq[0] == char)
+                continue
+
+            if reset_on_fail:
+                resets += (id_s, )
+                target[id_s] = -1
+
+        return _hots, matches, resets
+
 
     def insert_key(self, char, reset_on_fail=True):
         """
@@ -270,26 +326,34 @@ class Sequences(object):
         resets = ()
         target = self.table
 
-        if char in self.hots:
-            _hots += self.set_next_hots(char)
+        _hots += self.set_next_hots(char)
 
-        for id_s, p in target.items():
-            if p == -1: continue
+        for id_s, pos in target.items():
+            if pos == -1: continue
 
-            seq = self.mapped[id_s]
+            seq = self.get_sequence(id_s)
 
             try:
-                index_match = seq[p] == char
+                index_match = int(seq[pos] == char)
             except IndexError:
-                print('IndexError for', p, 'on', id_s)
+                # The position is past the edge of the given sequence
+                # This occurs when a key completes (has matched)
+                print('IndexError for', pos, 'on', id_s)
                 index_match = int(seq[0] == char)
 
             if index_match:
-                target[id_s] += int(index_match)
-                len_match = target[id_s] >= len(seq)
+                # The given char does match the current sequence position,
+                # advance the index (usually by 1) and test for a completion
+                # match.
+                t_value = target[id_s] + int(index_match)
+                len_match = t_value >= len(seq)
                 if len_match:
+                    # target[id_s] = int(seq[0] == char)
+                    t_value = int(seq[0] == char)
+                    # A sequence is complete, present a match,
                     matches += (id_s,)
-                    target[id_s] = int(seq[0] == char)
+
+                target[id_s] = t_value
                 continue
 
             if reset_on_fail:
@@ -299,22 +363,52 @@ class Sequences(object):
         return _hots, matches, resets
 
     def set_next_hots(self, char):
-        """Given a char, step the val if it exists in the 'hot start'"""
-        res = ()
-        _keys = self.hots.get(char)
-        for id_s in _keys:
+        """Given a char, step the val if it exists in the 'hot start'
 
-            if self.table[id_s] >= 1:
+        The hots dict, applied the first item of the sequence to each
+        mapped key; speeding up initial steps into an open sequence
+            {
+                "w": {'w', 'win', 'window'}
+                "c": {'cape'}
+            }
+        """
+        hot_starts = ()
+        hot_keys = self.hots.get(char, None) or ()
+
+        for id_s in hot_keys:
+            pos = self.get_position(id_s)
+            sequence = self.get_sequence(id_s)
+            if pos >= 1:
+                # This position is already open but the start char (id_s)
+                # matches the given (char). This may occur for dup index words
+                # such as "window" or "ddddddd"
+                #
                 try:
-                    if self.mapped[id_s][self.table[id_s]] == char:
+                    is_match = sequence[pos] == char
+                    if is_match:
+                        # Don't reset to zero because this is already open.
+                        # and the key matches the current sequece (an open step.)
                         continue
                 except IndexError:
+                    # The key does not exist at this position,
+                    # thus the given (char), must be the first index.
                     pass
 
-            res += (id_s, )
-            self.table[id_s] = 0
+            # Reset to zero - applying the new position as open.
+            self.set_position(id_s, 0)
+            hot_starts += (id_s, )
+        return hot_starts
 
-        return res
+    def get_sequence(self, id_s):
+        """Return the iterable sequence given the ID.
+        """
+        return self.mapped[id_s]
+
+    def set_position(self, key, value):
+        self.table[key] = value
+
+    def get_position(self, id_s):
+        return self.table[id_s]
 
     def print_state_table(self, hots=None, matches=None, drops=None):
         """print a table of the current state, inject hots, matches or drops
@@ -337,25 +431,26 @@ class Sequences(object):
         header = ('WORD', 'POS', 'NEXT', 'STRT', 'OPEN', 'HIT', 'DROP', )
         lines += ( spacer, header, )
         for tk, v in self.table.items():
+            stk = str(tk)
             # if v < 0:
             #     continue
-            ml = max(ml, len(tk)+1)
-            opens += ( (tk,v,), )
-            _next = '' # tk[0]
+            ml = max(ml, len(stk)+1)
+            opens += ( (stk,v,), )
+            _next = '' # stk[0]
             if v > -1:
                 try:
-                    _next = tk[v]# if v > -1 else 0]
+                    _next = stk[v]# if v > -1 else 0]
                 except IndexError:
                     pass
 
             line = (
-                    tk,
+                    stk,
                     v if v > -1 else '',
                     _next,
-                    bool_pr(tk, _hots, '#'),# 'started'),
+                    bool_pr(stk, _hots, '#'),# 'started'),
                     str_bool(v > -1, '#'),# 'open'),
-                    bool_pr(tk, matches, '#'),# 'match'),
-                    bool_pr(tk, drops, '#'),# 'dropped'),
+                    bool_pr(stk, matches, '#'),# 'match'),
+                    bool_pr(stk, drops, '#'),# 'dropped'),
                 )
 
             lines += ( line, )
