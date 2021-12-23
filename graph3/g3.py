@@ -1,9 +1,19 @@
 import sys
-sys.path.append('F:/godot/python-rocket-software/graph2')
+# sys.path.append('F:/godot/python-rocket-software/graph2')
 
-from graph import pairwise
+# from graph import pairwise
 from collections import defaultdict
+from itertools import tee
 from pprint import pprint as pp
+
+
+def pairwise(iterable):
+    """s -> (s0,s1), (s1,s2), (s2, s3), ..."""
+    a, b = tee(iterable)
+    next(b, None)
+    return zip(a, b)
+
+
 
 UP = 3
 FORWARD = 1
@@ -162,7 +172,21 @@ class Edges(TreeStore):
         return ThinEdge(self, ids, unit=unit_pair, meta=data, edge=edge)#, _spawn_index=self._spawn_index)
 
     def make_id(self, unit):
-        return id(unit)# lambda x:x
+        return self.make_stable_id(unit)
+        # return lambda x:x
+
+    def make_stable_id(self, unit):
+
+        lx = lambda x:x
+
+        v ={
+            type(0): lx,
+            type(''): lx,
+            type({}): id,
+            type(True): lx,
+        }
+
+        return v.get(type(unit), hash)(unit)
 
 
 class Connections(Edges, Pins):
@@ -250,9 +274,9 @@ class NodeBase(object):
     def get_entry(self):
         return self.get_tree()[self.get_uuid()]
 
-    def get_edges(self):
+    def get_edges(self, direction=None):
         edge_ids = self.get_entry()
-        di = self.direction
+        di = direction or self.direction
         return tuple(self.spawn_edge_instance(self.parent, x, di, i) for i, x in enumerate(edge_ids))
 
     def spawn_edge_instance(self, parent, edge_id, direction, index=-1):
@@ -490,6 +514,7 @@ class CustomEdge(object):
 
 def main():
     example()
+
 
 def example():
     es = Connections()
