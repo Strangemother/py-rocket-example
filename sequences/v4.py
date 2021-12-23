@@ -36,16 +36,65 @@ WORDS = ('apples',
 
 
 def main():
-    sq = Sequences(WORDS)
-    ask_loop(sq)
-    return sq
+    run_test()
+    # sq = Sequences(WORDS)
+    # ask_loop(sq)
+    # return sq
+
+
+def hash_val(text:str):
+    res = 0
+    for ch in text:
+        res = ( res*281  ^ ord(ch)*997) & 0xFFFFFFFF
+    return res
+
+import unittest
 
 
 def run_test():
+    test_hit_all()
+    test_window()
+    test_clone()
+
+def test_clone():
+    s = Sequences(WORDS, id_func=hash_val)
+    c = s.clone()
+
+    assert s.id_func == c.id_func
+
+def test_hit_all():
     v = 'apextrackstackcapechoappleswwindowwindyyescakedddddf'
-    s = Sequences(WORDS)
+    s = Sequences(WORDS)#, id_func=hash_val)
     r = mass_frame(s, v)
+    e = (('ddddd', 'ww', 'yes', 'stack', 'cake', 'wind', 'w', 'windy', 'win',
+        'window', 'ape', 'apex', 'extra', 'tracks', 'apples', 'cape', 'echo'),
+         ('cake', 'wind', 'ddddd', 'yes', 'w', 'windy', 'win', 'window',
+            'ape', 'apex', 'extra', 'tracks', 'apples', 'ww', 'stack',
+            'cape', 'echo'),
+         ('tracks', 'yes', 'ww', 'stack', 'cake', 'wind', 'w', 'windy',
+            'win', 'window', 'ape', 'apex', 'extra', 'ddddd', 'apples',
+            'cape', 'echo'))
+    assertTupleTupleEqual(r, e)
+
+def test_window():
+    v = 'window'
+    e = (('ww', 'ddddd', 'w', 'win', 'wind', 'windy', 'window'),
+         ('w', 'window', 'win', 'wind'),
+         ('ww', 'ddddd', 'w', 'windy', 'win', 'wind'))
+    se = (('ww', 'w', 'wind', 'windy', 'win'), ('w', 'window'), ())
+
+    s = Sequences(WORDS)#, id_func=hash_val)
+    r = mass_frame(s, v)
+    sr = single_frames(s, v)
+
+    assertTupleTupleEqual(r, e)
+    assertTupleTupleEqual(sr, se)
     return r
+
+
+def assertTupleTupleEqual(tta, ttb):
+    for x,y in zip(tta,ttb):
+        unittest.TestCase().assertTupleEqual(tuple(sorted(x)),tuple(sorted(y)))
 
 def ask_loop(sequences):
     while 1:
@@ -191,7 +240,7 @@ class Sequences(object):
                 'mapped': {},
                 'table': {},
                 'graph': defaultdict(set),
-                'id_func': id,
+                'id_func': id_func or str,
             }
 
         self.set_data(data)
@@ -259,59 +308,6 @@ class Sequences(object):
             drops.update(set(_drops))
 
         return tuple(new_hots), tuple(matches), tuple(drops)
-
-    def x_insert_key(self, char, reset_on_fail=True):
-        """
-
-        `reset_on_fail` resets the index of a sequence positon, if the
-                        sequence fails the given step char.
-                        If False, the sequence position is not reset, allowing
-                        the contiuation of a key through misses.
-        """
-        matches = ()
-        _hots = ()
-        resets = ()
-        target = self.table
-
-        _hots += self.set_next_hots(char)
-
-        for id_s, pos in target.items():
-            if pos == -1: continue
-
-            seq = self.get_sequence(id_s)
-
-            try:
-                index_match = int(seq[pos] == char)
-            except IndexError:
-                # The position is past the edge of the given sequence
-                # This occurs when a key completes (has matched)
-                print('IndexError for', pos, 'on', id_s)
-                index_match = int(seq[0] == char)
-
-            if index_match:
-                # The given char does match the current sequence position,
-                # advance the index (usually by 1) and test for a completion
-                # match.
-                target[id_s] += int(index_match)
-                len_match = target[id_s] >= len(seq)
-                if len_match:
-                    # A sequence is complete, present a match,
-                    matches += (id_s,)
-                    # and reset the ID to 0 if the given char is not
-                    # sequence index[0], else 1 if the given char is the
-                    # first value.
-                    # differs:
-                    #   true:   windowindow
-                    #   false:  windowwindow
-                    target[id_s] = int(seq[0] == char)
-                continue
-
-            if reset_on_fail:
-                resets += (id_s, )
-                target[id_s] = -1
-
-        return _hots, matches, resets
-
 
     def insert_key(self, char, reset_on_fail=True):
         """
@@ -464,6 +460,9 @@ class Sequences(object):
     def add_to(self, entity, other):
         return entity.table_insert_keys(other)
 
+    def clone(self):
+        return self.__class__(data=self.get_data())
+
     def __iadd__(self, other):
         """Edit the sequences _in place_, mutating the current sequence.
         """
@@ -473,7 +472,7 @@ class Sequences(object):
     def __add__(self, other):
         """Alter a new one (somehow.)
         """
-        entity = self.__class__(data=self.get_data())
+        entity = self.clone()
         self.add_to(entity, other)
         return entity
 

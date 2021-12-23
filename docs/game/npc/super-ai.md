@@ -33,3 +33,12 @@ The last sentence is each saying _hello_ uniquely, resulting a noise of differen
 All future communications are spoken through a polyphonic harmony of 4+ channels
 
 One of the voices (likely E5 and E8) is the ship voice. Later we learn the ship voice is a one corp cyber human ai
+
+
+### Other
+
+PL:
+    Ooh wow - really. How do you do that?
+
+AI:
+    Well I'm turing complete if that's what you mean... Jackass.
