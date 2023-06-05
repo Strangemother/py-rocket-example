@@ -13,6 +13,10 @@ def main():
 
 async def async_main():
     funcs = (
+        run_chain_pointer_merge,
+    )
+
+    others = (
         run_chain_run_one2one,
         run_chain_concat_4_branch,
         run_chain_step_once,
@@ -21,14 +25,70 @@ async def async_main():
         run_chain_6_infinite,
         run_chain_6_limited,
         run_chain_path,
+        run_edge,
     )
 
     v = None
     for func in funcs:
         # sleep(.2)
+        print(f'\n-- Running {func.__name__} --\n')
         v = await func()
 
     return v
+
+
+def tap_add_two(a,b,edge, *ta, **tkw):
+    return ( (ta[0] + 2,), tkw,)
+
+
+sub_5 = op('sub', 5)
+add_10 = op('add', 10)
+
+
+async def add_all(*v):
+    return sum(v)
+
+
+async def in_node(*v, **kw):
+    return ..., v, kw
+
+
+
+async def run_chain_pointer_merge():
+    """Two pointers for the same node on the same step can merge
+    their input results, allowing one call to one node with multiple arguments
+        +10
+    10 --  --> (20, 5)
+         -5
+    """
+    m = Machine()
+    await m.a_connect(in_node, add_10, add_all)
+    await m.a_connect(in_node, sub_5, add_all)
+    await m.a_connect(in_node, sub_6, add_all)
+    stepper, pointers = await m.start_chain(10)
+    return m, stepper
+
+
+async def run_edge():
+    m = Machine()
+    na, nb = await m.a_connect(add_two, multiply_by)
+    _, nc = await m.a_connect(na, minus_3, unique=True)
+    edge = m.edge_bind(na,nb)
+    # e = await m.get_edges(na, nb)
+    # print(e)
+    stepper, pointers = await m.start_chain(1)
+
+    expected = (0,6,)
+    ## untapped == (1 + 2) * 2
+    test_expected(pointers, expected)
+
+    await edge.add_tap(tap_add_two)
+    stepper, pointers = await m.start_chain(1)
+    ## Tapped == (1 + 2 [+ 2]) * 2
+    expected = (0,10,)
+    test_expected(pointers, expected)
+
+    return m, stepper
 
 
 async def run_chain_run_one2one():
@@ -184,11 +244,12 @@ async def run_chain_path():
 
     res = {}
 
-    path = [0, 0]
+    path = [0, 0, 0]
+
     stepper1, pc = await m.conf_start_chain(args=(1,), path=path)
     res[0] = pargs(pc)
 
-    path = [0, 1]
+    path = [0, 1,1]
     stepper2, pc = await m.conf_start_chain(args=(1,), path=path)
     res[1] = pargs(pc)
 

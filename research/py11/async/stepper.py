@@ -1,5 +1,6 @@
 from node import Node
-
+from collections import defaultdict
+from edge import Edge
 
 class Pointer(object):
     """A Pointer acts as the execution unit for a function, spawn by s spetter
@@ -13,11 +14,12 @@ class Pointer(object):
     # Wrap outbound if the value is a simple function result.
     function_wrapper = True
 
-    def __init__(self, stepper, node, parent_pointer=None, index=None):
+    def __init__(self, stepper, node, parent_pointer=None, index=None, function_wrapper=True):
         self.stepper = stepper
         self.node = node
         self.index = index
         self.history = ()
+        self.function_wrapper = function_wrapper
 
         depth = 0
         if parent_pointer:
@@ -37,8 +39,16 @@ class Pointer(object):
     async def run(self, *a, **kw):
         #self.result =
         res = await self.node.execute(*a, **kw)
+        return await self.format_outbound_args(res)
+
+    async def format_outbound_args(self, result):
+
+        if isinstance(result, tuple) and result[0] is Ellipsis:
+            return result[1:]
+
         if self.function_wrapper:
-            return (res, ), {}
+            return (result, ), {}
+
         return res
 
     def __repr__(self):
@@ -64,17 +74,85 @@ class Base(object):
         """
         name = node.uname()
         next_names = self.machine.connections.get(name, ())
+        # wrap notes or drop edge ends.
+        # ## This may need a zip order replacement to ensure edges
+        # seat in the same location as the original name...
+        # unedged = set(next_names) - set(edge_names)
+
         i_next_names = await self.select_next_nodes(node, next_names,
                                          depth=kw.get('depth'),
                                          path=kw.get('path')
                                          )
-        return await self.resolve_nodes(i_next_names, as_index)
+
+        # Get edges
+        edge_names = await self.get_edge_names(name, next_names)
+
+        ni_next_names = ()
+        keep = ()
+        # swap out edge named nodes for edges
+        for i, v in i_next_names:
+            if v in edge_names:
+                print('Popping edge leaf', v, 'from next_names')
+
+                keep += ( (i, v), )
+                continue
+            ni_next_names += ( (i, v), )
+
+        edges_list = tuple(x for y in edge_names.values() for x in y)
+        nodes = await self.resolve_nodes(ni_next_names, as_index)
+
+        edges = ()
+        for i,v in keep:
+            edge = edge_names.get(v)
+            edges += ( (i, edge[0]), )
+        # edges = await self.resolve_edges(edge_name, as_index)
+        print(f'\n  {edges=}')
+        print(f'  {nodes=}\n')
+
+        return nodes + edges
+
+    async def get_edge_names(self, name, next_names):
+        # get all edges from A to B.
+        edge_names = defaultdict(tuple)
+
+        for nn in next_names:
+            en = f'E_{name}__{nn}'
+            found = self.machine.edges.get(en, ())
+            if len(found) > 0:
+                edge_names[nn] += found
+        return edge_names
+
+    # async def select_next_edges(self, node, names, depth=None, path=None):
+    #     i_conns = tuple((i, x) for i, x in enumerate(names))
+
+    #     print(f'  ? select_next_edges of {len(names)} - for next of', node)
+
+    #     if path is None:
+    #         return i_conns
+
+    #     if depth is None:
+    #         return i_conns
+
+    #     if len(names) == 0:
+    #         print(f'  x No connections here, cannot select path[{depth=}]')
+    #         return ()
+
+    #     pos = path[depth]
+    #     print(f'    Selected pathed index: {depth=}, {pos=}')
+
+    #     try:
+    #         i_conns = (i_conns[pos],)
+    #         print(f'      = {i_conns=}')
+    #     except IndexError as err:
+    #         print(f'  ! Bad Path position "{pos=}" (above): {path}. {len(i_conns)=}', err)
+    #         raise err
+
+    #     return i_conns
 
     async def select_next_nodes(self, node, names, depth=None, path=None):
         i_conns = tuple( (i, x) for i,x in enumerate(names) )
 
         print(f'  ? select_next_nodes of {len(names)} - for next of', node)
-
 
         if path is None:
             return i_conns
@@ -85,9 +163,12 @@ class Base(object):
         if len(names) == 0:
             print(f'  x No connections here, cannot select path[{depth=}]')
             return ()
-
-        pos = path[depth]
-        print(f'    Selected pathed index: {depth=}, {pos=}')
+        try:
+            pos = path[depth]
+            print(f'    Selected pathed index: {depth=}, {pos=}')
+        except IndexError as err:
+            print(f'  ! Bad Path depth "{depth=}" (above): {path}. {len(path)}', err)
+            raise err
 
         try:
             i_conns = (i_conns[pos],)
@@ -109,6 +190,33 @@ class Base(object):
                 items += (item,)
 
         return items
+
+    async def resolve_edges(self, i_conns, as_index=False) -> list: # Node
+        items = ()
+        for edge_i, n in i_conns:
+            item = await self.resolve_edge(n)
+            if item:
+                if as_index:
+                    items += ((edge_i, item,),)
+                    continue
+                items += (item,)
+
+        return items
+
+    async def resolve_edge(self, item) -> Edge:
+        """resolve_edge the live chainable from a class or unname
+
+        Return a Edge type
+        """
+        n = getattr(item, 'unname', lambda: item)()
+        existing = self.machine.edges.get(n, None)
+        if isinstance(item, Edge):
+            return item
+
+        if existing is None:
+            print('Could not resolve_edge', item)
+
+        return existing
 
     async def resolve(self, item) -> Node:
         """resolve the live chainable from a class or unname

@@ -12,6 +12,7 @@ a list of nodes. All important work offloads into the stepper
 from collections import defaultdict
 from stepper import Stepper
 from node import Node
+from edge import Edge
 
 
 class Machine(object):
@@ -20,6 +21,7 @@ class Machine(object):
     def __init__(self, unique_nodes=False):
         self.nodes = {}
         self.connections = defaultdict(tuple)
+        self.edges = defaultdict(tuple)
         self._stepper = None
         self.unique_nodes = unique_nodes
 
@@ -181,6 +183,29 @@ class Machine(object):
         sn = sender.uname()
         self.connections[sn] += (receiver.uname(),)
         print(f'Updated connections for sender: {sn}', self.connections[sn])
+
+
+    def edge_bind(self, sender, receiver):
+        """An edge is a single A to B assignment.
+        The key is a new name, the value is a tuple to the two named nodes.
+        """
+        # edge_name = f'{sender.uname()}__{receiver.uname()}'
+
+        edge = Edge(sender, receiver,)
+        # edge = Edge(sender.uname(), receiver.uname(),)
+        self.edges[edge.uname()] += (edge, )
+        return edge
+
+    async def get_edges(self, a, b):
+        # get all edges from A to B.
+        _e = defaultdict(tuple)
+
+        en = f'E_{a.uname()}__{b.uname()}'
+        print('Finding edge', en)
+        found = self.edges.get(en, ())
+        if len(found) > 0:
+            _e[en] += found
+        return _e
 
     async def a_bind(self, sender, receiver):
         """Insert the twp nodes and connect from a to b using the _node_ `uname()`
