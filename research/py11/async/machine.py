@@ -101,18 +101,18 @@ class Machine(object):
         origin = origin_node or self.first_node()
         return Stepper(self, origin, **kw)
 
-    def start_chain(self, *a, **kw):
+    async def start_chain(self, *a, **kw):
         """Get or create a stepper, then run the pointers until completion.
         Return the exausted stepper.
         """
         # Program to walk the natural chain
         # step until death.
-        return self.conf_start_chain(a, kw)
+        return await self.conf_start_chain(a, kw)
 
-    def conf_start_chain(self, args, kwargs=None, **stepper_opts):
+    async def conf_start_chain(self, args, kwargs=None, **stepper_opts):
         kwargs = kwargs or {}
         stepper = self.get_stepper(**stepper_opts)
-        pointers, losses = stepper.run(*args, **kwargs)
+        pointers, losses = await stepper.run(*args, **kwargs)
         self.print_pointer_losses(pointers, losses)
         return stepper, (pointers, losses)
 
