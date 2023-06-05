@@ -2,37 +2,37 @@ import operator
 
 
 
-def add_two(a, b=2):
+async def add_two(a, b=2):
     return a + b
 
-def add_10(a, b=10):
+async def add_10(a, b=10):
     return a + b
 
-def minus_3(a, b=3):
+async def minus_3(a, b=3):
     return a - b
 
-def minus_6(a):
-    return minus_3(a,6)
+async def minus_6(a):
+    return await minus_3(a,6)
 
 
-def multiply_by(a, b=2):
+async def multiply_by(a, b=2):
     return a * b
 
 
-def div_2(a, b=.5):
+async def div_2(a, b=.5):
     return a * b
 
 
 def op(k='add', b=1):
 
-    def f(a):
+    async def f(a):
         return getattr(operator, k)(a, b)
 
     f.__name__ = f'op_{k}_{b}'
     return f
 
 
-def void(*a, **kw):
+async def void(*a, **kw):
     print(f'\n\nVoid Called {a} {kw}\n\n')
     return a[0]
 

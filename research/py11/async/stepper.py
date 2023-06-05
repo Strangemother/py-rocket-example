@@ -36,7 +36,7 @@ class Pointer(object):
 
     async def run(self, *a, **kw):
         #self.result =
-        res = self.node.execute(*a, **kw)
+        res = await self.node.execute(*a, **kw)
         if self.function_wrapper:
             return (res, ), {}
         return res

@@ -1,8 +1,10 @@
+import inspect
 
 class Node(object):
     """An entity on the chain, caring for the function
     """
     def __init__(self, func, unique=False):
+
         self._func = func
         self.unique = unique
 
@@ -15,9 +17,12 @@ class Node(object):
     def fname(self):
         return self._func.__name__
 
-    def execute(self, *a, **kw):
+    async def execute(self, *a, **kw):
         # print('Node.execute', self, 'with', a, kw)
-        return self._func(*a, **kw)
+        f = self._func
+        if inspect.iscoroutinefunction(f):
+            return await f(*a, **kw)
+        return f(*a, **kw)
 
     def __str__(self):
         return f'<Node "{self.uname()}": {self.fname()}>'

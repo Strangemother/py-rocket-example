@@ -34,17 +34,17 @@ async def async_main():
 async def run_chain_run_one2one():
 
     m = Machine()
-    m.connect(add_two, multiply_by)
+    await m.a_connect(add_two, multiply_by)
     # m.connect(add_two, add_10)
     m.connect(multiply_by, minus_3)
-    m.connect(minus_3, opadd_10)
+    await m.a_connect(minus_3, opadd_10)
     m.connect(minus_3, div_2)
-    m.connect(div_2, sub_6)
+    await m.a_connect(div_2, sub_6)
     m.connect(div_2, add_5)
-    m.connect(add_5, add_12)
+    await m.a_connect(add_5, add_12)
     # m.connect(minus_3, void)
     m.connect(opadd_10, void)
-    m.connect(opadd_10, op_add_10_2)
+    await m.a_connect(opadd_10, op_add_10_2)
     m.connect(op_add_10_2, op('add', 10))
 
     stepper, pointers = await m.start_chain(1)
