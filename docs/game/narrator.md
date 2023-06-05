@@ -122,3 +122,33 @@ VO:
 Tommy [shock face]
 
     Fuck you ghost!
+
+
+
+----
+
+
+Narrator upon first 'planet entry' -
+
+    ... welcome to Earth [inteligable 'alien' translation]. Earth (Inhabited by Earthains [Inject *A])
+    To greet another Earthican, stand aproximately 12 Detolion Arcs [inject] away from the other being and bend in the middle roughly 30 degrees.
+    Once greeted, approach the [Inject A] and initiate translation
+
+    Be aware the term [Inject] is extemely offensive on the planet Earth.
+
+
+Translate reverse
+
+
+    ... welcome to Gecko. Gecko (Inhabited by Geconians)
+    To greet another Gecko, stand aproximately 2 metres away from the other being and lick your left eyeball.
+    Once greeted, approach the gecko and initiate translation
+
+    Be aware the term fly feeder is extemely offensive on the planet Gecko.
+
+    [Intelligable] Gecko [Intelligable]. [Intelligable]
+    [Intelligable] 2 metres [Intelligable]
+    [Intelligable] HELLO SRES SENOR GECKO [Intelligable]
+    [Intelligable] Fly Feeder [Intelligable]
+
+
