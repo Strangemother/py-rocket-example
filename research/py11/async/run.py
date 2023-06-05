@@ -58,10 +58,10 @@ async def run_chain_run_one2one():
 async def run_chain_concat_4_branch():
 
     m = Machine()
-    m.connect(add_two, multiply_by, minus_3, opadd_10, op_add_10_2, op('add', 10))
-    m.connect(minus_3, div_2, sub_6)
-    m.connect(div_2, add_12)
-    m.connect(opadd_10, void)
+    await m.a_connect(add_two, multiply_by, minus_3, opadd_10, op_add_10_2, op('add', 10))
+    await m.a_connect(minus_3, div_2, sub_6)
+    await m.a_connect(div_2, add_12)
+    await m.a_connect(opadd_10, void)
 
     stepper, pointers = await m.start_chain(1)
 
@@ -103,12 +103,12 @@ async def run_chain_concat_4_branch():
 async def run_chain_step_once():
 
     m = Machine()
-    m.connect(add_two, multiply_by, minus_3, opadd_10, op_add_10_2, div_2)
-    m.connect(minus_3, div_2, sub_6)
-    m.connect(div_2, add_12, sub_6)
-    m.connect(div_2, void)
-    m.connect(op_add_10_2, op('add', 4))
-    m.connect(op('add', 4), op('mul', 2))
+    await m.a_connect(add_two, multiply_by, minus_3, opadd_10, op_add_10_2, div_2)
+    await m.a_connect(minus_3, div_2, sub_6)
+    await m.a_connect(div_2, add_12, sub_6)
+    await m.a_connect(div_2, void)
+    await m.a_connect(op_add_10_2, op('add', 4))
+    await m.a_connect(op('add', 4), op('mul', 2))
 
     # c = m.step_chain(1)
     stepper = m.get_stepper()
@@ -122,12 +122,12 @@ async def run_chain_step_once():
 async def run_chain_concat():
 
     m = Machine()
-    m.connect(add_two, multiply_by, minus_3, opadd_10, op_add_10_2, div_2)
-    m.connect(minus_3, div_2, sub_6)
-    m.connect(div_2, add_12, sub_6)
-    m.connect(div_2, void)
-    m.connect(op_add_10_2, op('add', 4))
-    m.connect(op('add', 4), op('mul', 2))
+    await m.a_connect(add_two, multiply_by, minus_3, opadd_10, op_add_10_2, div_2)
+    await m.a_connect(minus_3, div_2, sub_6)
+    await m.a_connect(div_2, add_12, sub_6)
+    await m.a_connect(div_2, void)
+    await m.a_connect(op_add_10_2, op('add', 4))
+    await m.a_connect(op('add', 4), op('mul', 2))
 
 
     # stepper = m.get_stepper()
@@ -168,12 +168,12 @@ async def run_chain_arrow():
 async def run_chain_path():
 
     m = Machine()
-    na, nb, nc = m.connect(add_two, multiply_by, add_two, unique=True)
-    _, nd = m.connect(nb, add_4, unique=True) # 10
-    _, n_add10 = m.connect(nb, opadd_10, unique=True) # 16
-    _, nf = m.connect(n_add10, add_5, unique=True) # 21
-    _, ng = m.connect(n_add10, minus_6, unique=True) # 10
-    _, ng = m.connect(n_add10, sub_6, unique=True)
+    na, nb, nc = await m.a_connect(add_two, multiply_by, add_two, unique=True)
+    _, nd = await m.a_connect(nb, add_4, unique=True) # 10
+    _, n_add10 = await m.a_connect(nb, opadd_10, unique=True) # 16
+    _, nf = await m.a_connect(n_add10, add_5, unique=True) # 21
+    _, ng = await m.a_connect(n_add10, minus_6, unique=True) # 10
+    _, ng = await m.a_connect(n_add10, sub_6, unique=True)
 
     ## subtract is flipped - likely all operators occur this way.
 
@@ -219,7 +219,7 @@ async def run_chain_path():
 async def run_chain_6_infinite():
 
     m = Machine()
-    m.connect(add_two, multiply_by, add_two)
+    await m.a_connect(add_two, multiply_by, add_two)
 
     stepper, pointers = await m.conf_start_chain(args=(1,), kwargs={}, loop_limit=6)
     test_expected(pointers[0], (38,))
@@ -233,14 +233,14 @@ async def run_chain_6_limited():
 
     # 1, +2, *3, +2 == 8
     # (1 + 2) * 2 + 2
-    na, nb, nc = m.connect(add_two, multiply_by, add_two, unique=True)
+    na, nb, nc = await m.a_connect(add_two, multiply_by, add_two, unique=True)
 
     stepper, pointers = await m.conf_start_chain(args=(1,), kwargs={})
     test_expected(pointers[0], (8,))
 
     ## The chain has ended and we asset the function.
     ## Now bind a new chain onto the end (node c).
-    m.connect(nc, add_two, add_two, multiply_by, unique=True)
+    await m.a_connect(nc, add_two, add_two, multiply_by, unique=True)
 
     latest_pointers, released_pointers = await stepper.run_pointers_dict_recurse(*pointers)
     ## The latest pointers are the current graph; this isn't the same as the
