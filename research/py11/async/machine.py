@@ -178,12 +178,12 @@ class Machine(object):
     def bind(self, sender, receiver):
         """Insert the twp nodes and connect from a to b using the _node_ `uname()`
         """
-        self.insert_node(sender)
-        self.insert_node(receiver)
+        a = self.insert_node(sender)
+        b = self.insert_node(receiver)
         sn = sender.uname()
         self.connections[sn] += (receiver.uname(),)
         print(f'Updated connections for sender: {sn}', self.connections[sn])
-
+        return a, b
 
     def edge_bind(self, sender, receiver):
         """An edge is a single A to B assignment.

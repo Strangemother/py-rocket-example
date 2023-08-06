@@ -13,19 +13,21 @@ def main():
 
 async def async_main():
     funcs = (
-        run_chain_pointer_merge,
+        # run_chain_step_once,
+        # run_chain_concat,
+        # run_chain_arrow,
+        # run_chain_6_infinite,
+        # run_chain_6_limited,
+        # run_chain_path,
+        # run_chain_path,
+        # run_edge,
+        # run_chain_concat_4_branch,
+        # run_chain_run_one2one,
+        run_chain_pointer_merge_v2,
     )
 
     others = (
-        run_chain_run_one2one,
-        run_chain_concat_4_branch,
-        run_chain_step_once,
-        run_chain_concat,
-        run_chain_arrow,
-        run_chain_6_infinite,
-        run_chain_6_limited,
-        run_chain_path,
-        run_edge,
+        run_chain_pointer_merge, # I think this is broken.
     )
 
     v = None
@@ -40,12 +42,16 @@ async def async_main():
 def tap_add_two(a,b,edge, *ta, **tkw):
     return ( (ta[0] + 2,), tkw,)
 
+def tap_add_three(a,b,edge, *ta, **tkw):
+    return ( (ta[0] + 3,), tkw,)
+
 
 sub_5 = op('sub', 5)
 add_10 = op('add', 10)
 
 
-async def add_all(*v):
+async def add_all(*v, **kw):
+    print('!!! add_all function recieved', v)
     return sum(v)
 
 
@@ -57,15 +63,97 @@ async def in_node(*v, **kw):
 async def run_chain_pointer_merge():
     """Two pointers for the same node on the same step can merge
     their input results, allowing one call to one node with multiple arguments
-        +10
-    10 --  --> (20, 5)
-         -5
+
+            +10
+        10 --  --> (20, 5)
+             -5
+
+    This setup
+                       +10 (20) ----------->
+        in_node(10) -> -5  (5)  -----------> M add_all (29) -> out
+                       -6  (4)  -- e ------>
+                                -> *2 (8)
     """
+
     m = Machine()
-    await m.a_connect(in_node, add_10, add_all)
-    await m.a_connect(in_node, sub_5, add_all)
-    await m.a_connect(in_node, sub_6, add_all)
+
+    # in_node -> add_10 -> add_all
+    _, _, node_add_all_a = await m.a_connect(in_node, add_10, add_all)
+    # in_node -> sub_5 -> add_all
+    await m.a_connect(in_node, sub_5, node_add_all_a)
+    # in_node -> sub_6 -> add_all
+    _, node_sub_6, node_add_all = await m.a_connect(in_node, sub_6, node_add_all_a)
+
+    # sub_6 -> multiply_by(2)
+    await m.a_connect(node_sub_6, multiply_by)
+    # await m.a_connect(node_add_all_a, void)
+
+    assert node_add_all_a is node_add_all
+    edge = m.edge_bind(node_sub_6, node_add_all)
+
+    node_add_all_a.merge_pointers = False
+
+    print('\n\n --- Running Tree 1 --- \n')
     stepper, pointers = await m.start_chain(10)
+    expected = (20, 8, 5, 4)
+    test_expected(pointers, expected)
+    return m, stepper
+
+    print('\n\n --- Running Tree 2 (with tap) --- \n')
+    ## Then add the tap to the function, adding between the `-6 -> add_all`
+    await edge.add_tap(tap_add_three)
+    stepper, pointers = await m.start_chain(10)
+    expected = (20,5,8,7)
+
+    test_expected(pointers, expected)
+
+    print('\n\n --- Running Tree 3 (with merge and tap) --- \n')
+    node_add_all_a.merge_pointers = True
+    stepper, pointers = await m.start_chain(10)
+    pargs(pointers)
+
+    return m, stepper
+
+
+
+
+async def run_chain_pointer_merge_v2():
+    """Two pointers for the same node on the same step can merge
+    their input results, allowing one call to one node with multiple arguments
+
+            +10
+        10 --  --> (20, 5)
+             -5
+
+    This setup
+                  +10 ------->
+        in_node -> -5 -------> M add_all -> out
+                   -6 ------->
+    """
+
+    m = Machine()
+    _, _, node_add_all_a = await m.a_connect(in_node, add_10, add_all)
+    await m.a_connect(in_node, sub_5, node_add_all_a)
+    _, node_sub_6, node_add_all = await m.a_connect(in_node, sub_6, node_add_all_a)
+    # await m.a_connect(node_add_all_a, void)
+    assert node_add_all_a is node_add_all
+    # edge = m.edge_bind(node_sub_6, node_add_all)
+
+    # node_add_all_a.merge_pointers = True
+    node_add_all.merge_pointers=True
+
+    print('\n\n --- Running Tree 1 --- \n')
+    stepper, pointers = await m.start_chain(10)
+    ## The 'start_chain' executes the in_node.
+    # 10 + 10 == 20
+    # 10 - 5  == 5
+    # 10 - 6  == 4
+    ## The last node should _merge_ the values into a
+    ### single value:
+    # 29...
+    expected = (29,)
+    test_expected(pointers, expected)
+
     return m, stepper
 
 

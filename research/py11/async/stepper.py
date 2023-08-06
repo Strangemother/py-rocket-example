@@ -1,62 +1,13 @@
 from node import Node
 from collections import defaultdict
+from pprint import pprint as pp
 from edge import Edge
 
-class Pointer(object):
-    """A Pointer acts as the execution unit for a function, spawn by s spetter
-    when required. Being fairly transient, the main feature is calling the
-    bound function and offer the next step for the stepper.
-
-        pointer = Pointer(stepper, Node(add_two))
-        pointer.run(2)
-        # 4
-    """
-    # Wrap outbound if the value is a simple function result.
-    function_wrapper = True
-
-    def __init__(self, stepper, node, parent_pointer=None, index=None, function_wrapper=True):
-        self.stepper = stepper
-        self.node = node
-        self.index = index
-        self.history = ()
-        self.function_wrapper = function_wrapper
-
-        depth = 0
-        if parent_pointer:
-             depth = parent_pointer.depth + 1
-             self.history = parent_pointer.history + (index, )
-        self.depth = depth
-
-    def uname(self):
-        # unique name
-        return f"P_{str(id(self))}_{self.depth}"
-
-
-    async def get_next(self, **kw):
-        kw.setdefault('depth', self.depth)
-        return await self.stepper.get_next(self.node, **kw)
-
-    async def run(self, *a, **kw):
-        #self.result =
-        res = await self.node.execute(*a, **kw)
-        return await self.format_outbound_args(res)
-
-    async def format_outbound_args(self, result):
-
-        if isinstance(result, tuple) and result[0] is Ellipsis:
-            return result[1:]
-
-        if self.function_wrapper:
-            return (result, ), {}
-
-        return res
-
-    def __repr__(self):
-        c = self.__class__.__name__
-        return f'<{c} {self.uname()} depth={self.depth} index={self.index} for {self.node.fname()}>'
-
-
 from time import sleep
+from motion import StepperMotionMixin
+from flag import FlagFunctions
+from pointer import Pointer
+
 
 class Base(object):
 
@@ -72,6 +23,8 @@ class Base(object):
     async def get_next(self, node, as_index=False, **kw) -> tuple:
         """Return the _next_ node items from the machine through its connections
         """
+        if isinstance(node, Edge):
+            node = node.b
         name = node.uname()
         next_names = self.machine.connections.get(name, ())
         # wrap notes or drop edge ends.
@@ -106,8 +59,8 @@ class Base(object):
             edge = edge_names.get(v)
             edges += ( (i, edge[0]), )
         # edges = await self.resolve_edges(edge_name, as_index)
-        print(f'\n  {edges=}')
-        print(f'  {nodes=}\n')
+        # print(f'\n  {edges=}')
+        # print(f'  {nodes=}\n')
 
         return nodes + edges
 
@@ -121,33 +74,6 @@ class Base(object):
             if len(found) > 0:
                 edge_names[nn] += found
         return edge_names
-
-    # async def select_next_edges(self, node, names, depth=None, path=None):
-    #     i_conns = tuple((i, x) for i, x in enumerate(names))
-
-    #     print(f'  ? select_next_edges of {len(names)} - for next of', node)
-
-    #     if path is None:
-    #         return i_conns
-
-    #     if depth is None:
-    #         return i_conns
-
-    #     if len(names) == 0:
-    #         print(f'  x No connections here, cannot select path[{depth=}]')
-    #         return ()
-
-    #     pos = path[depth]
-    #     print(f'    Selected pathed index: {depth=}, {pos=}')
-
-    #     try:
-    #         i_conns = (i_conns[pos],)
-    #         print(f'      = {i_conns=}')
-    #     except IndexError as err:
-    #         print(f'  ! Bad Path position "{pos=}" (above): {path}. {len(i_conns)=}', err)
-    #         raise err
-
-    #     return i_conns
 
     async def select_next_nodes(self, node, names, depth=None, path=None):
         i_conns = tuple( (i, x) for i,x in enumerate(names) )
@@ -265,7 +191,7 @@ class Base(object):
         pointers = self.as_pointers(nodes)
         return await self.run_pointers(pointers, *a, **kw)
 
-    async def run_pointer_next(self, p, v, index=None):
+    async def run_pointer_next(self, p, v, index=None, i_nodes=None):
         """Given a pointer an its concurrent value (the last value it returned)
         Find its next node pointers and run.
 
@@ -281,7 +207,7 @@ class Base(object):
             }
         """
         print(f'    Finding next ({index=}) at', p, ' - with last value:', v)
-        i_nodes = await p.get_next(path=self.path, as_index=True)
+        i_nodes = i_nodes or await p.get_next(path=self.path, as_index=True)
         # if index is not None:
         #     nodes = (nodes[index],)
         pointers = self.as_pointers(i_nodes, p, index=index, as_index=True)
@@ -303,53 +229,14 @@ class Base(object):
         res = {}
         l = len(pointers)
         for i, p in enumerate(pointers):
-            print(f'    Running pointer #{i+1}/{l}: {p}')
+            print(f'    Running pointer #{i+1}/{l}: {p} with args: {a}')
             v = await p.run(*a, **kw)
             res[p.uname()] = p, v
             # print('storing', v)
         return res
 
 
-class FlagFunctions(object):
-
-    async def flag_complete(self, exit_pointers, stashed_lost):
-        """All pointers are complete. The `exit` pointers are the _last_
-        nodes of which will not step in the next iteration. The dict
-        `stashed_lost` maintains all previously end-released (lost) pointers
-        with their last value
-
-        If another iteration occurs without reseting the pointers,  The exit
-        pointer will be an empty dict (no nodes in the _last_ iteration see...)
-
-        The _first_ call to this function will call `on_chain_complete_first`.
-        All calls thereafter head to `on_chain_complete`. This will reset
-        with `stepper.reset()`.
-        """
-        print('\n\tChain complete\n')
-        self._complete += 1
-
-        if self._complete == 1:
-            return await self.on_chain_complete_first(exit_pointers, stashed_lost)
-        return await self.on_chain_complete(exit_pointers, stashed_lost)
-
-    async def flag_detected_run_empty(self):
-        """The last call to the graph did not execute any nodes.
-        """
-        print('\n    Flat Detect Empty Run. Perform stepper.reset()')
-
-    async def on_chain_complete_first(self, exit_pointers, pointer_dict):
-        """All chains are ocmplete. This is the first time for this graph all
-        has completed.
-        """
-        print('    on_chain_complete_first', exit_pointers)
-        # print('on_chain_complete', pointer_dict)
-
-    async def on_chain_complete(self, exit_pointers, pointer_dict):
-        print('    on_chain_complete', exit_pointers)
-        # print('on_chain_complete', pointer_dict)
-
-
-class Stepper(Base, FlagFunctions):
+class Stepper(Base, FlagFunctions, StepperMotionMixin):
     """A unit to handle walking a chain of calls across the graph
     Upon a step the Stepper executes the pointer context
     the pointer executes and returns a result.
@@ -360,6 +247,8 @@ class Stepper(Base, FlagFunctions):
     The pointer runs the node. and yields the result to the stepper of which
     makes a decision to run graph steps.
     """
+    merge_mode = True
+
     def __init__(self, machine, origin, loop_limit=-1, path=None):
         self.machine = machine
         self.origin_node = origin
@@ -382,43 +271,8 @@ class Stepper(Base, FlagFunctions):
         return await self.run_nodes( (self.origin_node, ), *a, **kw)
 
     async def run_step(self, *a, **kw):
-        return await self.run_pointers_stashed(*a,**kw)
         # return n, losses
-
-    async def run_pointers_dict_recurse(self, pointer_dict, lost_pointer_dict=None, loop_limit=None):
-        """Run a pointers dictionary until the chain is released (whilst there
-        are future nodes)
-
-        Arguments:
-            pointer_dict {dict} -- a conurrent pointers dict
-
-        Returns:
-            tuple -- a tuple of _live_ and _released_ pointers.
-        """
-        pointers = pointer_dict
-        lost = lost_pointer_dict or {}
-        # n, lost = self.run_pointers_dict(pointer_dict)
-        loop = len(pointers) > 0
-        count = 0
-        _loop_limit = self.loop_limit if loop_limit is None else loop_limit
-
-        while loop:
-            count += 1
-            # sleep(.3)
-            new_pointers, new_lost = await self.run_pointers_dict(pointers)
-            lost.update(new_lost)
-
-            if len(new_pointers) == 0:
-                await self.flag_complete(pointers, lost)
-                return pointers, lost
-
-            pointers = new_pointers
-            ll = count+1 if _loop_limit == -1 else _loop_limit
-            loop = len(pointers) > 0 and (count < ll)
-            if count >= ll:
-                print('Hit Recuse limit.', ll)
-
-        return pointers, lost
+        return await self.run_pointers_stashed(*a,**kw)
 
     async def run_pointers_stashed(self, *first_args, **first_kwargs):
         """Run one step of the _stashed_ pointers. If no stashed pointers
@@ -449,35 +303,176 @@ class Stepper(Base, FlagFunctions):
 
         return pointers, lost
 
-    async def run_pointers_dict(self, pointer_dict, ):
-        """
-        Given a pointers dict, return a `pointer, losses` tuple
+    async def run_merge_pointers_dict_v1(self, pointer_dict):
+        """Note 2023/08/06: Seems to be recusive and broken :(
 
-        the dict value is the `pointer` and a tuple of args, kwargs
-        from the previous call - ready for the next call.
+            st 3 :
+                (
+                 (<Pointer P_49280672_1 depth=1 index=0 for op_add_10>,
+                  ((20,), {}),
+                  ((0, <N_49288384: add_all>),)),
 
-            {
-                123: (pointer, ((1 ), {},))
-                124: (pointer, ((10), {},))
-            }
+                 (<Pointer P_49280768_1 depth=1 index=1 for op_sub_5>,
+                  ((5,), {}),
+                  ((0, <N_49288384: add_all>),)),
+
+                 (<Pointer P_49280864_1 depth=1 index=2 for op_sub_6>,
+                  ((4,), {}),
+                  ((0, <N_49288384: add_all>),))
+                  )
+
+            With an edge, the end node doesn't present the same as other nodes
+            Also an edge shouldn't receive the concat params. Instead is should
+            receive its unique call. The _result_ is applied to the concat before
+            the edge node finalises.
+
+                      Na ------
+                in -> Nb ------ -> out
+                      Nc - E0 -
+
+            The edge needs an intermediate step, called before the execution.
+            The value from the edge call is the result of the stash.
+
+                ((<Pointer P_49170512_1 depth=1 index=0 for op_add_10>,
+                  ((20,), {}),
+                  ((0, <N_49177792: add_all>),)),
+                 (<Pointer P_49170608_1 depth=1 index=1 for op_sub_5>,
+                  ((5,), {}),
+                  ((0, <N_49177792: add_all>),)),
+                 (<Pointer P_49170704_1 depth=1 index=2 for op_sub_6>,
+                  ((4,), {}),
+                  ((0, <E_N_43513456__N_49177792: N_43513456__N_49177792>),)))
+
+            1. call forward any Edge types, replacing the _edge_ with the edge out node, and the value
+            2. This is applied to the stash
+            3. then merge args on destination.
+
+            This results in (as shown) 1 pointer to `add_all` with values `(20, 5, 4+e)`.
+            `e` is the edge operation
+
+            ---
+
+            if 'merge node'
+            1. any edge with a merged designation is called early.
+            2. the result stacks into the stash
+            3. the pointer owning the current edge is recreate to point at the node,
+
+            *update
+            Therefore if 'mergenode' inspect the incoming references for the same name.
+            perform the early edges for that node only.
         """
-        await self.pppd(pointer_dict, '    Stepper.run_pointers_dict with')
-        # Unpack pointers into many sub pointers.
-        # Then run pointer (results pointer_dict)
+
+        ## Concat pointers:
+        ends = set()
+
         res = {}
         lost = {}
         c = 0
+        pdv = pointer_dict.values()
+        noded_pointer_dict = ()
+        merge_nodes = defaultdict(tuple)
+        merge_edges = defaultdict(tuple)
 
-        for i, (pointer, v) in enumerate(pointer_dict.values()):
+        for i, (pointer, v) in enumerate(pdv):
+            i_nodes = await pointer.get_next(path=self.path, as_index=True)
+            new_entry = (pointer, v, i_nodes)
+            node = pointer.node
+
+            if isinstance(node, Edge):
+                print('is edge')
+                # First check if the end node is this node.
+                node = node.b
+
+            nn = node.uname()
+            ends.add(nn)
+
+            if node.merge_pointers:
+                merge_nodes[nn] += (new_entry,)
+
+            noded_pointer_dict += (new_entry,)
+
+        if len(merge_nodes) > 0:
+            print('merge_nodes detected')
+
+        if len(ends) != len(noded_pointer_dict):
+            # Pointer reduction detected.
+            # find edges
+            # # if the b node is in the set, then call the edge intermediate
+            # function, then stash the result as the same enumeration point.
+            print('Detected shared end node usage...')
+
+        # i_nodes = tuple(set(st))
+
+        ## here we need to merge args and kwargs of same destination pointers
+        ## Delete any unused pointers.
+        print(f'noded_pointer_dict {len(noded_pointer_dict)}:')
+        pp(noded_pointer_dict)
+        print('------')
+
+        ## next cycle through the merge_nodes stack to gather args/kw
+        concat_pointers = ()
+        drop_pointers = set()
+        for m_name, entries in merge_nodes.items():
+            # if an edge, call to the intermediate func
+            args_stack = ()
+            kwargs_stack = {}
+
+            for pointer, v, i_nodes in entries:
+                node = pointer.node
+                print('Node:', node)
+                if isinstance(node, Edge):
+                    nv = await node.run_intermediate(*v[0], **v[1])
+                    print('  .. edge.run_intermediate, old', v, 'new:', nv)
+                    v = nv
+                    node = node.b
+                a, kw = v
+
+                args_stack += a
+                kwargs_stack.update(kw)
+                drop_pointers.add(pointer)
+
+            stack_v = (args_stack, kwargs_stack,)
+            nn = await self.resolve(m_name)
+            pointers = self.as_pointers([nn], index=pointer.index, parent_pointer=pointer)
+            np = pointers[0]
+            new_entry = (np, stack_v, i_nodes)
+            concat_pointers += (new_entry,)
+
+        print('\n-- concat_pointers:')
+        pp(concat_pointers)
+
+        print('\n-- drop_pointers:')
+        pp(drop_pointers)
+
+        print('\n-- merge_nodes:')
+        pp(merge_nodes)
+
+        print('\n-- noded_pointer_dict:')
+        pp(noded_pointer_dict)
+
+        for pointer, v, i_nodes in noded_pointer_dict:
+            if pointer in drop_pointers:
+                continue
+            new_entry = (pointer, v, i_nodes)
+            concat_pointers += (new_entry,)
+
+        print('\n-- concat_pointers (finalised?):')
+        pp(concat_pointers)
+        print('\n')
+        # and replace the current pointer with a pointer to the func without edge.
+        # pop any pointers in this merge_nodes from the nodes_pointer dict, as
+        # those are rewritten as a new pointer with concat args.
+        # This should result in a stack of noded_pointer_dict with less pointers
+
+        for i, (pointer, v, i_nodes) in enumerate(concat_pointers):
             c += 1
-            new_pointers_dict = await self.run_pointer_next(pointer, v, i)
+            a, kw = v
+            new_pointers_dict = await self.run_pointers((pointer,), *a, **kw)
             if len(new_pointers_dict) == 0:
                 # the newest call yielded nothing.
                 # Cache back for this pointer may be applied.
                 lost[pointer.uname()] = pointer, v
             res.update(new_pointers_dict)
-
-        if c == 0:
-            await self.flag_detected_run_empty()
-
+            print(new_pointers_dict)
         return res, lost
+

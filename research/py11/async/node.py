@@ -4,6 +4,7 @@ class Node(object):
     """An entity on the chain, caring for the function
     """
     prefix = 'N_'
+    merge_pointers = False
 
     def __init__(self, func, unique=False):
 
@@ -22,6 +23,7 @@ class Node(object):
     async def execute(self, *a, **kw):
         # print('Node.execute', self, 'with', a, kw)
         f = self._func
+        print('!', self.__class__.__name__, 'execute', a)
         if inspect.iscoroutinefunction(f):
             return await f(*a, **kw)
         return f(*a, **kw)

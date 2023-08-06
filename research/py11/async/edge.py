@@ -17,10 +17,29 @@ class Edge(Node):
         n = self._nodes
         return f"{n[0].uname()}__{n[1].uname()}"
 
+    @property
+    def a(self):
+        return self._nodes[0]
+
+    @property
+    def b(self):
+        return self._nodes[1]
+
+
     async def anon(self, *a, **kw):
         print(f' == Edge.anon: {self} called with:', a, kw)
+        return await self.run_all(*a, **kw)
+
+    async def run_all(self, *a, **kw):
+        na, nkw = await self.run_intermediate(*a, **kw)
+        return await self.execute_node(*na, **nkw)
+
+    async def run_intermediate(self, *a, **kw):
         na, nkw = await self.tap_function(a, kw)
-        return await self._nodes[1].execute(*na, **nkw)
+        return na, nkw
+
+    async def execute_node(self, *a, **kw):
+        return await self._nodes[1].execute(*a, **kw)
 
     async def add_tap(self, f):
         self._tap_functions += (f, )
