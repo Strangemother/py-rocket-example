@@ -127,8 +127,15 @@ async def run_chain_pointer_merge_v2():
 
     This setup
                   +10 ------->
-        in_node -> -5 -------> M add_all -> out
+        in_node -> -5 -------> M add_all -> == (29)
                    -6 ------->
+
+    If stepper.merge_mode is False:
+
+                  +10 -------> add_all -> 10
+        in_node -> -5 -------> add_all -> 5
+                   -6 -------> add_all -> 4
+
     """
 
     m = Machine()
@@ -140,7 +147,7 @@ async def run_chain_pointer_merge_v2():
     # edge = m.edge_bind(node_sub_6, node_add_all)
 
     # node_add_all_a.merge_pointers = True
-    node_add_all.merge_pointers=True
+    node_add_all.merge_pointers = True
 
     print('\n\n --- Running Tree 1 --- \n')
     stepper, pointers = await m.start_chain(10)
